@@ -14,21 +14,18 @@ El objetivo es facilitar la integración entre ambos sistemas y ofrecer una expe
 ## Estructura del repositorio
 
 projecte-dam-25-26-javier-alejandro/
-│
-├── erp/ ← Código, configuración y documentación del ERP (Odoo + Docker)
-│ ├── docker/
-│ ├── odoo-modules/
-│ └── documentación/
-│
-├── app-movil/ ← Código fuente y documentación de la app móvil en Kotlin
-│ ├── src/
-│ ├── documentación/
-│ └── diagramas/
-│
-├── documentación-general/ ← Documentación transversal, diagramas ER/UML, arquitectura, requisitos
-│
-├── README.md ← Este archivo de ayuda rápida
+├── erp/                    # Código, configuración y documentación del ERP (Odoo + Docker)
+│   ├── docker/
+│   ├── odoo-modules/
+│   └── documentación/
+├── app-movil/              # Código fuente y documentación de la app móvil en Kotlin
+│   ├── src/
+│   ├── documentación/
+│   └── diagramas/
+├── documentación-general/  # Documentación transversal, diagramas ER/UML, arquitectura, requisitos
+├── README.md               # Archivo de ayuda rápida
 └── .gitignore
+
 
 ---
 
