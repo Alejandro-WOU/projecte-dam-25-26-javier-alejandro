@@ -1,2 +1,2 @@
->!Note
->Módulos personalizados de Odoo (si desarrolláis 
+> [!NOTE]
+> Módulos personalizados de Odoo
