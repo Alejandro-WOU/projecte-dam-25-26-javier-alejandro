@@ -16,7 +16,7 @@ El objetivo es facilitar la integración entre ambos sistemas y ofrecer una expe
 projecte-dam-25-26-javier-alejandro/
 ├── erp/                    # Código, configuración y documentación del ERP (Odoo + Docker)
 │   ├── docker/
-│   ├── odoo-modules/
+│   ├── addons/             # Modulos de Odoo
 │   └── documentación/
 ├── app-movil/              # Código fuente y documentación de la app móvil en Kotlin
 │   ├── src/
