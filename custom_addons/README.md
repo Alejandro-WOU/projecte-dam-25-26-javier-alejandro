@@ -1,1 +1,0 @@
-Modulos personalizados de Odoo
