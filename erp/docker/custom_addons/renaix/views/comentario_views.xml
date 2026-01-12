@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Vista Tree de Comentarios -->
+    <record id="view_comentario_tree" model="ir.ui.view">
+        <field name="name">renaix.comentario.tree</field>
+        <field name="model">renaix.comentario</field>
+        <field name="arch" type="xml">
+            <tree string="Comentarios" decoration-muted="not active">
+                <field name="fecha"/>
+                <field name="usuario_id"/>
+                <field name="producto_nombre"/>
+                <field name="texto"/>
+                <field name="active" widget="boolean_toggle"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista Form de Comentarios -->
+    <record id="view_comentario_form" model="ir.ui.view">
+        <field name="name">renaix.comentario.form</field>
+        <field name="model">renaix.comentario</field>
+        <field name="arch" type="xml">
+            <form string="Comentario">
+                <header>
+                    <button name="action_eliminar" 
+                            type="object" 
+                            string="Eliminar Comentario" 
+                            class="btn-warning"
+                            confirm="¿Está seguro de eliminar este comentario?"
+                            invisible="not active"/>
+                    <button name="action_restaurar" 
+                            type="object" 
+                            string="Restaurar Comentario" 
+                            class="btn-success"
+                            invisible="active"/>
+                    <field name="active" widget="statusbar" 
+                           statusbar_visible="True,False"
+                           options="{'clickable': False}"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="producto_nombre" readonly="1"/>
+                        </h1>
+                    </div>
+                    
+                    <group>
+                        <group>
+                            <field name="producto_id" readonly="1"/>
+                            <field name="usuario_id" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="fecha" readonly="1"/>
+                            <field name="propietario_producto_id" readonly="1"/>
+                        </group>
+                    </group>
+                    
+                    <group string="Comentario">
+                        <field name="texto" nolabel="1" readonly="1"/>
+                    </group>
+                </sheet>
+                
+                <!-- Chatter -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista Search de Comentarios -->
+    <record id="view_comentario_search" model="ir.ui.view">
+        <field name="name">renaix.comentario.search</field>
+        <field name="model">renaix.comentario</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Comentarios">
+                <field name="usuario_id"/>
+                <field name="producto_id"/>
+                <field name="texto"/>
+                
+                <filter string="Activos" name="activos" 
+                        domain="[('active', '=', True)]"/>
+                <filter string="Eliminados" name="eliminados" 
+                        domain="[('active', '=', False)]"/>
+                
+                <separator/>
+                
+                <filter string="Hoy" name="hoy" 
+                        domain="[('fecha', '&gt;=', (context_today()).strftime('%Y-%m-%d'))]"/>
+                <filter string="Esta semana" name="semana" 
+                        domain="[('fecha', '&gt;=', (context_today() - relativedelta(weeks=1)).strftime('%Y-%m-%d'))]"/>
+                
+                <group expand="0" string="Agrupar Por">
+                    <filter string="Usuario" name="group_usuario" 
+                            context="{'group_by': 'usuario_id'}"/>
+                    <filter string="Producto" name="group_producto" 
+                            context="{'group_by': 'producto_id'}"/>
+                    <filter string="Fecha" name="group_fecha" 
+                            context="{'group_by': 'fecha'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Acción de Ventana para Comentarios -->
+    <record id="action_comentario" model="ir.actions.act_window">
+        <field name="name">Comentarios</field>
+        <field name="res_model">renaix.comentario</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_activos': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No hay comentarios
+            </p>
+            <p>
+                Los comentarios realizados por usuarios en productos aparecerán aquí.<br/>
+                Puedes moderar eliminando comentarios inapropiados.
+            </p>
+        </field>
+    </record>
+
+    <!-- Añadir al menú -->
+    <menuitem id="menu_renaix_comentarios"
+              name="Comentarios"
+              parent="menu_renaix_root"
+              action="action_comentario"
+              sequence="50"/>
+
+</odoo>

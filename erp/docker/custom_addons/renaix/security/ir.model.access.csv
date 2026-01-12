@@ -14,3 +14,15 @@ access_renaix_producto_imagen_admin,renaix.producto.imagen.admin,model_renaix_pr
 access_renaix_compra_user,renaix.compra.user,model_renaix_compra,group_renaix_user,1,0,0,0
 access_renaix_compra_moderador,renaix.compra.moderador,model_renaix_compra,group_renaix_moderador,1,1,1,0
 access_renaix_compra_admin,renaix.compra.admin,model_renaix_compra,group_renaix_admin,1,1,1,1
+access_renaix_valoracion_user,renaix.valoracion.user,model_renaix_valoracion,group_renaix_user,1,0,0,0
+access_renaix_valoracion_moderador,renaix.valoracion.moderador,model_renaix_valoracion,group_renaix_moderador,1,1,1,1
+access_renaix_valoracion_admin,renaix.valoracion.admin,model_renaix_valoracion,group_renaix_admin,1,1,1,1
+access_renaix_comentario_user,renaix.comentario.user,model_renaix_comentario,group_renaix_user,1,0,0,0
+access_renaix_comentario_moderador,renaix.comentario.moderador,model_renaix_comentario,group_renaix_moderador,1,1,1,1
+access_renaix_comentario_admin,renaix.comentario.admin,model_renaix_comentario,group_renaix_admin,1,1,1,1
+access_renaix_mensaje_user,renaix.mensaje.user,model_renaix_mensaje,group_renaix_user,1,1,1,0
+access_renaix_mensaje_moderador,renaix.mensaje.moderador,model_renaix_mensaje,group_renaix_moderador,1,1,1,1
+access_renaix_mensaje_admin,renaix.mensaje.admin,model_renaix_mensaje,group_renaix_admin,1,1,1,1
+access_renaix_denuncia_user,renaix.denuncia.user,model_renaix_denuncia,group_renaix_user,1,0,1,0
+access_renaix_denuncia_moderador,renaix.denuncia.moderador,model_renaix_denuncia,group_renaix_moderador,1,1,1,1
+access_renaix_denuncia_admin,renaix.denuncia.admin,model_renaix_denuncia,group_renaix_admin,1,1,1,1

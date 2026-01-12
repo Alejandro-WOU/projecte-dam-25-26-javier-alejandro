@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Vista Tree de Mensajes -->
+    <record id="view_mensaje_tree" model="ir.ui.view">
+        <field name="name">renaix.mensaje.tree</field>
+        <field name="model">renaix.mensaje</field>
+        <field name="arch" type="xml">
+            <tree string="Mensajes" decoration-bf="not leido">
+                <field name="fecha"/>
+                <field name="emisor_nombre"/>
+                <field name="receptor_nombre"/>
+                <field name="producto_nombre"/>
+                <field name="texto"/>
+                <field name="leido" widget="boolean_toggle"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista Form de Mensajes -->
+    <record id="view_mensaje_form" model="ir.ui.view">
+        <field name="name">renaix.mensaje.form</field>
+        <field name="model">renaix.mensaje</field>
+        <field name="arch" type="xml">
+            <form string="Mensaje">
+                <header>
+                    <button name="action_marcar_leido" 
+                            type="object" 
+                            string="Marcar como Leído" 
+                            class="btn-primary"
+                            invisible="leido"/>
+                    <button name="action_marcar_no_leido" 
+                            type="object" 
+                            string="Marcar como No Leído"
+                            invisible="not leido"/>
+                    <field name="leido" widget="statusbar" 
+                           statusbar_visible="False,True"
+                           options="{'clickable': False}"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="emisor_nombre" readonly="1"/>
+                            <span> → </span>
+                            <field name="receptor_nombre" readonly="1"/>
+                        </h1>
+                    </div>
+                    
+                    <group>
+                        <group>
+                            <field name="emisor_id" readonly="1"/>
+                            <field name="receptor_id" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="producto_id" readonly="1"/>
+                            <field name="hilo_id" readonly="1"/>
+                        </group>
+                    </group>
+                    
+                    <group>
+                        <group>
+                            <field name="fecha" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="fecha_lectura" readonly="1" invisible="not leido"/>
+                        </group>
+                    </group>
+                    
+                    <group string="Mensaje">
+                        <field name="texto" nolabel="1" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista Kanban de Mensajes (estilo chat) -->
+    <record id="view_mensaje_kanban" model="ir.ui.view">
+        <field name="name">renaix.mensaje.kanban</field>
+        <field name="model">renaix.mensaje</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <field name="emisor_nombre"/>
+                <field name="receptor_nombre"/>
+                <field name="texto"/>
+                <field name="fecha"/>
+                <field name="leido"/>
+                
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card oe_kanban_global_click">
+                            <div class="oe_kanban_content">
+                                <div class="o_kanban_record_top">
+                                    <strong t-if="!record.leido.raw_value">🔴 </strong>
+                                    <strong><field name="emisor_nombre"/></strong>
+                                    → <field name="receptor_nombre"/>
+                                </div>
+                                <div class="o_kanban_record_body">
+                                    <field name="texto"/>
+                                </div>
+                                <div class="o_kanban_record_bottom">
+                                    <field name="fecha" widget="relative"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Vista Search de Mensajes -->
+    <record id="view_mensaje_search" model="ir.ui.view">
+        <field name="name">renaix.mensaje.search</field>
+        <field name="model">renaix.mensaje</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Mensajes">
+                <field name="emisor_id"/>
+                <field name="receptor_id"/>
+                <field name="producto_id"/>
+                <field name="texto"/>
+                
+                <filter string="No leídos" name="no_leidos" 
+                        domain="[('leido', '=', False)]"/>
+                <filter string="Leídos" name="leidos" 
+                        domain="[('leido', '=', True)]"/>
+                
+                <separator/>
+                
+                <filter string="Con producto" name="con_producto" 
+                        domain="[('producto_id', '!=', False)]"/>
+                
+                <separator/>
+                
+                <filter string="Hoy" name="hoy" 
+                        domain="[('fecha', '&gt;=', (context_today()).strftime('%Y-%m-%d'))]"/>
+                
+                <group expand="0" string="Agrupar Por">
+                    <filter string="Emisor" name="group_emisor" 
+                            context="{'group_by': 'emisor_id'}"/>
+                    <filter string="Receptor" name="group_receptor" 
+                            context="{'group_by': 'receptor_id'}"/>
+                    <filter string="Producto" name="group_producto" 
+                            context="{'group_by': 'producto_id'}"/>
+                    <filter string="Hilo" name="group_hilo" 
+                            context="{'group_by': 'hilo_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Acción de Ventana para Mensajes -->
+    <record id="action_mensaje" model="ir.actions.act_window">
+        <field name="name">Mensajes</field>
+        <field name="res_model">renaix.mensaje</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No hay mensajes
+            </p>
+            <p>
+                Los mensajes privados entre usuarios aparecerán aquí.<br/>
+                Útil para resolver conflictos o supervisar comunicaciones.
+            </p>
+        </field>
+    </record>
+
+    <!-- Añadir al menú -->
+    <menuitem id="menu_renaix_mensajes"
+              name="Mensajes"
+              parent="menu_renaix_root"
+              action="action_mensaje"
+              sequence="60"/>
+
+</odoo>

@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- ========================================== -->
+    <!-- GRAPH 1: Productos por Categoría -->
+    <!-- ========================================== -->
+    
+    <record id="view_producto_graph_categoria" model="ir.ui.view">
+        <field name="name">renaix.producto.graph.categoria</field>
+        <field name="model">renaix.producto</field>
+        <field name="arch" type="xml">
+            <graph string="Productos por Categoría" type="bar">
+                <field name="categoria_id" type="row"/>
+            </graph>
+        </field>
+    </record>
+    
+    <!-- ========================================== -->
+    <!-- GRAPH 2: Denuncias por Tipo/Estado -->
+    <!-- ========================================== -->
+    
+    <record id="view_denuncia_graph_tipo" model="ir.ui.view">
+        <field name="name">renaix.denuncia.graph.tipo</field>
+        <field name="model">renaix.denuncia</field>
+        <field name="arch" type="xml">
+            <graph string="Denuncias por Tipo" type="pie">
+                <field name="tipo" type="row"/>
+            </graph>
+        </field>
+    </record>
+    
+    <record id="view_denuncia_graph_estado" model="ir.ui.view">
+        <field name="name">renaix.denuncia.graph.estado</field>
+        <field name="model">renaix.denuncia</field>
+        <field name="arch" type="xml">
+            <graph string="Denuncias por Estado" type="bar">
+                <field name="estado" type="row"/>
+            </graph>
+        </field>
+    </record>
+    
+    <!-- ========================================== -->
+    <!-- GRAPH 3: Valoraciones por Usuario -->
+    <!-- ========================================== -->
+    
+    <record id="view_valoracion_graph_usuario" model="ir.ui.view">
+        <field name="name">renaix.valoracion.graph.usuario</field>
+        <field name="model">renaix.valoracion</field>
+        <field name="arch" type="xml">
+            <graph string="Valoraciones por Usuario" type="bar">
+                <field name="usuario_valorado_id" type="row"/>
+                <field name="puntuacion" type="measure"/>
+            </graph>
+        </field>
+    </record>
+    
+    <!-- ========================================== -->
+    <!-- ACCIONES para las Graph Views -->
+    <!-- ========================================== -->
+    
+    <!-- Acción: Productos por Categoría -->
+    <record id="action_producto_graph_categoria" model="ir.actions.act_window">
+        <field name="name">Productos por Categoría</field>
+        <field name="res_model">renaix.producto</field>
+        <field name="view_mode">graph,tree</field>
+        <field name="view_id" ref="view_producto_graph_categoria"/>
+        <field name="domain">[('active', '=', True)]</field>
+        <field name="context">{'group_by': ['categoria_id']}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                No hay datos estadísticos
+            </p>
+            <p>
+                Este gráfico muestra la distribución de productos por categoría.
+            </p>
+        </field>
+    </record>
+    
+    <!-- Acción: Denuncias por Tipo -->
+    <record id="action_denuncia_graph_tipo" model="ir.actions.act_window">
+        <field name="name">Denuncias por Tipo</field>
+        <field name="res_model">renaix.denuncia</field>
+        <field name="view_mode">graph,tree</field>
+        <field name="view_id" ref="view_denuncia_graph_tipo"/>
+        <field name="context">{'group_by': ['tipo']}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                No hay denuncias registradas
+            </p>
+            <p>
+                Este gráfico muestra la distribución de denuncias por tipo.
+            </p>
+        </field>
+    </record>
+    
+    <!-- Acción: Denuncias por Estado -->
+    <record id="action_denuncia_graph_estado" model="ir.actions.act_window">
+        <field name="name">Denuncias por Estado</field>
+        <field name="res_model">renaix.denuncia</field>
+        <field name="view_mode">graph,tree</field>
+        <field name="view_id" ref="view_denuncia_graph_estado"/>
+        <field name="context">{'group_by': ['estado']}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                No hay denuncias registradas
+            </p>
+            <p>
+                Este gráfico muestra el estado de las denuncias.
+            </p>
+        </field>
+    </record>
+    
+    <!-- Acción: Valoraciones por Usuario -->
+    <record id="action_valoracion_graph_usuario" model="ir.actions.act_window">
+        <field name="name">Valoraciones por Usuario</field>
+        <field name="res_model">renaix.valoracion</field>
+        <field name="view_mode">graph,tree</field>
+        <field name="view_id" ref="view_valoracion_graph_usuario"/>
+        <field name="context">{'group_by': ['usuario_valorado_id']}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                No hay valoraciones registradas
+            </p>
+            <p>
+                Este gráfico muestra la puntuación promedio por usuario.
+            </p>
+        </field>
+    </record>
+    
+    <!-- ========================================== -->
+    <!-- LISTADO 1: Usuarios Más Activos -->
+    <!-- ========================================== -->
+    
+    <record id="view_usuarios_activos_tree" model="ir.ui.view">
+        <field name="name">res.partner.activos.tree</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <tree string="Usuarios Más Activos" 
+                  default_order="productos_en_venta desc, productos_vendidos desc, total_comentarios desc"
+                  create="false" 
+                  edit="false">
+                <field name="name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="valoracion_promedio" widget="progressbar"/>
+                <field name="productos_en_venta" sum="Total en venta"/>
+                <field name="productos_vendidos" sum="Total vendidos"/>
+                <field name="productos_comprados" sum="Total comprados"/>
+                <field name="total_comentarios" sum="Total comentarios"/>
+                <field name="fecha_registro_app"/>
+                <field name="cuenta_activa" widget="boolean_toggle"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="view_usuarios_activos_search" model="ir.ui.view">
+        <field name="name">res.partner.activos.search</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Usuarios Activos">
+                <field name="name"/>
+                <field name="email"/>
+                
+                <filter string="Activos" name="activos" 
+                        domain="[('cuenta_activa', '=', True)]"/>
+                <filter string="Con productos" name="con_productos" 
+                        domain="[('productos_en_venta', '>', 0)]"/>
+                <filter string="Vendedores" name="vendedores" 
+                        domain="[('productos_vendidos', '>', 0)]"/>
+                <filter string="Bien valorados" name="bien_valorados" 
+                        domain="[('valoracion_promedio', '>=', 4.0)]"/>
+                
+                <group expand="0" string="Agrupar Por">
+                    <filter string="Valoración" name="group_valoracion" 
+                            context="{'group_by': 'valoracion_promedio'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    
+    <!-- Acción: Usuarios Más Activos -->
+    <record id="action_usuarios_activos" model="ir.actions.act_window">
+        <field name="name">Usuarios Más Activos</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_usuarios_activos_tree"/>
+        <field name="search_view_id" ref="view_usuarios_activos_search"/>
+        <field name="domain">[('es_usuario_app', '=', True)]</field>
+        <field name="context">{
+            'search_default_activos': 1,
+            'search_default_con_productos': 1
+        }</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No hay usuarios activos
+            </p>
+            <p>
+                Este listado muestra los usuarios más activos ordenados por:<br/>
+                - Productos en venta<br/>
+                - Productos vendidos<br/>
+                - Comentarios realizados
+            </p>
+        </field>
+    </record>
+    
+    <!-- ========================================== -->
+    <!-- LISTADO 2: Productos Más Comentados -->
+    <!-- ========================================== -->
+    
+    <record id="view_productos_comentados_tree" model="ir.ui.view">
+        <field name="name">renaix.producto.comentados.tree</field>
+        <field name="model">renaix.producto</field>
+        <field name="arch" type="xml">
+            <tree string="Productos Más Comentados/Denunciados" 
+                  default_order="total_comentarios desc, total_denuncias desc"
+                  create="false" 
+                  edit="false"
+                  decoration-danger="total_denuncias > 3"
+                  decoration-warning="total_denuncias > 0">
+                <field name="image_128" widget="image" width="50px"/>
+                <field name="name"/>
+                <field name="categoria_id"/>
+                <field name="propietario_id"/>
+                <field name="precio" widget="monetary"/>
+                <field name="estado_venta" widget="badge"/>
+                <field name="total_comentarios" sum="Total comentarios"/>
+                <field name="total_denuncias" sum="Total denuncias"/>
+                <field name="dias_publicado"/>
+                <field name="active" widget="boolean_toggle"/>
+                <field name="currency_id" column_invisible="1"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="view_productos_comentados_search" model="ir.ui.view">
+        <field name="name">renaix.producto.comentados.search</field>
+        <field name="model">renaix.producto</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Productos">
+                <field name="name"/>
+                <field name="categoria_id"/>
+                <field name="propietario_id"/>
+                
+                <filter string="Con comentarios" name="con_comentarios" 
+                        domain="[('total_comentarios', '>', 0)]"/>
+                <filter string="Con denuncias" name="con_denuncias" 
+                        domain="[('total_denuncias', '>', 0)]"/>
+                <filter string="⚠️ Múltiples denuncias" name="multiples_denuncias" 
+                        domain="[('total_denuncias', '>', 2)]"/>
+                <filter string="Disponibles" name="disponibles" 
+                        domain="[('estado_venta', '=', 'disponible')]"/>
+                
+                <group expand="0" string="Agrupar Por">
+                    <filter string="Categoría" name="group_categoria" 
+                            context="{'group_by': 'categoria_id'}"/>
+                    <filter string="Estado" name="group_estado" 
+                            context="{'group_by': 'estado_venta'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    
+    <!-- Acción: Productos Más Comentados -->
+    <record id="action_productos_comentados" model="ir.actions.act_window">
+        <field name="name">Productos Más Comentados</field>
+        <field name="res_model">renaix.producto</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_id" ref="view_productos_comentados_tree"/>
+        <field name="search_view_id" ref="view_productos_comentados_search"/>
+        <field name="context">{
+            'search_default_con_comentarios': 1
+        }</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                No hay productos con comentarios
+            </p>
+            <p>
+                Este listado muestra los productos ordenados por:<br/>
+                - Cantidad de comentarios<br/>
+                - Cantidad de denuncias<br/>
+                <br/>
+                ⚠️ Los productos con múltiples denuncias aparecen en rojo.
+            </p>
+        </field>
+    </record>
+    
+    <!-- ========================================== -->
+    <!-- MENÚ: Estadísticas -->
+    <!-- ========================================== -->
+    
+    <menuitem id="menu_renaix_estadisticas"
+              name="Estadísticas"
+              parent="menu_renaix_root"
+              sequence="40"/>
+    
+    <!-- Submenús: Gráficos -->
+    <menuitem id="menu_renaix_estadisticas_graficos"
+              name="Gráficos"
+              parent="menu_renaix_estadisticas"
+              sequence="10"/>
+    
+    <menuitem id="menu_producto_graph_categoria"
+              name="Productos por Categoría"
+              parent="menu_renaix_estadisticas_graficos"
+              action="action_producto_graph_categoria"
+              sequence="10"/>
+    
+    <menuitem id="menu_denuncia_graph_tipo"
+              name="Denuncias por Tipo"
+              parent="menu_renaix_estadisticas_graficos"
+              action="action_denuncia_graph_tipo"
+              sequence="20"/>
+    
+    <menuitem id="menu_denuncia_graph_estado"
+              name="Denuncias por Estado"
+              parent="menu_renaix_estadisticas_graficos"
+              action="action_denuncia_graph_estado"
+              sequence="30"/>
+    
+    <menuitem id="menu_valoracion_graph_usuario"
+              name="Valoraciones por Usuario"
+              parent="menu_renaix_estadisticas_graficos"
+              action="action_valoracion_graph_usuario"
+              sequence="40"/>
+    
+    <!-- Submenús: Listados -->
+    <menuitem id="menu_renaix_estadisticas_listados"
+              name="Listados"
+              parent="menu_renaix_estadisticas"
+              sequence="20"/>
+    
+    <menuitem id="menu_usuarios_activos"
+              name="Usuarios Más Activos"
+              parent="menu_renaix_estadisticas_listados"
+              action="action_usuarios_activos"
+              sequence="10"/>
+    
+    <menuitem id="menu_productos_comentados"
+              name="Productos Más Comentados"
+              parent="menu_renaix_estadisticas_listados"
+              action="action_productos_comentados"
+              sequence="20"/>
+
+</odoo>

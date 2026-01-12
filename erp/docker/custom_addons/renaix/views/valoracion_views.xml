@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Vista Tree de Valoraciones -->
+    <record id="view_valoracion_tree" model="ir.ui.view">
+        <field name="name">renaix.valoracion.tree</field>
+        <field name="model">renaix.valoracion</field>
+        <field name="arch" type="xml">
+            <tree string="Valoraciones">
+                <field name="fecha"/>
+                <field name="compra_id"/>
+                <field name="tipo_valoracion"/>
+                <field name="usuario_valorador_id"/>
+                <field name="usuario_valorado_id"/>
+                <field name="puntuacion" widget="priority"/>
+                <field name="comentario"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista Form de Valoraciones -->
+    <record id="view_valoracion_form" model="ir.ui.view">
+        <field name="name">renaix.valoracion.form</field>
+        <field name="model">renaix.valoracion</field>
+        <field name="arch" type="xml">
+            <form string="Valoración">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="puntuacion" widget="priority" readonly="1"/>
+                            <span> estrellas</span>
+                        </h1>
+                    </div>
+                    
+                    <group>
+                        <group string="Compra">
+                            <field name="compra_id" readonly="1"/>
+                            <field name="producto_id" readonly="1"/>
+                        </group>
+                        <group string="Valoración">
+                            <field name="tipo_valoracion" readonly="1"/>
+                            <field name="usuario_valorador_id" readonly="1"/>
+                            <field name="usuario_valorado_id" readonly="1"/>
+                            <field name="fecha" readonly="1"/>
+                        </group>
+                    </group>
+                    
+                    <group>
+                        <group string="Participantes">
+                            <field name="comprador_id" readonly="1"/>
+                            <field name="vendedor_id" readonly="1"/>
+                        </group>
+                    </group>
+                    
+                    <group string="Comentario">
+                        <field name="comentario" nolabel="1" 
+                               placeholder="Comentario sobre la transacción..."/>
+                    </group>
+                </sheet>
+                
+                <!-- Chatter -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista Kanban de Valoraciones -->
+    <record id="view_valoracion_kanban" model="ir.ui.view">
+        <field name="name">renaix.valoracion.kanban</field>
+        <field name="model">renaix.valoracion</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <field name="usuario_valorador_id"/>
+                <field name="usuario_valorado_id"/>
+                <field name="puntuacion"/>
+                <field name="comentario"/>
+                <field name="fecha"/>
+                
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card oe_kanban_global_click">
+                            <div class="oe_kanban_content">
+                                <div class="o_kanban_record_title">
+                                    <field name="puntuacion" widget="priority"/>
+                                    <strong><field name="usuario_valorador_id"/></strong>
+                                    → <field name="usuario_valorado_id"/>
+                                </div>
+                                <div class="o_kanban_record_body">
+                                    <field name="comentario"/>
+                                </div>
+                                <div class="o_kanban_record_bottom">
+                                    <field name="fecha" widget="date"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Vista Search de Valoraciones -->
+    <record id="view_valoracion_search" model="ir.ui.view">
+        <field name="name">renaix.valoracion.search</field>
+        <field name="model">renaix.valoracion</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Valoraciones">
+                <field name="usuario_valorador_id"/>
+                <field name="usuario_valorado_id"/>
+                <field name="compra_id"/>
+                
+                <filter string="5 estrellas" name="cinco_estrellas" 
+                        domain="[('puntuacion', '=', 5)]"/>
+                <filter string="4 estrellas" name="cuatro_estrellas" 
+                        domain="[('puntuacion', '=', 4)]"/>
+                <filter string="3 o menos" name="tres_o_menos" 
+                        domain="[('puntuacion', '&lt;=', 3)]"/>
+                
+                <separator/>
+                
+                <filter string="Comprador a Vendedor" name="comprador_vendedor" 
+                        domain="[('tipo_valoracion', '=', 'comprador_a_vendedor')]"/>
+                <filter string="Vendedor a Comprador" name="vendedor_comprador" 
+                        domain="[('tipo_valoracion', '=', 'vendedor_a_comprador')]"/>
+                
+                <group expand="0" string="Agrupar Por">
+                    <filter string="Usuario Valorado" name="group_valorado" 
+                            context="{'group_by': 'usuario_valorado_id'}"/>
+                    <filter string="Puntuación" name="group_puntuacion" 
+                            context="{'group_by': 'puntuacion'}"/>
+                    <filter string="Tipo" name="group_tipo" 
+                            context="{'group_by': 'tipo_valoracion'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Acción de Ventana para Valoraciones -->
+    <record id="action_valoracion" model="ir.actions.act_window">
+        <field name="name">Valoraciones</field>
+        <field name="res_model">renaix.valoracion</field>
+        <field name="view_mode">tree,kanban,form,graph</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No hay valoraciones registradas
+            </p>
+            <p>
+                Las valoraciones entre compradores y vendedores aparecerán aquí.<br/>
+                Se crean automáticamente después de completar una compra.
+            </p>
+        </field>
+    </record>
+
+    <!-- Añadir al menú -->
+    <menuitem id="menu_renaix_valoraciones"
+              name="Valoraciones"
+              parent="menu_renaix_root"
+              action="action_valoracion"
+              sequence="35"/>
+
+</odoo>

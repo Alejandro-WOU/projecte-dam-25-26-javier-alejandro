@@ -36,15 +36,15 @@
         'contacts',       # Para res.partner
     ],
     'data': [
-        # Security
+        # Security (debe ir primero)
         'security/security.xml',
         'security/ir.model.access.csv',
         
-        # Data
+        # Data (datos iniciales)
         'data/sequences.xml',
         'data/categorias_data.xml',
         
-        # Views
+        # Views (vistas de la aplicación)
         'views/menu.xml',
         'views/categoria_views.xml',
         'views/etiqueta_views.xml',
@@ -52,6 +52,11 @@
         'views/producto_views.xml',
         'views/producto_imagen_views.xml',
         'views/compra_views.xml',
+        'views/valoracion_views.xml',
+        'views/comentario_views.xml',
+        'views/mensaje_views.xml',
+        'views/denuncia_views.xml',
+        'views/estadisticas_views.xml',  # Estadísticas (gráficos + listados)
     ],
     'demo': [],
     'installable': True,
