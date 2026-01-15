@@ -11,6 +11,17 @@ class ResPartner(models.Model):
     """
     _inherit = 'res.partner'
     
+    # ========================================
+    # CAMPO GID (Global ID)
+    # ========================================
+    partner_gid = fields.Char(
+        string='Global ID',
+        help='Identificador único global (UUID) para sincronización con app móvil',
+        readonly=True,
+        copy=False,
+        index=True  # ✅ Indexado para búsquedas rápidas
+    )
+    
     # Campo para identificar usuarios de la app
     es_usuario_app = fields.Boolean(
         string='Es Usuario App',
@@ -88,10 +99,6 @@ class ResPartner(models.Model):
         'vendedor_id',
         string='Ventas Realizadas'
     )
-    
-    # TEMPORAL: Comentadas hasta crear los modelos
-    # Se descomentarán cuando existan: renaix.valoracion, renaix.comentario, 
-    # renaix.denuncia, renaix.mensaje
     
     valoracion_ids = fields.One2many(
         'renaix.valoracion',
@@ -184,6 +191,21 @@ class ResPartner(models.Model):
             partner.total_comentarios = len(partner.comentario_ids)
             partner.total_denuncias_realizadas = len(partner.denuncia_ids)
     
+    @api.model_create_multi
+    def create(self, vals_list):
+        """
+        Override create para generar partner_gid automáticamente
+        Solo para usuarios de la app móvil
+        """
+        import uuid
+        
+        for vals in vals_list:
+            # Si es usuario app y no tiene GID, generarlo
+            if vals.get('es_usuario_app') and not vals.get('partner_gid'):
+                vals['partner_gid'] = str(uuid.uuid4())
+        
+        return super().create(vals_list)
+    
     def name_get(self):
         """Personaliza cómo se muestra el nombre en selects"""
         result = []
@@ -252,3 +274,16 @@ class ResPartner(models.Model):
                 subject='Cuenta Activada',
                 message_type='notification'
             )
+    
+    def action_regenerar_gid(self):
+        """Regenera el GID del usuario (solo para casos especiales)"""
+        import uuid
+        for partner in self:
+            if partner.es_usuario_app:
+                old_gid = partner.partner_gid
+                partner.partner_gid = str(uuid.uuid4())
+                partner.message_post(
+                    body=f'GID regenerado: {old_gid} → {partner.partner_gid}',
+                    subject='GID Regenerado',
+                    message_type='notification'
+                )

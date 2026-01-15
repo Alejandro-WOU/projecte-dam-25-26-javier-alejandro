@@ -39,6 +39,7 @@
                     <group>
                         <group string="Información de Usuario">
                             <field name="es_usuario_app"/>
+                            <field name="partner_gid" readonly="1" widget="CopyClipboardChar"/>
                             <field name="fecha_registro_app"/>
                             <field name="cuenta_activa" widget="boolean_toggle"/>
                             <field name="fecha_ultima_actividad"/>
@@ -63,6 +64,13 @@
                                     string="Activar Cuenta" 
                                     class="btn-success"
                                     invisible="cuenta_activa"/>
+                            <button name="action_regenerar_gid"
+                                    type="object"
+                                    string="Regenerar GID"
+                                    class="btn-secondary"
+                                    confirm="⚠️ ADVERTENCIA: Esto generará un nuevo UUID. Los dispositivos con el GID antiguo perderán acceso. ¿Continuar?"
+                                    groups="base.group_system"
+                                    invisible="not partner_gid"/>
                         </group>
                         <group string="API">
                             <field name="api_token" password="True" groups="base.group_system"/>
@@ -81,10 +89,35 @@
                                 </list>
                             </field>
                         </page>
+                        
+                        <page string="Compras" invisible="not compra_comprador_ids">
+                            <field name="compra_comprador_ids" readonly="1">
+                                <list>
+                                    <field name="producto_id"/>
+                                    <field name="vendedor_id"/>
+                                    <field name="precio_final" widget="monetary"/>
+                                    <field name="estado"/>
+                                    <field name="fecha_compra"/>
+                                </list>
+                            </field>
+                        </page>
+                        
+                        <page string="Ventas" invisible="not compra_vendedor_ids">
+                            <field name="compra_vendedor_ids" readonly="1">
+                                <list>
+                                    <field name="producto_id"/>
+                                    <field name="comprador_id"/>
+                                    <field name="precio_final" widget="monetary"/>
+                                    <field name="estado"/>
+                                    <field name="fecha_compra"/>
+                                </list>
+                            </field>
+                        </page>
+                        
                         <page string="Valoraciones" invisible="not valoracion_ids">
                             <field name="valoracion_ids" readonly="1">
                                 <list>
-                                    <field name="compra_id"/>
+                                    <field name="usuario_valorador_id"/>
                                     <field name="puntuacion" widget="priority"/>
                                     <field name="comentario"/>
                                     <field name="fecha"/>
@@ -97,87 +130,88 @@
             
         </field>
     </record>
-
-    <!-- Vista list de Usuarios App -->
-    <record id="view_partner_list_renaix" model="ir.ui.view">
-        <field name="name">res.partner.list.renaix</field>
+    
+    <!-- Vista Tree extendida -->
+    <record id="view_partner_tree_renaix" model="ir.ui.view">
+        <field name="name">res.partner.tree.renaix</field>
         <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
         <field name="arch" type="xml">
-            <list string="Usuarios App">
-                <field name="name"/>
-                <field name="email"/>
-                <field name="phone"/>
-                <field name="fecha_registro_app"/>
-                <field name="valoracion_promedio" widget="progressbar"/>
-                <field name="productos_en_venta"/>
-                <field name="productos_vendidos"/>
-                <field name="cuenta_activa" widget="boolean_toggle"/>
+            <list position="inside">
+                <field name="es_usuario_app" optional="hide"/>
+                <field name="partner_gid" optional="hide"/>
+                <field name="valoracion_promedio" optional="show" invisible="not es_usuario_app"/>
+                <field name="productos_en_venta" optional="show" invisible="not es_usuario_app"/>
+                <field name="cuenta_activa" optional="show" invisible="not es_usuario_app"/>
             </list>
         </field>
     </record>
-
-    <!-- Vista Search para Usuarios App -->
+    
+    <!-- Filtros de búsqueda -->
     <record id="view_partner_search_renaix" model="ir.ui.view">
         <field name="name">res.partner.search.renaix</field>
         <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
         <field name="arch" type="xml">
-            <search string="Buscar Usuarios App">
-                <field name="name" string="Nombre" 
-                       filter_domain="[('name', 'ilike', self)]"/>
-                <field name="email"/>
-                <field name="phone"/>
+            <xpath expr="//search" position="inside">
                 
-                <filter string="Usuarios App" name="usuarios_app" 
+                <!-- Filtros -->
+                <filter string="Usuarios App" 
+                        name="usuarios_app" 
                         domain="[('es_usuario_app', '=', True)]"/>
-                <filter string="Cuenta Activa" name="activos" 
-                        domain="[('cuenta_activa', '=', True), ('es_usuario_app', '=', True)]"/>
-                <filter string="Cuenta Inactiva" name="inactivos" 
-                        domain="[('cuenta_activa', '=', False), ('es_usuario_app', '=', True)]"/>
+                <filter string="Cuenta Activa" 
+                        name="cuenta_activa" 
+                        domain="[('cuenta_activa', '=', True)]"/>
+                <filter string="Cuenta Inactiva" 
+                        name="cuenta_inactiva" 
+                        domain="[('cuenta_activa', '=', False)]"/>
                 
                 <separator/>
                 
-                <filter string="Con Productos" name="con_productos" 
+                <filter string="Con Productos" 
+                        name="con_productos" 
                         domain="[('productos_en_venta', '>', 0)]"/>
-                <filter string="Vendedores" name="vendedores" 
-                        domain="[('productos_vendidos', '>', 0)]"/>
-                <filter string="Compradores" name="compradores" 
-                        domain="[('productos_comprados', '>', 0)]"/>
+                <filter string="Con Valoraciones" 
+                        name="con_valoraciones" 
+                        domain="[('valoracion_promedio', '>', 0)]"/>
                 
                 <separator/>
                 
-                <filter string="Bien Valorados" name="bien_valorados" 
-                        domain="[('valoracion_promedio', '>=', 4.0)]"/>
+                <!-- Búsqueda por GID -->
+                <field name="partner_gid" string="GID"/>
                 
+                <!-- Agrupar por -->
                 <group expand="0" string="Agrupar Por">
-                    <filter string="Fecha Registro" name="group_fecha" 
-                            context="{'group_by': 'fecha_registro_app'}"/>
-                    <filter string="Estado Cuenta" name="group_estado" 
+                    <filter string="Cuenta Activa" 
+                            name="group_cuenta_activa" 
                             context="{'group_by': 'cuenta_activa'}"/>
+                    <filter string="Fecha Registro" 
+                            name="group_fecha_registro" 
+                            context="{'group_by': 'fecha_registro_app'}"/>
                 </group>
-            </search>
+                
+            </xpath>
         </field>
     </record>
-
-    <!-- Acción de Ventana para Usuarios App -->
+    
+    <!-- Acción para Usuarios App -->
     <record id="action_partner_renaix" model="ir.actions.act_window">
         <field name="name">Usuarios App</field>
         <field name="res_model">res.partner</field>
-        <field name="view_mode">list,form</field>
-        <field name="view_id" ref="view_partner_list_renaix"/>
+        <field name="view_mode">kanban,tree,form</field>
         <field name="context">{
             'search_default_usuarios_app': 1,
-            'search_default_activos': 1,
-            'default_es_usuario_app': True
+            'default_es_usuario_app': True,
+            'default_cuenta_activa': True
         }</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
-                Crear primer usuario de la app
+                Crear nuevo usuario de la app móvil
             </p>
             <p>
-                Los usuarios de la app móvil Renaix se gestionan aquí.<br/>
-                Puedes ver sus productos, compras, valoraciones y más.
+                Los usuarios de la app pueden publicar productos, realizar compras y valorar vendedores.
             </p>
         </field>
     </record>
-
+    
 </odoo>
