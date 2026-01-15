@@ -45,7 +45,7 @@
                     <group>
                         <group string="Información de Usuario">
                             <field name="es_usuario_app" invisible="1"/>
-                            <field name="partner_gid" readonly="1" widget="CopyClipboardChar" attrs="{'invisible': [('is_company', '=', True)]}"/>
+                            <field name="partner_gid" readonly="1" widget="CopyClipboardChar"/>
                             <field name="fecha_registro_app"/>
                             <field name="cuenta_activa" widget="boolean_toggle"/>
                             <field name="fecha_ultima_actividad"/>
