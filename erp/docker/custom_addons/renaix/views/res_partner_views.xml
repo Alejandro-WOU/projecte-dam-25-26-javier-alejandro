@@ -5,8 +5,14 @@
     <record id="view_partner_form_renaix" model="ir.ui.view">
         <field name="name">res.partner.form.renaix</field>
         <field name="model">res.partner</field>
+        <field name="priority">99</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
+            
+            <!-- Añadir campo is_company invisible para usarlo en condiciones -->
+            <field name="name" position="after">
+                <field name="is_company" invisible="1"/>
+            </field>
             
             <!-- Añadir botones estadísticos -->
             <xpath expr="//div[@name='button_box']" position="inside">
@@ -14,32 +20,32 @@
                         type="object" 
                         class="oe_stat_button" 
                         icon="fa-shopping-cart"
-                        invisible="not es_usuario_app">
+                        invisible="is_company or not es_usuario_app">
                     <field name="productos_en_venta" widget="statinfo" string="En Venta"/>
                 </button>
                 <button name="action_view_compras" 
                         type="object" 
                         class="oe_stat_button" 
                         icon="fa-shopping-bag"
-                        invisible="not es_usuario_app">
+                        invisible="is_company or not es_usuario_app">
                     <field name="productos_comprados" widget="statinfo" string="Comprados"/>
                 </button>
                 <button name="action_view_ventas" 
                         type="object" 
                         class="oe_stat_button" 
                         icon="fa-money"
-                        invisible="not es_usuario_app">
+                        invisible="is_company or not es_usuario_app">
                     <field name="productos_vendidos" widget="statinfo" string="Vendidos"/>
                 </button>
             </xpath>
             
             <!-- Añadir página de Renaix -->
             <xpath expr="//notebook" position="inside">
-                <page string="Renaix App" invisible="not es_usuario_app">
+                <page string="Renaix App" invisible="is_company or not es_usuario_app">
                     <group>
                         <group string="Información de Usuario">
-                            <field name="es_usuario_app"/>
-                            <field name="partner_gid" readonly="1" widget="CopyClipboardChar"/>
+                            <field name="es_usuario_app" invisible="1"/>
+                            <field name="partner_gid" readonly="1" widget="CopyClipboardChar" attrs="{'invisible': [('is_company', '=', True)]}"/>
                             <field name="fecha_registro_app"/>
                             <field name="cuenta_activa" widget="boolean_toggle"/>
                             <field name="fecha_ultima_actividad"/>
@@ -187,10 +193,12 @@
         <field name="name">Usuarios App</field>
         <field name="res_model">res.partner</field>
         <field name="view_mode">kanban,list,form</field>
+        <field name="domain">[('is_company', '=', False)]</field>
         <field name="context">{
             'search_default_usuarios_app': 1,
             'default_es_usuario_app': True,
-            'default_cuenta_activa': True
+            'default_cuenta_activa': True,
+            'default_is_company': False
         }</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
