@@ -151,6 +151,12 @@ class ResPartner(models.Model):
         help='Fecha de la última acción del usuario en la app'
     )
     
+    # Campo de información adicional
+    additional_info = fields.Text(
+        string='Información Adicional',
+        help='Notas o información adicional sobre el usuario de la app'
+    )
+    
     @api.depends('valoracion_ids.puntuacion')
     def _compute_valoracion_promedio(self):
         """Calcula la valoración promedio del usuario como vendedor"""

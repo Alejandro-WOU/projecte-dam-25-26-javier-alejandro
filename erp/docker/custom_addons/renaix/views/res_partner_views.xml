@@ -51,6 +51,10 @@
                         </group>
                     </group>
                     
+                    <group string="Información Adicional">
+                        <field name="additional_info" nolabel="1" placeholder="Notas sobre el usuario..."/>
+                    </group>
+                    
                     <group>
                         <group string="Acciones">
                             <button name="action_desactivar_cuenta" 
@@ -131,22 +135,6 @@
         </field>
     </record>
     
-    <!-- Vista list extendida -->
-    <record id="view_partner list_renaix" model="ir.ui.view">
-        <field name="name">res.partner list.renaix</field>
-        <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_partner list"/>
-        <field name="arch" type="xml">
-            <list position="inside">
-                <field name="es_usuario_app" optional="hide"/>
-                <field name="partner_gid" optional="hide"/>
-                <field name="valoracion_promedio" optional="show" invisible="not es_usuario_app"/>
-                <field name="productos_en_venta" optional="show" invisible="not es_usuario_app"/>
-                <field name="cuenta_activa" optional="show" invisible="not es_usuario_app"/>
-            </list>
-        </field>
-    </record>
-    
     <!-- Filtros de búsqueda -->
     <record id="view_partner_search_renaix" model="ir.ui.view">
         <field name="name">res.partner.search.renaix</field>
@@ -198,7 +186,7 @@
     <record id="action_partner_renaix" model="ir.actions.act_window">
         <field name="name">Usuarios App</field>
         <field name="res_model">res.partner</field>
-        <field name="view_mode">kanban list,form</field>
+        <field name="view_mode">kanban,list,form</field>
         <field name="context">{
             'search_default_usuarios_app': 1,
             'default_es_usuario_app': True,
