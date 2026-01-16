@@ -44,7 +44,7 @@
                 <page string="Renaix App" invisible="is_company or not es_usuario_app">
                     <group>
                         <group string="Información de Usuario">
-                            <field name="es_usuario_app" invisible="1"/>
+                            <field name="es_usuario_app"/>
                             <field name="partner_gid" readonly="1" widget="CopyClipboardChar"/>
                             <field name="fecha_registro_app"/>
                             <field name="cuenta_activa" widget="boolean_toggle"/>
