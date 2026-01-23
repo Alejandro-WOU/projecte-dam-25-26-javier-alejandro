@@ -1,34 +1,43 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "renaix_api",
-
-    'summary': "Short (1 phrase/line) summary of the module's purpose",
-
+    'name': 'Renaix API REST',
+    'version': '1.0.0',
+    'category': 'API',
+    'summary': 'API REST para aplicación móvil Renaix',
     'description': """
-Long description of module's purpose
+        API REST segura con autenticación JWT para la aplicación móvil 
+        de compra-venta de productos de segunda mano Renaix.
+        
+        Funcionalidades:
+        - Autenticación JWT con refresh tokens
+        - CRUD de productos
+        - Sistema de compra-venta
+        - Comentarios y valoraciones
+        - Mensajería entre usuarios
+        - Sistema de denuncias
+        - Gestión de imágenes
     """,
-
-    'author': "My Company",
-    'website': "https://www.yourcompany.com",
-
-    # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
-    # for the full list
-    'category': 'Uncategorized',
-    'version': '0.1',
-
-    # any module necessary for this one to work correctly
-    'depends': ['base'],
-
-    # always loaded
-    'data': [
-        # 'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
+    'author': 'Javier Herraiz & Alejandro Sánchez',
+    'website': 'https://github.com/tuusuario/renaix',
+    'license': 'LGPL-3',
+    
+    # Dependencias
+    'depends': [
+        'base',
+        'mail',
+        'renaix',  # Módulo core
     ],
-    # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
-    ],
+    
+    # Archivos del módulo
+    'data': [],  # No necesitamos vistas ni datos, solo API
+    
+    # Configuración
+    'installable': True,
+    'application': False,
+    'auto_install': False,
+    
+    # External dependencies
+    'external_dependencies': {
+        'python': ['PyJWT'],
+    },
 }
-
