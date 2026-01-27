@@ -35,6 +35,7 @@ def serialize_partner(partner, full=False):
             'productos_comprados': partner.productos_comprados,
             'total_comentarios': partner.total_comentarios,
             'fecha_registro_app': partner.fecha_registro_app.isoformat() if partner.fecha_registro_app else None,
+            'imagen_url': f'/web/image/res.partner/{partner.id}/image_1920' if partner.image_1920 else None,
         })
     
     return data
