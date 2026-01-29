@@ -97,88 +97,88 @@ class ComprasController(http.Controller):
             return response_helpers.server_error_response(str(e))
     
     
-    @http.route('/api/v1/compras/<int:compra_id>/confirmar', type='http', auth='public', 
+    @http.route('/api/v1/compras/<int:compra_id>/confirmar', type='http', auth='public',
                 methods=['POST'], csrf=False, cors='*')
     def confirmar_compra(self, compra_id, **params):
         """Confirmar compra (vendedor)."""
         try:
             partner = jwt_utils.verify_token(request)
             compra = request.env['renaix.compra'].sudo().browse(compra_id)
-            
+
             if not compra.exists():
                 return response_helpers.not_found_response('Compra no encontrada')
-            
+
             if compra.vendedor_id.id != partner.id:
                 return response_helpers.forbidden_response('Solo el vendedor puede confirmar')
-            
+
             if compra.estado != 'pendiente':
                 return response_helpers.validation_error_response('La compra no está en estado pendiente')
-            
-            compra.sudo().write({'estado': 'confirmada'})
-            
+
+            compra.sudo().action_confirmar()
+
             return response_helpers.success_response(
                 data=serializers.serialize_compra(compra),
                 message='Compra confirmada'
             )
-            
+
         except Exception as e:
             _logger.error(f'Error: {str(e)}')
             return response_helpers.server_error_response(str(e))
     
     
-    @http.route('/api/v1/compras/<int:compra_id>/completar', type='http', auth='public', 
+    @http.route('/api/v1/compras/<int:compra_id>/completar', type='http', auth='public',
                 methods=['POST'], csrf=False, cors='*')
     def completar_compra(self, compra_id, **params):
         """Completar compra (comprador confirma recepción)."""
         try:
             partner = jwt_utils.verify_token(request)
             compra = request.env['renaix.compra'].sudo().browse(compra_id)
-            
+
             if not compra.exists():
                 return response_helpers.not_found_response('Compra no encontrada')
-            
+
             if compra.comprador_id.id != partner.id:
                 return response_helpers.forbidden_response('Solo el comprador puede completar')
-            
+
             if compra.estado != 'confirmada':
                 return response_helpers.validation_error_response('La compra debe estar confirmada primero')
-            
-            compra.sudo().write({'estado': 'completada'})
-            
+
+            compra.sudo().action_completar()
+
             return response_helpers.success_response(
                 data=serializers.serialize_compra(compra),
                 message='Compra completada'
             )
-            
+
         except Exception as e:
             _logger.error(f'Error: {str(e)}')
             return response_helpers.server_error_response(str(e))
     
     
-    @http.route('/api/v1/compras/<int:compra_id>/cancelar', type='http', auth='public', 
+    @http.route('/api/v1/compras/<int:compra_id>/cancelar', type='http', auth='public',
                 methods=['POST'], csrf=False, cors='*')
     def cancelar_compra(self, compra_id, **params):
         """Cancelar compra."""
         try:
             partner = jwt_utils.verify_token(request)
             compra = request.env['renaix.compra'].sudo().browse(compra_id)
-            
+
             if not compra.exists():
                 return response_helpers.not_found_response('Compra no encontrada')
-            
+
             if compra.comprador_id.id != partner.id and compra.vendedor_id.id != partner.id:
                 return response_helpers.forbidden_response('No tienes permiso')
-            
+
             if compra.estado == 'completada':
                 return response_helpers.validation_error_response('No se puede cancelar una compra completada')
-            
-            compra.sudo().write({'estado': 'cancelada'})
-            
+
+            compra.sudo().action_cancelar()
+
             return response_helpers.success_response(
                 data=serializers.serialize_compra(compra),
                 message='Compra cancelada'
             )
-            
+
         except Exception as e:
             _logger.error(f'Error: {str(e)}')
             return response_helpers.server_error_response(str(e))

@@ -234,6 +234,59 @@ class UsuariosController(http.Controller):
             return response_helpers.server_error_response(str(e))
 
 
+    @http.route('/api/v1/usuarios/perfil/password', type='http', auth='public',
+                methods=['PUT'], csrf=False, cors='*')
+    def cambiar_password(self, **params):
+        """
+        Cambiar contraseña del usuario autenticado.
+
+        Body JSON:
+        {
+            "password_actual": "contraseña_actual",
+            "password_nueva": "nueva_contraseña"
+        }
+
+        Returns:
+            JSON: {message}
+        """
+        try:
+            # Verificar token
+            partner = jwt_utils.verify_token(request)
+
+            # Obtener datos
+            data = json.loads(request.httprequest.data.decode('utf-8'))
+
+            if not data.get('password_actual'):
+                return response_helpers.validation_error_response('Campo "password_actual" requerido')
+
+            if not data.get('password_nueva'):
+                return response_helpers.validation_error_response('Campo "password_nueva" requerido')
+
+            # Verificar contraseña actual
+            if not auth_helpers.verify_password(data['password_actual'], partner.password_hash):
+                return response_helpers.validation_error_response('La contraseña actual es incorrecta')
+
+            # Validar fortaleza de la nueva contraseña
+            is_valid, error_msg = auth_helpers.validate_password_strength(data['password_nueva'])
+            if not is_valid:
+                return response_helpers.validation_error_response(error_msg)
+
+            # Cambiar contraseña usando el método del modelo
+            partner.sudo().set_password(data['password_nueva'])
+
+            _logger.info(f'Contraseña cambiada para usuario {partner.id}')
+
+            return response_helpers.success_response(
+                message='Contraseña actualizada correctamente'
+            )
+
+        except json.JSONDecodeError:
+            return response_helpers.validation_error_response('JSON inválido')
+
+        except Exception as e:
+            _logger.error(f'Error al cambiar contraseña: {str(e)}')
+            return response_helpers.server_error_response(str(e))
+
     @http.route('/api/v1/usuarios/<int:user_id>', type='http', auth='public',
                 methods=['GET'], csrf=False, cors='*')
     def get_usuario_publico(self, user_id, **params):

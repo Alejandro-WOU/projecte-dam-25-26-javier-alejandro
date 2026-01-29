@@ -268,7 +268,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"Juan Pérez Actualizado\",\n  \"phone\": \"612345679\",\n  \"mobile\": \"698765432\"\n}"
+              "raw": "{\n  \"name\": \"Juan Pérez Actualizado\",\n  \"phone\": \"612345679\",\n  \"mobile\": \"698765432\",\n  \"image\": \"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ...\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/v1/usuarios/perfil",
@@ -282,7 +282,7 @@
                 "perfil"
               ]
             },
-            "description": "Actualiza los datos del perfil."
+            "description": "Actualiza los datos del perfil.\n\n**Campos opcionales:**\n- name: Nuevo nombre\n- phone: Teléfono\n- mobile: Móvil\n- image: Imagen en base64 (con prefijo data:image/... o sin él). Enviar vacío para eliminar."
           },
           "response": []
         },
@@ -457,6 +457,106 @@
             "description": "Obtiene estadísticas del usuario."
           },
           "response": []
+        },
+        {
+          "name": "Subir Imagen de Perfil",
+          "id": "a1b2c3d4-1111-2222-3333-444455556666",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"image\": \"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ...\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/usuarios/perfil/imagen",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "usuarios",
+                "perfil",
+                "imagen"
+              ]
+            },
+            "description": "Sube o actualiza la imagen de perfil.\n\n**Body:**\n- image: Imagen en base64 (con o sin prefijo data:image/...;base64,)\n\n**Límites:**\n- Tamaño máximo: 5MB\n- Tamaño mínimo: 100 bytes"
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar Imagen de Perfil",
+          "id": "a1b2c3d4-5555-6666-7777-888899990000",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/usuarios/perfil/imagen",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "usuarios",
+                "perfil",
+                "imagen"
+              ]
+            },
+            "description": "Elimina la imagen de perfil del usuario autenticado."
+          },
+          "response": []
+        },
+        {
+          "name": "Cambiar Contraseña",
+          "id": "a1b2c3d4-aaaa-bbbb-cccc-ddddeeee0000",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password_actual\": \"Password@123\",\n  \"password_nueva\": \"NuevaPassword@456\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/usuarios/perfil/password",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "usuarios",
+                "perfil",
+                "password"
+              ]
+            },
+            "description": "Cambia la contraseña del usuario autenticado.\n\n**Body requerido:**\n- password_actual: Contraseña actual\n- password_nueva: Nueva contraseña (mínimo 6 caracteres)"
+          },
+          "response": []
         }
       ],
       "id": "319e5f07-034f-47a7-967b-e30d01b4e55c",
@@ -557,7 +657,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"nombre\": \"iPhone 12 Pro\",\n  \"descripcion\": \"Excelente estado, batería al 85%. Incluye cargador original.\",\n  \"precio\": 450.00,\n  \"categoria_id\": 1,\n  \"estado_producto\": \"como_nuevo\",\n  \"antiguedad\": \"1_anno\",\n  \"ubicacion\": \"Madrid\",\n  \"etiqueta_ids\": [1, 2]\n}"
+              "raw": "{\n  \"nombre\": \"iPhone 12 Pro\",\n  \"descripcion\": \"Excelente estado, batería al 85%. Incluye cargador original.\",\n  \"precio\": 450.00,\n  \"categoria_id\": 1,\n  \"estado_producto\": \"como_nuevo\",\n  \"antiguedad\": \"1_anno\",\n  \"ubicacion\": \"Madrid\",\n  \"etiqueta_ids\": [1, 2],\n  \"etiqueta_nombres\": [\"apple\", \"smartphone\", \"segunda-mano\"]\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/v1/productos",
@@ -570,7 +670,7 @@
                 "productos"
               ]
             },
-            "description": "Crea un nuevo producto.\n\n**Estados disponibles:**\n- nuevo\n- como_nuevo\n- buen_estado\n- usado\n- para_piezas\n\n**Antigüedad:**\n- menos_6_meses\n- 6_meses\n- 1_anno\n- 2_annos\n- mas_2_annos"
+            "description": "Crea un nuevo producto en estado 'borrador'.\n\n**Etiquetas:** Se pueden asignar de dos formas:\n- etiqueta_ids: Array de IDs de etiquetas existentes\n- etiqueta_nombres: Array de nombres (se crean automáticamente si no existen)\n\n**Estados disponibles:**\n- nuevo, como_nuevo, buen_estado, usado, para_piezas\n\n**Antigüedad:**\n- menos_6_meses, 6_meses, 1_anno, 2_annos, mas_2_annos\n\n**Flujo:** Crear → Subir imagen(es) → Publicar"
           },
           "response": []
         },
@@ -633,7 +733,7 @@
                 "publicar"
               ]
             },
-            "description": "Publica un producto (cambia de borrador a disponible)."
+            "description": "Publica un producto (cambia de borrador a disponible).\n\n**Validaciones:**\n- El producto debe tener al menos 1 imagen\n- Actualiza la fecha de publicación automáticamente\n\n**Flujo:** Crear producto → Subir imagen(es) → Publicar"
           },
           "response": []
         },
@@ -757,7 +857,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"url_imagen\": \"https://example.com/iphone12.jpg\",\n  \"es_principal\": true,\n  \"descripcion\": \"Vista frontal\"\n}"
+              "raw": "{\n  \"image\": \"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ...\",\n  \"es_principal\": true,\n  \"descripcion\": \"Vista frontal\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/v1/productos/{{producto_id}}/imagenes",
@@ -772,7 +872,7 @@
                 "imagenes"
               ]
             },
-            "description": "Añade una imagen a un producto."
+            "description": "Añade una imagen a un producto.\n\n**Body:**\n- image: Imagen en base64 (con o sin prefijo data:image/...;base64,)\n- es_principal: true/false (opcional)\n- descripcion: Texto descriptivo (opcional)\n\n**Límites:**\n- Máximo 10 imágenes por producto\n- Tamaño máximo: 5MB por imagen"
           },
           "response": []
         },
@@ -915,7 +1015,7 @@
                 "confirmar"
               ]
             },
-            "description": "El vendedor confirma la compra.\n\nCambia estado de 'pendiente' a 'confirmada'."
+            "description": "El vendedor confirma la compra.\n\nCambia estado de 'pendiente' a 'confirmada'.\nEnvía notificación al comprador.\n\n**Requiere:** Token del vendedor."
           },
           "response": []
         },
@@ -943,7 +1043,7 @@
                 "completar"
               ]
             },
-            "description": "El comprador confirma recepción del producto.\n\nCambia estado de 'confirmada' a 'completada'.\nEl producto cambia a estado 'vendido'."
+            "description": "El comprador confirma recepción del producto.\n\nCambia estado de 'confirmada' a 'completada'.\nEl producto cambia a estado 'vendido'.\nCrea recordatorio para valoraciones (2 días).\n\n**Requiere:** Token del comprador."
           },
           "response": []
         },
@@ -971,7 +1071,7 @@
                 "cancelar"
               ]
             },
-            "description": "Cancela una compra (comprador o vendedor).\n\nEl producto vuelve a estado 'disponible'."
+            "description": "Cancela una compra (comprador o vendedor).\n\nEl producto vuelve a estado 'disponible' si estaba reservado.\nNo se puede cancelar una compra completada.\n\n**Requiere:** Token del comprador o vendedor."
           },
           "response": []
         }
@@ -1203,6 +1303,69 @@
           "response": []
         },
         {
+          "name": "Ver Conversación con Usuario",
+          "id": "c1d2e3f4-1111-2222-3333-conversacion1",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/mensajes/conversacion/2?producto_id=1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "mensajes",
+                "conversacion",
+                "2"
+              ],
+              "query": [
+                {
+                  "key": "producto_id",
+                  "value": "1",
+                  "description": "Filtrar por producto (opcional)",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Obtiene todos los mensajes de la conversación con un usuario específico.\n\n**Parámetros de URL:**\n- user_id: ID del otro usuario\n\n**Query params (opcionales):**\n- producto_id: Filtrar mensajes por producto"
+          },
+          "response": []
+        },
+        {
+          "name": "Mensajes No Leídos",
+          "id": "c1d2e3f4-4444-5555-6666-noleidos0001",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/mensajes/no-leidos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "mensajes",
+                "no-leidos"
+              ]
+            },
+            "description": "Obtiene todos los mensajes no leídos del usuario autenticado.\n\nDevuelve el total de no leídos y la lista de mensajes."
+          },
+          "response": []
+        },
+        {
           "name": "Marcar Mensaje como Leído",
           "id": "50a92855-963d-47e7-a286-652dec4dcc73",
           "request": {
@@ -1323,6 +1486,40 @@
               ]
             },
             "description": "Lista todas las categorías disponibles."
+          },
+          "response": []
+        },
+        {
+          "name": "Crear Etiqueta",
+          "id": "c1d2e3f4-7777-8888-9999-crearetiq001",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"gaming\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/etiquetas",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "etiquetas"
+              ]
+            },
+            "description": "Crea una nueva etiqueta.\n\nSi ya existe una etiqueta con el mismo nombre (case-insensitive), devuelve la existente.\n\n**Body:**\n- nombre: Nombre de la etiqueta (2-30 caracteres)\n\n**El nombre se normaliza automáticamente:** minúsculas, sin espacios extra."
           },
           "response": []
         },

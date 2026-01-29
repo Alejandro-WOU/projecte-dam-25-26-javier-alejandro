@@ -159,10 +159,26 @@ class ProductosController(http.Controller):
             
             # Crear producto
             producto = request.env['renaix.producto'].sudo().create(producto_vals)
-            
-            # Añadir etiquetas si se proporcionan
-            if data.get('etiqueta_ids'):
-                producto.sudo().write({'etiqueta_ids': [(6, 0, data['etiqueta_ids'])]})
+
+            # Añadir etiquetas si se proporcionan (por IDs o por nombres)
+            etiqueta_ids = list(data.get('etiqueta_ids', []))
+
+            if data.get('etiqueta_nombres'):
+                Etiqueta = request.env['renaix.etiqueta'].sudo()
+                for nombre in data['etiqueta_nombres']:
+                    nombre = nombre.strip()
+                    if not nombre:
+                        continue
+                    existing = Etiqueta.search([('name', '=ilike', nombre.lower())], limit=1)
+                    if existing:
+                        if existing.id not in etiqueta_ids:
+                            etiqueta_ids.append(existing.id)
+                    else:
+                        nueva = Etiqueta.create({'name': nombre})
+                        etiqueta_ids.append(nueva.id)
+
+            if etiqueta_ids:
+                producto.sudo().write({'etiqueta_ids': [(6, 0, etiqueta_ids)]})
             
             _logger.info(f'Producto creado: {producto.id} por usuario {partner.id}')
             
@@ -241,9 +257,25 @@ class ProductosController(http.Controller):
             if update_vals:
                 producto.sudo().write(update_vals)
             
-            # Actualizar etiquetas si se proporcionan
-            if 'etiqueta_ids' in data:
-                producto.sudo().write({'etiqueta_ids': [(6, 0, data['etiqueta_ids'])]})
+            # Actualizar etiquetas si se proporcionan (por IDs o por nombres)
+            etiqueta_ids = list(data.get('etiqueta_ids', []))
+
+            if data.get('etiqueta_nombres'):
+                Etiqueta = request.env['renaix.etiqueta'].sudo()
+                for nombre in data['etiqueta_nombres']:
+                    nombre = nombre.strip()
+                    if not nombre:
+                        continue
+                    existing = Etiqueta.search([('name', '=ilike', nombre.lower())], limit=1)
+                    if existing:
+                        if existing.id not in etiqueta_ids:
+                            etiqueta_ids.append(existing.id)
+                    else:
+                        nueva = Etiqueta.create({'name': nombre})
+                        etiqueta_ids.append(nueva.id)
+
+            if 'etiqueta_ids' in data or 'etiqueta_nombres' in data:
+                producto.sudo().write({'etiqueta_ids': [(6, 0, etiqueta_ids)]})
             
             _logger.info(f'Producto actualizado: {producto.id}')
             
@@ -306,38 +338,42 @@ class ProductosController(http.Controller):
     def publicar_producto(self, producto_id, **params):
         """
         Publicar producto (cambiar estado de borrador a disponible).
-        
+
         Returns:
             JSON: {producto}
         """
         try:
             # Verificar token
             partner = jwt_utils.verify_token(request)
-            
+
             # Buscar producto
             producto = request.env['renaix.producto'].sudo().browse(producto_id)
-            
+
             if not producto.exists():
                 return response_helpers.not_found_response('Producto no encontrado')
-            
+
             # Verificar que sea el propietario
             if producto.propietario_id.id != partner.id:
                 return response_helpers.forbidden_response('No tienes permiso')
-            
+
             # Verificar que esté en borrador
             if producto.estado_venta != 'borrador':
                 return response_helpers.validation_error_response('El producto ya está publicado')
-            
-            # Publicar
-            producto.sudo().write({'estado_venta': 'disponible'})
-            
+
+            # Publicar usando el método del modelo (valida imágenes y actualiza fecha)
+            from odoo.exceptions import ValidationError
+            try:
+                producto.sudo().action_publicar()
+            except ValidationError as ve:
+                return response_helpers.validation_error_response(str(ve))
+
             _logger.info(f'Producto publicado: {producto.id}')
-            
+
             return response_helpers.success_response(
                 data=serializers.serialize_producto(producto, include_images=True),
                 message='Producto publicado exitosamente'
             )
-            
+
         except Exception as e:
             _logger.error(f'Error al publicar producto: {str(e)}')
             return response_helpers.server_error_response(str(e))
@@ -442,67 +478,88 @@ class ProductosController(http.Controller):
             return response_helpers.server_error_response(str(e))
     
     
-    @http.route('/api/v1/productos/<int:producto_id>/imagenes', type='http', auth='public', 
+    @http.route('/api/v1/productos/<int:producto_id>/imagenes', type='http', auth='public',
                 methods=['POST'], csrf=False, cors='*')
     def agregar_imagen(self, producto_id, **params):
         """
         Agregar imagen a un producto.
-        
+
         Body JSON:
         {
-            "url_imagen": "https://example.com/image.jpg",
+            "image": "data:image/jpeg;base64,/9j/4AAQ...",  # imagen en base64
             "es_principal": false,  # opcional
             "descripcion": "Vista frontal"  # opcional
         }
-        
+
         Returns:
             JSON: {imagen}
         """
         try:
             # Verificar token
             partner = jwt_utils.verify_token(request)
-            
+
             # Buscar producto
             producto = request.env['renaix.producto'].sudo().browse(producto_id)
-            
+
             if not producto.exists():
                 return response_helpers.not_found_response('Producto no encontrado')
-            
+
             # Verificar que sea el propietario
             if producto.propietario_id.id != partner.id:
                 return response_helpers.forbidden_response('No tienes permiso')
-            
+
             # Obtener datos
             data = json.loads(request.httprequest.data.decode('utf-8'))
-            
-            if not data.get('url_imagen'):
-                return response_helpers.validation_error_response('URL de imagen requerida')
-            
+
+            if not data.get('image'):
+                return response_helpers.validation_error_response('Campo "image" requerido (base64)')
+
             # Verificar límite de imágenes
             if len(producto.imagen_ids) >= settings.MAX_IMAGES_PER_PRODUCT:
                 return response_helpers.validation_error_response(f'Máximo {settings.MAX_IMAGES_PER_PRODUCT} imágenes por producto')
-            
-            # Crear imagen
+
+            # Procesar imagen base64
+            image_data = data['image']
+
+            if isinstance(image_data, str):
+                if image_data.startswith('data:image'):
+                    image_data = image_data.split(',', 1)[1]
+                image_data = image_data.strip()
+
+            # Validar base64
+            try:
+                image_bytes = base64.b64decode(image_data, validate=True)
+            except (base64.binascii.Error, ValueError):
+                return response_helpers.validation_error_response('Imagen en formato base64 inválido')
+
+            # Validar tamaño
+            if len(image_bytes) > settings.MAX_IMAGE_SIZE_MB * 1024 * 1024:
+                return response_helpers.validation_error_response(f'La imagen es demasiado grande. Máximo: {settings.MAX_IMAGE_SIZE_MB}MB')
+
+            if len(image_bytes) < 100:
+                return response_helpers.validation_error_response('La imagen es demasiado pequeña o está corrupta')
+
+            # Crear imagen con el campo binario correcto
             imagen_vals = {
                 'producto_id': producto.id,
-                'url_imagen': data['url_imagen'],
+                'imagen': image_data,
                 'es_principal': data.get('es_principal', False),
                 'descripcion': data.get('descripcion', ''),
             }
-            
+
             imagen = request.env['renaix.producto.imagen'].sudo().create(imagen_vals)
-            
+
             _logger.info(f'Imagen añadida al producto {producto.id}')
-            
+
             return response_helpers.success_response(
                 data=serializers.serialize_producto_imagen(imagen),
                 message='Imagen añadida exitosamente',
                 status=201
             )
-            
+
         except json.JSONDecodeError:
             return response_helpers.validation_error_response('JSON inválido')
-        
+
         except Exception as e:
             _logger.error(f'Error al agregar imagen: {str(e)}')
             return response_helpers.server_error_response(str(e))
