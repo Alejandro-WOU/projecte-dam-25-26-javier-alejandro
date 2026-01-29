@@ -554,6 +554,12 @@ Respuesta exitosa (200) - paginada:
 
 El producto se crea en estado `borrador`. Hay que anadir al menos una imagen y luego publicar.
 
+Las etiquetas se pueden asignar de dos formas:
+- `etiqueta_ids`: Array de IDs de etiquetas existentes
+- `etiqueta_nombres`: Array de nombres de etiquetas (se crean automaticamente si no existen)
+
+Ambas opciones se pueden combinar en la misma peticion.
+
 Request:
 ```json
 {
@@ -564,7 +570,8 @@ Request:
     "estado_producto": "como_nuevo",
     "antiguedad": "6_meses",
     "ubicacion": "Madrid",
-    "etiqueta_ids": [1, 3, 5]
+    "etiqueta_ids": [1, 3],
+    "etiqueta_nombres": ["apple", "smartphone", "segunda-mano"]
 }
 ```
 
@@ -1135,6 +1142,8 @@ Sistema de mensajeria directa entre usuarios. Los mensajes se agrupan por hilos 
 | Accion | Metodo | Endpoint | Auth |
 |--------|--------|----------|------|
 | Listar conversaciones | `GET` | `/api/v1/mensajes/conversaciones` | Si |
+| Ver conversacion con usuario | `GET` | `/api/v1/mensajes/conversacion/<user_id>` | Si |
+| Mensajes no leidos | `GET` | `/api/v1/mensajes/no-leidos` | Si |
 | Enviar mensaje | `POST` | `/api/v1/mensajes` | Si |
 | Marcar como leido | `PUT` | `/api/v1/mensajes/<id>/marcar-leido` | Si |
 
@@ -1208,7 +1217,78 @@ Error - Mensaje largo (400):
 }
 ```
 
-#### 7.3 Marcar Mensaje como Leido
+#### 7.3 Ver Conversacion con Usuario
+
+**`GET /api/v1/mensajes/conversacion/15`** (Requiere autenticacion)
+
+Obtiene todos los mensajes intercambiados con un usuario especifico, ordenados cronologicamente.
+
+Parametros opcionales: `producto_id` (filtrar por producto)
+
+Respuesta exitosa (200):
+```json
+{
+    "success": true,
+    "message": "Conversacion recuperada",
+    "data": [
+        {
+            "id": 1,
+            "texto": "Hola, sigue disponible?",
+            "emisor": { "id": 2, "name": "Maria" },
+            "receptor": { "id": 15, "name": "Juan" },
+            "leido": true,
+            "fecha": "2025-01-20 15:00:00",
+            "hilo_id": "hilo_2_15_10"
+        },
+        {
+            "id": 2,
+            "texto": "Si, cuando quieras",
+            "emisor": { "id": 15, "name": "Juan" },
+            "receptor": { "id": 2, "name": "Maria" },
+            "leido": false,
+            "fecha": "2025-01-20 15:05:00",
+            "hilo_id": "hilo_2_15_10"
+        }
+    ]
+}
+```
+
+Error - Usuario no encontrado (404):
+```json
+{
+    "success": false,
+    "error": "Usuario no encontrado",
+    "code": "NOT_FOUND"
+}
+```
+
+#### 7.4 Mensajes No Leidos
+
+**`GET /api/v1/mensajes/no-leidos`** (Requiere autenticacion)
+
+Obtiene todos los mensajes no leidos del usuario autenticado, con el total.
+
+Respuesta exitosa (200):
+```json
+{
+    "success": true,
+    "message": "Mensajes no leidos recuperados",
+    "data": {
+        "total": 3,
+        "mensajes": [
+            {
+                "id": 5,
+                "texto": "Te interesa hacer el intercambio manana?",
+                "emisor": { "id": 15, "name": "Juan" },
+                "leido": false,
+                "fecha": "2025-01-20 16:00:00"
+            }
+        ]
+    }
+}
+```
+
+#### 7.5 Marcar Mensaje como Leido
 
 **`PUT /api/v1/mensajes/1/marcar-leido`** (Requiere autenticacion - solo receptor)
 
@@ -1360,14 +1440,65 @@ Respuesta exitosa (200):
 
 ### 10. Etiquetas
 
-Listado y busqueda de etiquetas (tags) para clasificar productos.
+Gestion de etiquetas (tags) para clasificar productos. Los usuarios autenticados pueden crear nuevas etiquetas, que tambien se crean automaticamente al asignar `etiqueta_nombres` al crear/actualizar un producto.
 
 | Accion | Metodo | Endpoint | Auth |
 |--------|--------|----------|------|
+| Crear etiqueta | `POST` | `/api/v1/etiquetas` | Si |
 | Listar populares | `GET` | `/api/v1/etiquetas` | No |
 | Buscar etiquetas | `GET` | `/api/v1/etiquetas/buscar?q=<texto>` | No |
 
-#### 10.1 Listar Etiquetas Populares
+#### 10.1 Crear Etiqueta
+
+**`POST /api/v1/etiquetas`** (Requiere autenticacion)
+
+Si ya existe una etiqueta con el mismo nombre (case-insensitive), devuelve la existente sin crear duplicado.
+
+Request:
+```json
+{
+    "nombre": "gaming"
+}
+```
+
+Respuesta exitosa (201):
+```json
+{
+    "success": true,
+    "message": "Etiqueta creada exitosamente",
+    "data": {
+        "id": 10,
+        "nombre": "gaming",
+        "producto_count": 0,
+        "color": 0
+    }
+}
+```
+
+Respuesta - Ya existente (200):
+```json
+{
+    "success": true,
+    "message": "Etiqueta ya existente",
+    "data": {
+        "id": 3,
+        "nombre": "gaming",
+        "producto_count": 8,
+        "color": 2
+    }
+}
+```
+
+Error - Nombre corto (400):
+```json
+{
+    "success": false,
+    "error": "El nombre debe tener al menos 2 caracteres",
+    "code": "VALIDATION_ERROR"
+}
+```
+
+#### 10.2 Listar Etiquetas Populares
 
 **`GET /api/v1/etiquetas`**
 
@@ -1384,7 +1515,7 @@ Respuesta exitosa (200):
 }
 ```
 
-#### 10.2 Buscar Etiquetas
+#### 10.3 Buscar Etiquetas
 
 **`GET /api/v1/etiquetas/buscar?q=apple`**
 
@@ -1451,7 +1582,7 @@ Error - Busqueda corta (400):
 - [ ] Listar productos disponibles (publico)
 - [ ] Ver detalle de un producto
 - [ ] Busqueda por texto, categoria y rango de precio
-- [ ] Crear producto (borrador)
+- [ ] Crear producto con etiqueta_nombres (crear etiquetas automaticamente)
 - [ ] Subir imagen al producto
 - [ ] Publicar producto
 - [ ] Error al publicar sin imagenes
@@ -1483,12 +1614,20 @@ Error - Busqueda corta (400):
 #### Mensajes
 - [ ] Enviar mensaje a otro usuario
 - [ ] Listar conversaciones
+- [ ] Ver conversacion con usuario especifico
+- [ ] Consultar mensajes no leidos
 - [ ] Marcar mensaje como leido
 
 #### Denuncias
 - [ ] Crear denuncia de producto
 - [ ] Error con motivo muy corto
 - [ ] Ver mis denuncias
+
+#### Etiquetas
+- [ ] Crear etiqueta nueva
+- [ ] Crear etiqueta duplicada (devuelve existente)
+- [ ] Listar etiquetas populares
+- [ ] Buscar etiquetas por nombre
 
 <!--
 INSTRUCCIONES: Reemplazar los checkboxes con capturas de Postman.
