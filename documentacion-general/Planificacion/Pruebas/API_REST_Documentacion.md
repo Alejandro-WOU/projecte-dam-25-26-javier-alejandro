@@ -1561,172 +1561,224 @@ Error - Busqueda corta (400):
 ### Casos a probar con Postman
 
 #### Autenticacion
--  Registro exitoso de nuevo usuario ![Prueba Registro](.\img\registro_prueba.png)![Registro Exitoso](.\img\registro_exitoso.png)
+-  Registro exitoso de nuevo usuario 
+
+![Prueba Registro](.\img\registro_prueba.png)![Registro Exitoso](.\img\registro_exitoso.png)
 
 - Error al registrar con email duplicado
+
 ![Registro Error](.\img\registro_error.png)
 
 - Login exitoso
+
 ![Login Exitoso](.\img\login_exitoso.png)
 
 - Error al hacer login con credenciales incorrectas
+
 ![Login Error](.\img\login_error.png)
 
 - Renovacion de token exitosa
+
 ![Renovacion Token](.\img\renovacion_token.png)
 
 - Logout exitoso
+
 ![Logout Exitoso](.\img\logout_exitoso.png)
 
 #### Usuarios
 
 - Consultar perfil propio
+
 ![Consultar Perfil](.\img\usuarios_perfil.png)
 
 - Actualizar nombre del perfil
+
 ![Actualizar Perfil](.\img\usuarios_actualizar_perfil.png)
 
 - Subir imagen de perfil (base64)
+
 ![Subir Imagen Perfil](.\img\usuarios_subir_imagen.png)
 
 - Eliminar imagen de perfil
+
 ![Eliminar Imagen Perfil](.\img\usuarios_eliminar_imagen.png)
 
 - Cambiar contrasena exitosamente
+
 ![Cambiar Contrasena](.\img\usuarios_cambiar_password.png)
 
 - Error al cambiar contrasena con la actual incorrecta
+
 ![Cambiar Contrasena Error](.\img\usuarios_cambiar_password_error.png)
 
 - Ver perfil publico de otro usuario
+
 ![Perfil Publico](.\img\usuarios_perfil_publico.png)
 
 - Ver mis productos / compras / ventas / estadisticas
+
 ![Mis Estadisticas](.\img\usuarios_estadisticas.png)
 
 #### Productos
 
 - Listar productos disponibles (publico)
+
 ![Listar Productos](.\img\productos_listar.png)
 
 - Ver detalle de un producto
+
 ![Detalle Producto](.\img\productos_detalle.png)
 
 - Busqueda por texto, categoria y rango de precio
+
 ![Busqueda Avanzada](.\img\productos_busqueda.png)
 
 - Crear producto con etiqueta_nombres (crear etiquetas automaticamente)
+
 ![Crear Producto](.\img\productos_crear.png)
 
 - Subir imagen al producto
+
 ![Subir Imagen Producto](.\img\productos_subir_imagen.png)
 
 - Publicar producto
+
 ![Publicar Producto](.\img\productos_publicar.png)
 
 - Error al publicar sin imagenes
+
 ![Publicar Sin Imagenes Error](.\img\productos_publicar_error.png)
 
 - Actualizar producto propio
+
 ![Actualizar Producto](.\img\productos_actualizar.png)
 
 - Error al editar producto de otro usuario
+
 ![Editar Producto Error](.\img\productos_editar_error.png)
 
 - Eliminar producto propio
+
 ![Eliminar Producto](.\img\productos_eliminar.png)
 
 #### Compras (flujo completo)
 
 - Crear compra de un producto
+
 ![Crear Compra](.\img\compras_crear.png)
 
 - Error al comprar producto propio
+
 ![Comprar Propio Error](.\img\compras_propio_error.png)
 
 - Confirmar compra (como vendedor)
+
 ![Confirmar Compra](.\img\compras_confirmar.png)
 
 - Completar compra (como comprador)
+
 ![Completar Compra](.\img\compras_completar.png)
 
 - Cancelar compra
+
 ![Cancelar Compra](.\img\compras_cancelar.png)
 
 - Error al completar compra no confirmada
+
 ![Completar Sin Confirmar Error](.\img\compras_completar_error.png)
 
 #### Comentarios
 
 - Listar comentarios de un producto
+
 ![Listar Comentarios](.\img\comentarios_listar.png)
 
 - Crear comentario
+
 ![Crear Comentario](.\img\comentarios_crear.png)
 
 - Error con comentario vacio
+
 ![Comentario Vacio Error](.\img\comentarios_vacio_error.png)
 
 - Eliminar comentario propio
+
 ![Eliminar Comentario](.\img\comentarios_eliminar.png)
 
 - Error al eliminar comentario de otro usuario
+
 ![Eliminar Comentario Error](.\img\comentarios_eliminar_error.png)
 
 #### Valoraciones
 
 - Valorar compra completada
+
 ![Valorar Compra](.\img\valoraciones_crear.png)
 
 - Error al valorar compra no completada
+
 ![Valorar No Completada Error](.\img\valoraciones_no_completada_error.png)
 
 - Error al valorar dos veces
+
 ![Valorar Duplicada Error](.\img\valoraciones_duplicada_error.png)
 
 - Ver valoraciones de un usuario
+
 ![Ver Valoraciones](.\img\valoraciones_listar.png)
 
 #### Mensajes
 
 - Enviar mensaje a otro usuario
+
 ![Enviar Mensaje](.\img\mensajes_enviar.png)
 
 - Listar conversaciones
+
 ![Listar Conversaciones](.\img\mensajes_conversaciones.png)
 
 - Ver conversacion con usuario especifico
+
 ![Ver Conversacion](.\img\mensajes_conversacion.png)
 
 - Consultar mensajes no leidos
+
 ![Mensajes No Leidos](.\img\mensajes_no_leidos.png)
 
 - Marcar mensaje como leido
+
 ![Marcar Leido](.\img\mensajes_marcar_leido.png)
 
 #### Denuncias
 
 - Crear denuncia de producto
+
 ![Crear Denuncia](.\img\denuncias_crear.png)
 
 - Error con motivo muy corto
+
 ![Denuncia Motivo Corto Error](.\img\denuncias_motivo_error.png)
 
 - Ver mis denuncias
+
 ![Mis Denuncias](.\img\denuncias_listar.png)
 
 #### Etiquetas
 
 - Crear etiqueta nueva
+
 ![Crear Etiqueta](.\img\etiquetas_crear.png)
 
 - Crear etiqueta duplicada (devuelve existente)
+
 ![Etiqueta Duplicada](.\img\etiquetas_duplicada.png)
 
 - Listar etiquetas populares
+
 ![Listar Etiquetas](.\img\etiquetas_listar.png)
 
 - Buscar etiquetas por nombre
+
 ![Buscar Etiquetas](.\img\etiquetas_buscar.png)
 
 
