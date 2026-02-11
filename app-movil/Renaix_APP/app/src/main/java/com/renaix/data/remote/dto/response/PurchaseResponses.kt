@@ -16,7 +16,7 @@ data class PurchaseResponse(
     val precioFinal: Double,
     val estado: String,  // pendiente, confirmada, completada, cancelada
     @SerialName("fecha_compra")
-    val fechaCompra: String,
+    val fechaCompra: String? = null,
     val notas: String? = null
 )
 

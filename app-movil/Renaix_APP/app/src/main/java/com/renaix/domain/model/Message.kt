@@ -9,7 +9,7 @@ data class Message(
     val emisor: Owner,
     val receptor: Owner,
     val leido: Boolean = false,
-    val fecha: String,
+    val fecha: String? = null,
     val hiloId: String? = null
 )
 
@@ -35,7 +35,7 @@ data class Conversation(
  */
 data class LastMessage(
     val texto: String,
-    val fecha: String
+    val fecha: String? = null
 )
 
 /**

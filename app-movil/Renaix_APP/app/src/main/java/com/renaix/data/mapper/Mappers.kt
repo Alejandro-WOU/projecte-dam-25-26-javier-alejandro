@@ -116,8 +116,8 @@ fun CategoryResponse.toDomain(): Category {
         id = id,
         name = name,
         descripcion = descripcion,
-        imagenUrl = imagen_url,
-        productoCount = producto_count
+        imagenUrl = imagenUrl,
+        productoCount = productoCount
     )
 }
 

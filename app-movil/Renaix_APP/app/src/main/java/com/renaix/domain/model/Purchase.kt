@@ -10,7 +10,7 @@ data class Purchase(
     val vendedor: Owner,
     val precioFinal: Double,
     val estado: EstadoCompra,
-    val fechaCompra: String,
+    val fechaCompra: String? = null,
     val notas: String? = null
 )
 

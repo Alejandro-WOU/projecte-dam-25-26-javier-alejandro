@@ -9,7 +9,7 @@ data class Report(
     val motivo: String,
     val categoria: CategoriaDenuncia,
     val estado: EstadoDenuncia,
-    val fechaDenuncia: String
+    val fechaDenuncia: String? = null
 )
 
 /**

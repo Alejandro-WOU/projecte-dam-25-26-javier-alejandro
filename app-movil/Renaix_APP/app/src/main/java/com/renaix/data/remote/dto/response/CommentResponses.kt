@@ -10,5 +10,5 @@ data class CommentResponse(
     val id: Int,
     val texto: String,
     val usuario: OwnerResponse,
-    val fecha: String
+    val fecha: String? = null
 )

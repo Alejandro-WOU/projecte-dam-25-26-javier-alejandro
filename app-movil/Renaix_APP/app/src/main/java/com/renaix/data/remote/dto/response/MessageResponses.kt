@@ -13,7 +13,7 @@ data class MessageResponse(
     val emisor: OwnerResponse,
     val receptor: OwnerResponse,
     val leido: Boolean = false,
-    val fecha: String,
+    val fecha: String? = null,
     @SerialName("hilo_id")
     val hiloId: String? = null
 )
@@ -25,10 +25,14 @@ data class MessageResponse(
 data class ConversationResponse(
     @SerialName("hilo_id")
     val hiloId: String,
-    val participantes: List<OwnerResponse>,
+    val participantes: List<OwnerResponse> = emptyList(),
     @SerialName("ultimo_mensaje")
     val ultimoMensaje: LastMessageResponse? = null,
-    val mensajes: List<MessageResponse> = emptyList()
+    val mensajes: List<MessageResponse> = emptyList(),
+    @SerialName("total_mensajes")
+    val totalMensajes: Int = 0,
+    @SerialName("mensajes_no_leidos")
+    val mensajesNoLeidos: Int = 0
 )
 
 /**
@@ -37,7 +41,7 @@ data class ConversationResponse(
 @Serializable
 data class LastMessageResponse(
     val texto: String,
-    val fecha: String
+    val fecha: String? = null
 )
 
 /**

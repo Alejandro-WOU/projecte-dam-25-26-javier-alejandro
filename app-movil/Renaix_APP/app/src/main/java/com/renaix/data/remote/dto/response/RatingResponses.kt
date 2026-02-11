@@ -13,6 +13,7 @@ data class RatingResponse(
     val comentario: String? = null,
     @SerialName("tipo_valoracion")
     val tipoValoracion: String,  // comprador_a_vendedor, vendedor_a_comprador
+    @SerialName("usuario_valorador")
     val valorador: OwnerResponse? = null,
-    val fecha: String
+    val fecha: String? = null
 )

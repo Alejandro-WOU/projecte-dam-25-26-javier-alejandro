@@ -116,41 +116,45 @@ class CreateProductViewModel(
     fun createProduct() {
         val state = _formState.value
 
-        // Validaciones
-        var hasErrors = false
+        // Validaciones - acumular todos los errores en una sola copia
+        var nombreError: String? = null
+        var descripcionError: String? = null
+        var precioError: String? = null
+        var categoriaError: String? = null
 
         if (state.nombre.isBlank()) {
-            _formState.value = state.copy(nombreError = "El nombre es obligatorio")
-            hasErrors = true
+            nombreError = "El nombre es obligatorio"
         } else if (state.nombre.length < 3) {
-            _formState.value = state.copy(nombreError = "El nombre debe tener al menos 3 caracteres")
-            hasErrors = true
+            nombreError = "El nombre debe tener al menos 3 caracteres"
         }
 
         if (state.descripcion.isBlank()) {
-            _formState.value = state.copy(descripcionError = "La descripción es obligatoria")
-            hasErrors = true
+            descripcionError = "La descripción es obligatoria"
         } else if (state.descripcion.length < 10) {
-            _formState.value = state.copy(descripcionError = "La descripción debe tener al menos 10 caracteres")
-            hasErrors = true
+            descripcionError = "La descripción debe tener al menos 10 caracteres"
         }
 
         val priceValue = state.precio.toDoubleOrNull()
         if (priceValue == null || priceValue <= 0) {
-            _formState.value = state.copy(precioError = "Precio inválido")
-            hasErrors = true
+            precioError = "Precio inválido"
         }
 
         if (state.categoriaId == null) {
-            _formState.value = state.copy(categoriaError = "Selecciona una categoría")
-            hasErrors = true
+            categoriaError = "Selecciona una categoría"
         }
 
-        if (_selectedImages.value.isEmpty()) {
-            // Aunque no es obligatorio, podríamos mostrar una advertencia
-        }
+        val hasErrors = nombreError != null || descripcionError != null ||
+                precioError != null || categoriaError != null
 
-        if (hasErrors) return
+        if (hasErrors) {
+            _formState.value = state.copy(
+                nombreError = nombreError,
+                descripcionError = descripcionError,
+                precioError = precioError,
+                categoriaError = categoriaError
+            )
+            return
+        }
 
         // Crear producto
         viewModelScope.launch {

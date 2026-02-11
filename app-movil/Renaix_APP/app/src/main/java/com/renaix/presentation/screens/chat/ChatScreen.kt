@@ -279,7 +279,7 @@ private fun MessageBubble(
         Spacer(modifier = Modifier.height(2.dp))
 
         Text(
-            text = formatMessageTime(message.fecha),
+            text = formatMessageTime(message.fecha ?: ""),
             style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )

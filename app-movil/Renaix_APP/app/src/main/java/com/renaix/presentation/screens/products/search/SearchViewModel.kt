@@ -168,8 +168,8 @@ class SearchViewModel(
  * Opciones de ordenamiento
  */
 enum class SortOrder(val apiValue: String, val displayName: String) {
-    NEWEST("newest", "Más recientes"),
-    PRICE_LOW_HIGH("price_asc", "Precio: menor a mayor"),
-    PRICE_HIGH_LOW("price_desc", "Precio: mayor a menor"),
-    NAME("name", "Nombre A-Z")
+    NEWEST("fecha_desc", "Más recientes"),
+    OLDEST("fecha_asc", "Más antiguos"),
+    PRICE_LOW_HIGH("precio_asc", "Precio: menor a mayor"),
+    PRICE_HIGH_LOW("precio_desc", "Precio: mayor a menor")
 }

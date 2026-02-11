@@ -1,5 +1,6 @@
 package com.renaix.data.remote.dto.response
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
@@ -8,8 +9,11 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class CategoryResponse(
     val id: Int,
+    @SerialName("nombre")
     val name: String,
     val descripcion: String? = null,
-    val imagen_url: String? = null,
-    val producto_count: Int = 0
+    @SerialName("imagen_url")
+    val imagenUrl: String? = null,
+    @SerialName("producto_count")
+    val productoCount: Int = 0
 )

@@ -9,7 +9,7 @@ data class Rating(
     val comentario: String? = null,
     val tipoValoracion: TipoValoracion,
     val valorador: Owner? = null,
-    val fecha: String
+    val fecha: String? = null
 )
 
 /**

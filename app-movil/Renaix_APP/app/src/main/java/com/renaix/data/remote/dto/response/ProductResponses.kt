@@ -50,9 +50,9 @@ data class ProductDetailResponse(
  */
 @Serializable
 data class ProductImageResponse(
-    val id: Int,
-    @SerialName("url_imagen")
-    val urlImagen: String,
+    val id: Int = 0,
+    @SerialName("url")
+    val urlImagen: String = "",
     @SerialName("es_principal")
     val esPrincipal: Boolean = false,
     val descripcion: String? = null
@@ -89,6 +89,7 @@ data class ProductPublishResponse(
 @Serializable
 data class CategorySimpleResponse(
     val id: Int,
+    @SerialName("nombre")
     val name: String
 )
 
@@ -98,5 +99,6 @@ data class CategorySimpleResponse(
 @Serializable
 data class TagSimpleResponse(
     val id: Int,
+    @SerialName("nombre")
     val name: String
 )

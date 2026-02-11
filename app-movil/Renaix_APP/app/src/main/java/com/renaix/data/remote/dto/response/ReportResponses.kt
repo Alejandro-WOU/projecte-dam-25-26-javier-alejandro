@@ -14,5 +14,5 @@ data class ReportResponse(
     val categoria: String,
     val estado: String,  // pendiente, en_revision, resuelta, rechazada
     @SerialName("fecha_denuncia")
-    val fechaDenuncia: String
+    val fechaDenuncia: String? = null
 )
