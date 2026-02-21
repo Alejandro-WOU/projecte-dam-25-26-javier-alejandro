@@ -6,6 +6,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.outlined.Logout
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -39,6 +40,47 @@ fun ProfileScreen(
 
     val state by viewModel.state.collectAsState()
     val logoutState by viewModel.logoutState.collectAsState()
+
+    // Dialog de confirmación de logout
+    var showLogoutDialog by remember { mutableStateOf(false) }
+
+    // Dialog de confirmación de cerrar sesión
+    if (showLogoutDialog) {
+        AlertDialog(
+            onDismissRequest = { showLogoutDialog = false },
+            icon = {
+                Icon(
+                    imageVector = Icons.Outlined.Logout,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.error
+                )
+            },
+            title = {
+                Text("Cerrar sesión")
+            },
+            text = {
+                Text("¿Estás seguro de que quieres cerrar sesión?")
+            },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        showLogoutDialog = false
+                        viewModel.logout()
+                    },
+                    colors = ButtonDefaults.textButtonColors(
+                        contentColor = MaterialTheme.colorScheme.error
+                    )
+                ) {
+                    Text("Cerrar sesión")
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showLogoutDialog = false }) {
+                    Text("Cancelar")
+                }
+            }
+        )
+    }
 
     LaunchedEffect(logoutState) {
         if (logoutState is UiState.Success) {
@@ -180,7 +222,7 @@ fun ProfileScreen(
                         icon = Icons.Filled.Logout,
                         title = "Cerrar sesión",
                         subtitle = "Salir de tu cuenta",
-                        onClick = { viewModel.logout() },
+                        onClick = { showLogoutDialog = true },
                         isDestructive = true,
                         isLoading = logoutState is UiState.Loading
                     )

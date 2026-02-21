@@ -22,9 +22,18 @@ class ProductDetailViewModel(
     private val _buyState = MutableStateFlow<UiState<Unit>>(UiState.Idle)
     val buyState: StateFlow<UiState<Unit>> = _buyState.asStateFlow()
 
+    private val _isFavorite = MutableStateFlow(false)
+    val isFavorite: StateFlow<Boolean> = _isFavorite.asStateFlow()
+
+    private var currentProductId: Int = -1
+
     fun loadProduct(productId: Int) {
+        currentProductId = productId
         viewModelScope.launch {
             _state.value = UiState.Loading
+
+            // Cargar estado de favorito
+            _isFavorite.value = productRepository.isFavorite(productId)
 
             productRepository.getProductDetail(productId)
                 .onSuccess { product ->
@@ -33,6 +42,19 @@ class ProductDetailViewModel(
                 .onFailure { exception ->
                     _state.value = UiState.Error(exception.message ?: "Error al cargar producto")
                 }
+        }
+    }
+
+    fun toggleFavorite() {
+        if (currentProductId < 0) return
+        viewModelScope.launch {
+            if (_isFavorite.value) {
+                productRepository.removeFromFavorites(currentProductId)
+                _isFavorite.value = false
+            } else {
+                productRepository.addToFavorites(currentProductId)
+                _isFavorite.value = true
+            }
         }
     }
 

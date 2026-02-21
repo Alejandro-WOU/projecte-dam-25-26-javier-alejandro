@@ -1,6 +1,7 @@
 package com.renaix.presentation.screens.products.detail
 
 import android.content.Intent
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -57,6 +58,7 @@ fun ProductDetailScreen(
 
     val state by viewModel.state.collectAsState()
     val buyState by viewModel.buyState.collectAsState()
+    val isFavorite by viewModel.isFavorite.collectAsState()
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
     val chatRepository = appContainer.chatRepository
@@ -112,6 +114,16 @@ fun ProductDetailScreen(
                     }
                 },
                 actions = {
+                    // Botón de favorito (solo si hay producto cargado)
+                    if (state is UiState.Success) {
+                        IconButton(onClick = { viewModel.toggleFavorite() }) {
+                            Icon(
+                                imageVector = if (isFavorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
+                                contentDescription = if (isFavorite) "Quitar de favoritos" else "Añadir a favoritos",
+                                tint = if (isFavorite) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
+                    }
                     // Botón de compartir (solo si hay producto cargado)
                     if (state is UiState.Success) {
                         val product = (state as UiState.Success).data

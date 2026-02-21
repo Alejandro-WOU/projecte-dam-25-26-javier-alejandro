@@ -83,6 +83,9 @@ fun MainScreen(
     val preferencesManager = appContainer.preferencesManager
     val isDarkMode by preferencesManager.isDarkMode.collectAsState()
 
+    // Dialog de confirmación de logout
+    var showLogoutDialog by remember { mutableStateOf(false) }
+
     // Cargar perfil del usuario
     LaunchedEffect(Unit) {
         userRepository.getProfile().onSuccess { profile ->
@@ -111,6 +114,44 @@ fun MainScreen(
         }
     }
 
+    // Dialog de confirmación de cerrar sesión
+    if (showLogoutDialog) {
+        AlertDialog(
+            onDismissRequest = { showLogoutDialog = false },
+            icon = {
+                Icon(
+                    imageVector = Icons.Outlined.Logout,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.error
+                )
+            },
+            title = {
+                Text("Cerrar sesión")
+            },
+            text = {
+                Text("¿Estás seguro de que quieres cerrar sesión?")
+            },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        showLogoutDialog = false
+                        onLogout()
+                    },
+                    colors = ButtonDefaults.textButtonColors(
+                        contentColor = MaterialTheme.colorScheme.error
+                    )
+                ) {
+                    Text("Cerrar sesión")
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showLogoutDialog = false }) {
+                    Text("Cancelar")
+                }
+            }
+        )
+    }
+
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
@@ -136,7 +177,7 @@ fun MainScreen(
                     },
                     onLogout = {
                         scope.launch { drawerState.close() }
-                        onLogout()
+                        showLogoutDialog = true
                     }
                 )
             }

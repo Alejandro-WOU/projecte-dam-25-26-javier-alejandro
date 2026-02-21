@@ -17,8 +17,32 @@ class ProductListViewModel(
     private val _state = MutableStateFlow(PaginatedState<Product>())
     val state: StateFlow<PaginatedState<Product>> = _state.asStateFlow()
 
+    private val _favorites = MutableStateFlow<Set<Int>>(emptySet())
+    val favorites: StateFlow<Set<Int>> = _favorites.asStateFlow()
+
     init {
         loadProducts()
+        loadFavorites()
+    }
+
+    private fun loadFavorites() {
+        viewModelScope.launch {
+            productRepository.getFavorites().collect { favoriteProducts ->
+                _favorites.value = favoriteProducts.map { it.id }.toSet()
+            }
+        }
+    }
+
+    fun toggleFavorite(productId: Int) {
+        viewModelScope.launch {
+            if (_favorites.value.contains(productId)) {
+                productRepository.removeFromFavorites(productId)
+                _favorites.value = _favorites.value - productId
+            } else {
+                productRepository.addToFavorites(productId)
+                _favorites.value = _favorites.value + productId
+            }
+        }
     }
 
     fun loadProducts() {

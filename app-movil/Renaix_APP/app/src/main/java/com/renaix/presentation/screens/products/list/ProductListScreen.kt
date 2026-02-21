@@ -22,7 +22,6 @@ import com.renaix.di.AppContainer
 import com.renaix.domain.model.Category
 import com.renaix.presentation.common.components.*
 import com.valentinilk.shimmer.shimmer
-import kotlinx.coroutines.launch
 
 /**
  * Pantalla de lista de productos con pull-to-refresh
@@ -35,8 +34,8 @@ fun ProductListScreen(
 ) {
     val viewModel = remember { ProductListViewModel(appContainer.productRepository) }
     val state by viewModel.state.collectAsState()
+    val favorites by viewModel.favorites.collectAsState()
     val snackbarHostState = remember { SnackbarHostState() }
-    val scope = rememberCoroutineScope()
 
     // Categorías y filtro
     var categories by remember { mutableStateOf<List<Category>>(emptyList()) }
@@ -185,6 +184,8 @@ fun ProductListScreen(
                             ProductCard(
                                 product = product,
                                 onClick = { onProductClick(product.id) },
+                                isFavorite = favorites.contains(product.id),
+                                onFavoriteClick = { viewModel.toggleFavorite(product.id) },
                                 modifier = Modifier.graphicsLayer {
                                     alpha = animatedProgress.value
                                     translationY = (1f - animatedProgress.value) * 50f
