@@ -112,22 +112,6 @@ fun Int.toDistanceString(): String {
     }
 }
 
-// ==================== List Extensions ====================
-
-/**
- * Divide una lista en chunks de tamaño específico
- */
-fun <T> List<T>.chunked(size: Int): List<List<T>> {
-    return this.windowed(size, size, partialWindows = true)
-}
-
-/**
- * Retorna el elemento en la posición o null si está fuera de rango
- */
-fun <T> List<T>.getOrNull(index: Int): T? {
-    return if (index in 0 until this.size) this[index] else null
-}
-
 // ==================== Compose Extensions ====================
 
 /**
@@ -147,25 +131,6 @@ fun ShowLongToast(message: String) {
 }
 
 // ==================== Result Extensions ====================
-
-/**
- * Ejecuta un bloque si el Result es Success
- */
-inline fun <T> Result<T>.onSuccessSuspend(crossinline block: suspend (T) -> Unit): Result<T> {
-    if (this.isSuccess) {
-        kotlinx.coroutines.runBlocking {
-            block(this@onSuccessSuspend.getOrThrow())
-        }
-    }
-    return this
-}
-
-/**
- * Obtiene el valor o retorna un default
- */
-fun <T> Result<T>.getOrDefault(default: T): T {
-    return this.getOrElse { default }
-}
 
 /**
  * Obtiene el mensaje de error o uno por defecto

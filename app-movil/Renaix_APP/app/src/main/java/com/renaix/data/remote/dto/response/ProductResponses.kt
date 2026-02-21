@@ -51,7 +51,7 @@ data class ProductDetailResponse(
 @Serializable
 data class ProductImageResponse(
     val id: Int = 0,
-    @SerialName("url")
+    @SerialName("url_imagen")
     val urlImagen: String = "",
     @SerialName("es_principal")
     val esPrincipal: Boolean = false,

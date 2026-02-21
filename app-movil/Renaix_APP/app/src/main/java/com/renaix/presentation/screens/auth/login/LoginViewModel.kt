@@ -2,18 +2,15 @@ package com.renaix.presentation.screens.auth.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.renaix.domain.usecase.auth.LoginUseCase
+import com.renaix.domain.repository.AuthRepository
 import com.renaix.presentation.common.state.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-/**
- * ViewModel para la pantalla de Login
- */
 class LoginViewModel(
-    private val loginUseCase: LoginUseCase
+    private val authRepository: AuthRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<UiState<Unit>>(UiState.Idle)
@@ -47,7 +44,7 @@ class LoginViewModel(
         viewModelScope.launch {
             _uiState.value = UiState.Loading
 
-            loginUseCase(_email.value, _password.value)
+            authRepository.login(_email.value.trim(), _password.value)
                 .onSuccess {
                     _uiState.value = UiState.Success(Unit)
                 }

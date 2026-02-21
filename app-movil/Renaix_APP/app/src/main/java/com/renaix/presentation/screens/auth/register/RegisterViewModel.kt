@@ -2,18 +2,15 @@ package com.renaix.presentation.screens.auth.register
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.renaix.domain.usecase.auth.RegisterUseCase
+import com.renaix.domain.repository.AuthRepository
 import com.renaix.presentation.common.state.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-/**
- * ViewModel para la pantalla de Registro
- */
 class RegisterViewModel(
-    private val registerUseCase: RegisterUseCase
+    private val authRepository: AuthRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<UiState<Unit>>(UiState.Idle)
@@ -76,11 +73,10 @@ class RegisterViewModel(
         viewModelScope.launch {
             _uiState.value = UiState.Loading
 
-            registerUseCase(
-                name = _name.value,
-                email = _email.value,
+            authRepository.register(
+                name = _name.value.trim(),
+                email = _email.value.trim(),
                 password = _password.value,
-                confirmPassword = _confirmPassword.value,
                 phone = _phone.value.takeIf { it.isNotBlank() }
             )
                 .onSuccess {

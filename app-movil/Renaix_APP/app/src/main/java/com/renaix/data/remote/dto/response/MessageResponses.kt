@@ -15,7 +15,26 @@ data class MessageResponse(
     val leido: Boolean = false,
     val fecha: String? = null,
     @SerialName("hilo_id")
-    val hiloId: String? = null
+    val hiloId: String? = null,
+    @SerialName("message_type")
+    val messageType: String = "text",
+    @SerialName("offer_data")
+    val offerData: OfferDataResponse? = null
+)
+
+/**
+ * Datos de oferta incluidos en mensajes de tipo oferta
+ */
+@Serializable
+data class OfferDataResponse(
+    @SerialName("product_id")
+    val productId: Int?,
+    @SerialName("product_name")
+    val productName: String,
+    @SerialName("original_price")
+    val originalPrice: Double,
+    @SerialName("offered_price")
+    val offeredPrice: Double
 )
 
 /**
@@ -51,4 +70,13 @@ data class LastMessageResponse(
 data class UnreadMessagesResponse(
     val total: Int,
     val mensajes: List<MessageResponse>
+)
+
+/**
+ * Respuesta al aceptar una oferta (incluye mensaje y compra creada)
+ */
+@Serializable
+data class AcceptOfferResponse(
+    val mensaje: MessageResponse,
+    val compra: PurchaseResponse
 )

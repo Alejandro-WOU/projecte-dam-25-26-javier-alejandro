@@ -31,7 +31,7 @@ fun LoginScreen(
     onNavigateToRegister: () -> Unit,
     onNavigateToMain: () -> Unit
 ) {
-    val viewModel = remember { LoginViewModel(appContainer.loginUseCase) }
+    val viewModel = remember { LoginViewModel(appContainer.authRepository) }
 
     val uiState by viewModel.uiState.collectAsState()
     val email by viewModel.email.collectAsState()

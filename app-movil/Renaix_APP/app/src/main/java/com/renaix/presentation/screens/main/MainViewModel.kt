@@ -2,22 +2,14 @@ package com.renaix.presentation.screens.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.renaix.domain.usecase.auth.LogoutUseCase
+import com.renaix.domain.repository.AuthRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-/**
- * ViewModel para la pantalla Main
- *
- * Responsabilidades:
- * - Gestionar el estado de la bottom navigation
- * - Manejar el logout
- * - Coordinar la navegación entre tabs
- */
 class MainViewModel(
-    private val logoutUseCase: LogoutUseCase
+    private val authRepository: AuthRepository
 ) : ViewModel() {
 
     private val _selectedTab = MutableStateFlow(MainTab.Products)
@@ -33,28 +25,14 @@ class MainViewModel(
         _selectedTab.value = tab
     }
 
-    /**
-     * Cierra la sesión del usuario
-     */
     fun logout() {
         viewModelScope.launch {
             _logoutState.value = LogoutState.Loading
-
-            logoutUseCase()
-                .onSuccess {
-                    _logoutState.value = LogoutState.Success
-                }
-                .onFailure { error ->
-                    // Incluso si falla, consideramos logout exitoso
-                    // porque los datos locales se limpian
-                    _logoutState.value = LogoutState.Success
-                }
+            authRepository.logout()
+            _logoutState.value = LogoutState.Success
         }
     }
 
-    /**
-     * Resetea el estado de logout
-     */
     fun resetLogoutState() {
         _logoutState.value = LogoutState.Idle
     }

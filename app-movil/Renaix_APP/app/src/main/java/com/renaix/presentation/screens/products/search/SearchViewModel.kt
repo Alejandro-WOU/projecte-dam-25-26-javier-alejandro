@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.renaix.domain.model.Category
 import com.renaix.domain.model.Product
-import com.renaix.domain.usecase.category.GetCategoriesUseCase
-import com.renaix.domain.usecase.product.SearchProductsUseCase
+import com.renaix.domain.repository.CategoryRepository
+import com.renaix.domain.repository.ProductRepository
 import com.renaix.presentation.common.state.UiState
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,17 +14,9 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.launch
 
-/**
- * ViewModel para la pantalla de búsqueda
- *
- * Responsabilidades:
- * - Gestionar el texto de búsqueda con debounce
- * - Aplicar filtros (categoría, precio, etc.)
- * - Realizar búsquedas y mostrar resultados
- */
 class SearchViewModel(
-    private val searchProductsUseCase: SearchProductsUseCase,
-    private val getCategoriesUseCase: GetCategoriesUseCase
+    private val productRepository: ProductRepository,
+    private val categoryRepository: CategoryRepository
 ) : ViewModel() {
 
     private val _searchQuery = MutableStateFlow("")
@@ -53,12 +45,9 @@ class SearchViewModel(
         setupSearchDebounce()
     }
 
-    /**
-     * Carga las categorías disponibles
-     */
     private fun loadCategories() {
         viewModelScope.launch {
-            getCategoriesUseCase()
+            categoryRepository.getCategories()
                 .onSuccess { categories ->
                     _categories.value = categories
                 }
@@ -147,7 +136,7 @@ class SearchViewModel(
         viewModelScope.launch {
             _searchResults.value = UiState.Loading
 
-            searchProductsUseCase(
+            productRepository.searchProducts(
                 query = query,
                 categoriaId = _selectedCategoryId.value,
                 precioMin = _minPrice.value,

@@ -30,7 +30,7 @@ fun RegisterScreen(
     onNavigateBack: () -> Unit,
     onNavigateToMain: () -> Unit
 ) {
-    val viewModel = remember { RegisterViewModel(appContainer.registerUseCase) }
+    val viewModel = remember { RegisterViewModel(appContainer.authRepository) }
 
     val uiState by viewModel.uiState.collectAsState()
     val name by viewModel.name.collectAsState()

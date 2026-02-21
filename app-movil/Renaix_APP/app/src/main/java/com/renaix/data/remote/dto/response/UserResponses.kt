@@ -12,7 +12,7 @@ data class UserProfileResponse(
     val name: String,
     val email: String,
     val phone: String? = null,
-    @SerialName("imagen_url")
+    @SerialName("image_url")
     val imageUrl: String? = null,
     @SerialName("productos_en_venta")
     val productosEnVenta: Int = 0,
@@ -29,7 +29,7 @@ data class UserProfileResponse(
 data class PublicUserResponse(
     val id: Int,
     val name: String,
-    @SerialName("imagen_url")
+    @SerialName("image_url")
     val imageUrl: String? = null,
     @SerialName("valoracion_promedio")
     val valoracionPromedio: Double = 0.0

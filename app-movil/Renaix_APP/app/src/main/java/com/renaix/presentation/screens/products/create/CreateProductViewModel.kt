@@ -3,26 +3,17 @@ package com.renaix.presentation.screens.products.create
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.renaix.domain.usecase.category.GetCategoriesUseCase
-import com.renaix.domain.usecase.product.CreateProductUseCase
+import com.renaix.domain.repository.CategoryRepository
+import com.renaix.domain.repository.ProductRepository
 import com.renaix.presentation.common.state.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-/**
- * ViewModel para la pantalla de creación de productos
- *
- * Responsabilidades:
- * - Gestionar el estado del formulario
- * - Validar datos del producto
- * - Crear el producto usando el use case
- * - Manejar imágenes seleccionadas
- */
 class CreateProductViewModel(
-    private val createProductUseCase: CreateProductUseCase,
-    private val getCategoriesUseCase: GetCategoriesUseCase
+    private val productRepository: ProductRepository,
+    private val categoryRepository: CategoryRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<UiState<Int>>(UiState.Idle)
@@ -38,12 +29,9 @@ class CreateProductViewModel(
         loadCategories()
     }
 
-    /**
-     * Carga las categorías disponibles
-     */
     private fun loadCategories() {
         viewModelScope.launch {
-            getCategoriesUseCase()
+            categoryRepository.getCategories()
                 .onSuccess { categories ->
                     _formState.value = _formState.value.copy(
                         availableCategories = categories
@@ -160,7 +148,7 @@ class CreateProductViewModel(
         viewModelScope.launch {
             _uiState.value = UiState.Loading
 
-            createProductUseCase(
+            productRepository.createProduct(
                 nombre = state.nombre,
                 descripcion = state.descripcion,
                 precio = priceValue!!,

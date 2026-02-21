@@ -3,18 +3,15 @@ package com.renaix.presentation.screens.products.list
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.renaix.domain.model.Product
-import com.renaix.domain.usecase.product.GetProductsUseCase
+import com.renaix.domain.repository.ProductRepository
 import com.renaix.presentation.common.state.PaginatedState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-/**
- * ViewModel para la lista de productos
- */
 class ProductListViewModel(
-    private val getProductsUseCase: GetProductsUseCase
+    private val productRepository: ProductRepository
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(PaginatedState<Product>())
@@ -30,7 +27,7 @@ class ProductListViewModel(
         viewModelScope.launch {
             _state.value = _state.value.copy(isLoading = true, error = null)
 
-            getProductsUseCase(page = 1)
+            productRepository.getProducts(page = 1)
                 .onSuccess { products ->
                     _state.value = _state.value.copy(
                         items = products,
@@ -56,7 +53,7 @@ class ProductListViewModel(
             _state.value = _state.value.copy(isLoading = true)
 
             val nextPage = _state.value.page + 1
-            getProductsUseCase(page = nextPage)
+            productRepository.getProducts(page = nextPage)
                 .onSuccess { products ->
                     _state.value = _state.value.copy(
                         items = _state.value.items + products,
@@ -79,7 +76,7 @@ class ProductListViewModel(
         viewModelScope.launch {
             _state.value = _state.value.copy(isRefreshing = true, error = null)
 
-            getProductsUseCase(page = 1)
+            productRepository.getProducts(page = 1)
                 .onSuccess { products ->
                     _state.value = PaginatedState(
                         items = products,

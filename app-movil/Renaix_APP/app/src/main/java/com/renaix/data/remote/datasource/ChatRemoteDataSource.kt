@@ -1,7 +1,9 @@
 package com.renaix.data.remote.datasource
 
 import com.renaix.data.remote.api.RenaixApi
+import com.renaix.data.remote.dto.request.SendCounterOfferRequest
 import com.renaix.data.remote.dto.request.SendMessageRequest
+import com.renaix.data.remote.dto.request.SendOfferRequest
 import com.renaix.data.remote.dto.response.*
 
 /**
@@ -122,6 +124,110 @@ class ChatRemoteDataSource(private val api: RenaixApi) {
             } else {
                 NetworkResult.Error(
                     message = response.error ?: "Error al marcar mensaje",
+                    code = response.code
+                )
+            }
+        } catch (e: Exception) {
+            NetworkResult.Error(
+                message = e.message ?: "Error de conexión",
+                exception = e
+            )
+        }
+    }
+
+    // ==================== OFERTAS ====================
+
+    /**
+     * Envía una oferta de precio sobre un producto
+     */
+    suspend fun sendOffer(
+        productoId: Int,
+        precioOfertado: Double
+    ): NetworkResult<MessageResponse> {
+        return try {
+            val response = api.sendOffer(
+                SendOfferRequest(productoId, precioOfertado)
+            )
+
+            if (response.success && response.data != null) {
+                NetworkResult.Success(response.data)
+            } else {
+                NetworkResult.Error(
+                    message = response.error ?: "Error al enviar oferta",
+                    code = response.code
+                )
+            }
+        } catch (e: Exception) {
+            NetworkResult.Error(
+                message = e.message ?: "Error de conexión",
+                exception = e
+            )
+        }
+    }
+
+    /**
+     * Acepta una oferta recibida
+     */
+    suspend fun acceptOffer(messageId: Int): NetworkResult<AcceptOfferResponse> {
+        return try {
+            val response = api.acceptOffer(messageId)
+
+            if (response.success && response.data != null) {
+                NetworkResult.Success(response.data)
+            } else {
+                NetworkResult.Error(
+                    message = response.error ?: "Error al aceptar oferta",
+                    code = response.code
+                )
+            }
+        } catch (e: Exception) {
+            NetworkResult.Error(
+                message = e.message ?: "Error de conexión",
+                exception = e
+            )
+        }
+    }
+
+    /**
+     * Rechaza una oferta recibida
+     */
+    suspend fun rejectOffer(messageId: Int): NetworkResult<MessageResponse> {
+        return try {
+            val response = api.rejectOffer(messageId)
+
+            if (response.success && response.data != null) {
+                NetworkResult.Success(response.data)
+            } else {
+                NetworkResult.Error(
+                    message = response.error ?: "Error al rechazar oferta",
+                    code = response.code
+                )
+            }
+        } catch (e: Exception) {
+            NetworkResult.Error(
+                message = e.message ?: "Error de conexión",
+                exception = e
+            )
+        }
+    }
+
+    /**
+     * Envía una contraoferta
+     */
+    suspend fun sendCounterOffer(
+        ofertaId: Int,
+        precioContraoferta: Double
+    ): NetworkResult<MessageResponse> {
+        return try {
+            val response = api.sendCounterOffer(
+                SendCounterOfferRequest(ofertaId, precioContraoferta)
+            )
+
+            if (response.success && response.data != null) {
+                NetworkResult.Success(response.data)
+            } else {
+                NetworkResult.Error(
+                    message = response.error ?: "Error al enviar contraoferta",
                     code = response.code
                 )
             }

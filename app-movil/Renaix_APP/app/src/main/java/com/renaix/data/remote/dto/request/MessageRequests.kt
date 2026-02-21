@@ -14,3 +14,25 @@ data class SendMessageRequest(
     @SerialName("producto_id")
     val productoId: Int? = null
 )
+
+/**
+ * Request para enviar una oferta de precio
+ */
+@Serializable
+data class SendOfferRequest(
+    @SerialName("producto_id")
+    val productoId: Int,
+    @SerialName("precio_ofertado")
+    val precioOfertado: Double
+)
+
+/**
+ * Request para enviar una contraoferta
+ */
+@Serializable
+data class SendCounterOfferRequest(
+    @SerialName("oferta_id")
+    val ofertaId: Int,
+    @SerialName("precio_contraoferta")
+    val precioContraoferta: Double
+)

@@ -239,17 +239,17 @@ def serialize_compra(compra, include_valoraciones=False):
 def serialize_mensaje(mensaje):
     """
     Serializa un mensaje a JSON.
-    
+
     Args:
         mensaje: Recordset de renaix.mensaje
-    
+
     Returns:
         dict: Mensaje serializado
     """
     if not mensaje:
         return None
-    
-    return {
+
+    data = {
         'id': mensaje.id,
         'texto': mensaje.texto,
         'fecha': mensaje.fecha.isoformat() if mensaje.fecha else None,
@@ -260,7 +260,19 @@ def serialize_mensaje(mensaje):
         'producto_id': mensaje.producto_id.id if mensaje.producto_id else None,
         'producto_nombre': mensaje.producto_nombre or '',
         'hilo_id': mensaje.hilo_id,
+        'message_type': mensaje.tipo_mensaje or 'text',
     }
+
+    # Incluir datos de oferta si es un mensaje de oferta
+    if mensaje.tipo_mensaje in ('offer', 'offer_accepted', 'offer_rejected', 'counter_offer'):
+        data['offer_data'] = {
+            'product_id': mensaje.producto_id.id if mensaje.producto_id else None,
+            'product_name': mensaje.producto_nombre or '',
+            'original_price': mensaje.precio_original or 0.0,
+            'offered_price': mensaje.precio_ofertado or 0.0,
+        }
+
+    return data
 
 
 def serialize_denuncia(denuncia):

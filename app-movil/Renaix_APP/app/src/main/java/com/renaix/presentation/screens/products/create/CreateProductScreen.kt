@@ -42,12 +42,12 @@ fun CreateProductScreen(
     val scope = rememberCoroutineScope()
     val snackbarHostState = remember { SnackbarHostState() }
 
-    val getCategoriesUseCase = appContainer.getCategoriesUseCase
-    val createProductUseCase = appContainer.createProductUseCase
+    val categoryRepository = appContainer.categoryRepository
+    val productRepository = appContainer.productRepository
 
     // Cargar categorías
     LaunchedEffect(Unit) {
-        getCategoriesUseCase()
+        categoryRepository.getCategories()
             .onSuccess { categories = it }
     }
 
@@ -73,7 +73,7 @@ fun CreateProductScreen(
 
         scope.launch {
             isLoading = true
-            createProductUseCase(
+            productRepository.createProduct(
                 nombre = nombre,
                 descripcion = descripcion,
                 precio = precioDouble,

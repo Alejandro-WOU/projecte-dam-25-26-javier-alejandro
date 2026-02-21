@@ -33,19 +33,18 @@ fun PublicProfileScreen(
     var productsState by remember { mutableStateOf<UiState<List<Product>>>(UiState.Loading) }
     val scope = rememberCoroutineScope()
 
-    val getUserProfileUseCase = appContainer.getUserPublicProfileUseCase
-    val getUserProductsUseCase = appContainer.getUserProductsUseCase
+    val userRepository = appContainer.userRepository
 
     fun loadData() {
         scope.launch {
             userState = UiState.Loading
-            getUserProfileUseCase(userId)
+            userRepository.getPublicProfile(userId)
                 .onSuccess { user -> userState = UiState.Success(user) }
                 .onFailure { e -> userState = UiState.Error(e.message ?: "Error") }
         }
         scope.launch {
             productsState = UiState.Loading
-            getUserProductsUseCase(userId)
+            userRepository.getUserProducts(userId)
                 .onSuccess { products -> productsState = UiState.Success(products) }
                 .onFailure { e -> productsState = UiState.Error(e.message ?: "Error") }
         }

@@ -43,7 +43,7 @@ object KtorClient {
      * Configuración de JSON para serialización
      */
     private val json = Json {
-        prettyPrint = true
+        prettyPrint = false  // Optimizado: sin formateo extra
         isLenient = true
         ignoreUnknownKeys = true
         coerceInputValues = true
@@ -68,7 +68,7 @@ object KtorClient {
                         Log.d(TAG, message)
                     }
                 }
-                level = LogLevel.BODY
+                level = LogLevel.NONE  // Optimizado: desactivar logging en producción
             }
 
             // Timeouts
@@ -105,7 +105,7 @@ object KtorClient {
                         Log.d(TAG, message)
                     }
                 }
-                level = LogLevel.BODY
+                level = LogLevel.NONE  // Optimizado: desactivar logging en producción
             }
 
             // Timeouts

@@ -32,8 +32,8 @@ fun ProfileScreen(
 ) {
     val viewModel = remember {
         ProfileViewModel(
-            appContainer.getProfileUseCase,
-            appContainer.logoutUseCase
+            appContainer.userRepository,
+            appContainer.authRepository
         )
     }
 

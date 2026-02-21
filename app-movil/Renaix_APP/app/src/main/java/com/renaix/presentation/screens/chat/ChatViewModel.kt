@@ -3,26 +3,15 @@ package com.renaix.presentation.screens.chat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.renaix.domain.model.Message
-import com.renaix.domain.usecase.chat.GetConversationsUseCase
-import com.renaix.domain.usecase.chat.SendMessageUseCase
+import com.renaix.domain.repository.ChatRepository
 import com.renaix.presentation.common.state.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-/**
- * ViewModel para la pantalla de chat individual
- *
- * Responsabilidades:
- * - Cargar mensajes de una conversación
- * - Enviar mensajes
- * - Actualizar en tiempo real (polling o WebSocket en el futuro)
- * - Marcar mensajes como leídos
- */
 class ChatViewModel(
-    private val sendMessageUseCase: SendMessageUseCase,
-    private val getConversationsUseCase: GetConversationsUseCase
+    private val chatRepository: ChatRepository
 ) : ViewModel() {
 
     private val _messages = MutableStateFlow<UiState<List<Message>>>(UiState.Idle)
@@ -53,9 +42,7 @@ class ChatViewModel(
         viewModelScope.launch {
             _messages.value = UiState.Loading
 
-            // TODO: Implementar un endpoint específico para obtener mensajes
-            // Por ahora, usamos getConversationsUseCase como placeholder
-            getConversationsUseCase()
+            chatRepository.getConversations()
                 .onSuccess { conversations ->
                     // Filtrar la conversación actual
                     val conversation = conversations.find { conv ->
@@ -89,7 +76,7 @@ class ChatViewModel(
         viewModelScope.launch {
             _sendMessageState.value = SendMessageState.Sending
 
-            sendMessageUseCase(
+            chatRepository.sendMessage(
                 receptorId = currentUserId,
                 texto = text,
                 productoId = currentProductId

@@ -16,8 +16,6 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        
         // Google Maps API Key
         manifestPlaceholders["MAPS_API_KEY"] = "AIzaSyC5_APswRVmkJs91rK1r5Z3SpJ_MpMvCfY"
         
@@ -47,7 +45,6 @@ android {
     
     buildFeatures {
         compose = true
-        buildConfig = true
     }
     
     composeOptions {
@@ -70,7 +67,6 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.material:material-icons-extended")
     debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
     
     // Core Android
     implementation("androidx.core:core-ktx:1.12.0")
@@ -90,7 +86,6 @@ dependencies {
     implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
     implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
     implementation("io.ktor:ktor-client-logging:$ktorVersion")
-    implementation("io.ktor:ktor-client-auth:$ktorVersion")
     
     // Kotlinx Serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
@@ -120,12 +115,6 @@ dependencies {
     // Shimmer Effect
     implementation("com.valentinilk.shimmer:compose-shimmer:1.2.0")
     
-    // Testing
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2024.02.00"))
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
 }
 
 // SQLDelight Configuration

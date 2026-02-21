@@ -35,12 +35,12 @@ fun ConversationsScreen(
     val scope = rememberCoroutineScope()
     val currentUserId = appContainer.preferencesManager.getUserId()
 
-    val getConversationsUseCase = appContainer.getConversationsUseCase
+    val chatRepository = appContainer.chatRepository
 
     fun loadConversations() {
         scope.launch {
             conversationsState = UiState.Loading
-            getConversationsUseCase()
+            chatRepository.getConversations()
                 .onSuccess { conversations ->
                     conversationsState = UiState.Success(conversations)
                 }

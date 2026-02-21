@@ -70,11 +70,42 @@ class Mensaje(models.Model):
         default=False,
         help='Indica si el receptor ha leído el mensaje'
     )
-    
+
     fecha_lectura = fields.Datetime(
         string='Fecha de Lectura',
         readonly=True,
         help='Fecha y hora en que se leyó el mensaje'
+    )
+
+    # Tipo de mensaje (para sistema de ofertas/negociación)
+    tipo_mensaje = fields.Selection([
+        ('text', 'Texto'),
+        ('offer', 'Oferta'),
+        ('offer_accepted', 'Oferta Aceptada'),
+        ('offer_rejected', 'Oferta Rechazada'),
+        ('counter_offer', 'Contraoferta')
+    ], string='Tipo de Mensaje', default='text', required=True,
+       help='Tipo de mensaje: texto normal u oferta de negociación')
+
+    # Campos para ofertas de negociación
+    precio_ofertado = fields.Float(
+        string='Precio Ofertado',
+        digits=(10, 2),
+        help='Precio propuesto en la oferta'
+    )
+
+    precio_original = fields.Float(
+        string='Precio Original',
+        digits=(10, 2),
+        help='Precio original del producto al momento de la oferta'
+    )
+
+    # Referencia a la oferta relacionada (para aceptar/rechazar)
+    oferta_relacionada_id = fields.Many2one(
+        'renaix.mensaje',
+        string='Oferta Relacionada',
+        ondelete='set null',
+        help='Mensaje de oferta original relacionado'
     )
     
     # Campos relacionados (para facilitar búsquedas)

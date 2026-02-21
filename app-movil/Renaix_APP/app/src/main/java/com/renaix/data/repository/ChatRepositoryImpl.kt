@@ -5,6 +5,7 @@ import com.renaix.data.remote.datasource.ChatRemoteDataSource
 import com.renaix.data.remote.datasource.NetworkResult
 import com.renaix.domain.model.Conversation
 import com.renaix.domain.model.Message
+import com.renaix.domain.model.Purchase
 import com.renaix.domain.model.UnreadMessages
 import com.renaix.domain.repository.ChatRepository
 
@@ -57,6 +58,46 @@ class ChatRepositoryImpl(
     override suspend fun markAsRead(messageId: Int): Result<Unit> {
         return when (val result = remoteDataSource.markAsRead(messageId)) {
             is NetworkResult.Success -> Result.success(Unit)
+            is NetworkResult.Error -> Result.failure(Exception(result.message))
+        }
+    }
+
+    // ==================== OFERTAS ====================
+
+    override suspend fun sendOffer(
+        productoId: Int,
+        precioOfertado: Double
+    ): Result<Message> {
+        return when (val result = remoteDataSource.sendOffer(productoId, precioOfertado)) {
+            is NetworkResult.Success -> Result.success(result.data.toDomain())
+            is NetworkResult.Error -> Result.failure(Exception(result.message))
+        }
+    }
+
+    override suspend fun acceptOffer(messageId: Int): Result<Pair<Message, Purchase>> {
+        return when (val result = remoteDataSource.acceptOffer(messageId)) {
+            is NetworkResult.Success -> {
+                val message = result.data.mensaje.toDomain()
+                val purchase = result.data.compra.toDomain()
+                Result.success(Pair(message, purchase))
+            }
+            is NetworkResult.Error -> Result.failure(Exception(result.message))
+        }
+    }
+
+    override suspend fun rejectOffer(messageId: Int): Result<Message> {
+        return when (val result = remoteDataSource.rejectOffer(messageId)) {
+            is NetworkResult.Success -> Result.success(result.data.toDomain())
+            is NetworkResult.Error -> Result.failure(Exception(result.message))
+        }
+    }
+
+    override suspend fun sendCounterOffer(
+        ofertaId: Int,
+        precioContraoferta: Double
+    ): Result<Message> {
+        return when (val result = remoteDataSource.sendCounterOffer(ofertaId, precioContraoferta)) {
+            is NetworkResult.Success -> Result.success(result.data.toDomain())
             is NetworkResult.Error -> Result.failure(Exception(result.message))
         }
     }

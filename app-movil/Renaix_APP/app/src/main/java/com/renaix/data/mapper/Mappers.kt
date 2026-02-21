@@ -202,7 +202,18 @@ fun MessageResponse.toDomain(): Message {
         receptor = receptor.toDomain(),
         leido = leido,
         fecha = fecha,
-        hiloId = hiloId
+        hiloId = hiloId,
+        messageType = MessageType.fromString(messageType),
+        offerData = offerData?.toDomain()
+    )
+}
+
+fun OfferDataResponse.toDomain(): OfferData {
+    return OfferData(
+        productId = productId ?: 0,
+        productName = productName,
+        originalPrice = originalPrice,
+        offeredPrice = offeredPrice
     )
 }
 

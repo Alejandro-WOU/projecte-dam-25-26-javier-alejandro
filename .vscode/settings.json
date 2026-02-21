@@ -1,6 +1,7 @@
 {
   "python.analysis.diagnosticSeverityOverrides": {
     "reportMissingImports": "none"
-  }
+  },
+  "java.configuration.updateBuildConfiguration": "interactive"
 }
 

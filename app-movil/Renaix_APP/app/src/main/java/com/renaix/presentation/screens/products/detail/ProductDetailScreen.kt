@@ -19,10 +19,13 @@ import coil.compose.AsyncImage
 import com.renaix.di.AppContainer
 import com.renaix.presentation.common.components.ErrorView
 import com.renaix.presentation.common.components.LoadingIndicator
+import com.renaix.presentation.common.components.OfferDialog
 import com.renaix.presentation.common.components.RenaixButton
 import com.renaix.presentation.common.state.UiState
+import com.renaix.ui.theme.Purple500
 import com.renaix.ui.theme.CustomShapes
 import com.renaix.util.Constants
+import kotlinx.coroutines.launch
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -40,14 +43,17 @@ fun ProductDetailScreen(
 ) {
     val viewModel = remember {
         ProductDetailViewModel(
-            appContainer.getProductDetailUseCase,
-            appContainer.buyProductUseCase
+            appContainer.productRepository,
+            appContainer.purchaseRepository
         )
     }
 
     val state by viewModel.state.collectAsState()
     val buyState by viewModel.buyState.collectAsState()
     val snackbarHostState = remember { SnackbarHostState() }
+    val scope = rememberCoroutineScope()
+    val chatRepository = appContainer.chatRepository
+    var isSendingOffer by remember { mutableStateOf(false) }
 
     LaunchedEffect(productId) {
         viewModel.loadProduct(productId)
@@ -251,28 +257,104 @@ fun ProductDetailScreen(
 
                         Spacer(modifier = Modifier.height(24.dp))
 
-                        // Botones de acción
+                        // Sistema de negociación
+                        var showOfferDialog by remember { mutableStateOf(false) }
+
                         if (product.estadoVenta.value == "disponible") {
-                            Row(
+                            Column(
                                 modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement.spacedBy(12.dp)
+                                verticalArrangement = Arrangement.spacedBy(12.dp)
                             ) {
-                                OutlinedButton(
+                                // Botón principal: Contactar vendedor
+                                Button(
                                     onClick = { onNavigateToChat(product.propietario.id, productId) },
-                                    modifier = Modifier.weight(1f)
+                                    modifier = Modifier.fillMaxWidth(),
+                                    colors = ButtonDefaults.buttonColors(
+                                        containerColor = MaterialTheme.colorScheme.primary
+                                    )
                                 ) {
                                     Icon(Icons.Filled.Chat, contentDescription = null)
                                     Spacer(modifier = Modifier.width(8.dp))
-                                    Text("Contactar")
+                                    Text("Contactar con el Vendedor")
                                 }
 
-                                RenaixButton(
-                                    text = "Comprar",
-                                    onClick = { viewModel.buyProduct(productId) },
-                                    isLoading = buyState.isLoading,
-                                    modifier = Modifier.weight(1f)
+                                // Botón secundario: Hacer oferta
+                                OutlinedButton(
+                                    onClick = { showOfferDialog = true },
+                                    modifier = Modifier.fillMaxWidth()
+                                ) {
+                                    Icon(Icons.Filled.LocalOffer, contentDescription = null)
+                                    Spacer(modifier = Modifier.width(8.dp))
+                                    Text("Hacer Oferta")
+                                }
+
+                                // Info de precio
+                                Card(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    colors = CardDefaults.cardColors(
+                                        containerColor = Purple500.copy(alpha = 0.1f)
+                                    )
+                                ) {
+                                    Row(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .padding(12.dp),
+                                        horizontalArrangement = Arrangement.SpaceBetween,
+                                        verticalAlignment = Alignment.CenterVertically
+                                    ) {
+                                        Text(
+                                            text = "Precio publicado:",
+                                            style = MaterialTheme.typography.bodyMedium,
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                                        )
+                                        Text(
+                                            text = formatPrice(product.precio),
+                                            style = MaterialTheme.typography.titleLarge,
+                                            fontWeight = FontWeight.Bold,
+                                            color = MaterialTheme.colorScheme.primary
+                                        )
+                                    }
+                                }
+
+                                Text(
+                                    text = "Puedes negociar el precio con el vendedor",
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
                             }
+                        }
+
+                        // Dialog de oferta
+                        if (showOfferDialog) {
+                            OfferDialog(
+                                currentPrice = product.precio,
+                                productName = product.nombre,
+                                onDismiss = { showOfferDialog = false },
+                                onConfirm = { offeredPrice ->
+                                    showOfferDialog = false
+                                    if (isSendingOffer) return@OfferDialog
+                                    isSendingOffer = true
+                                    scope.launch {
+                                        chatRepository.sendOffer(
+                                            productoId = productId,
+                                            precioOfertado = offeredPrice
+                                        )
+                                            .onSuccess {
+                                                snackbarHostState.showSnackbar(
+                                                    "Oferta enviada por ${String.format("%.2f", offeredPrice)}€"
+                                                )
+                                                // Navegar al chat para ver la oferta enviada
+                                                onNavigateToChat(product.propietario.id, productId)
+                                            }
+                                            .onFailure { exception ->
+                                                snackbarHostState.showSnackbar(
+                                                    exception.message ?: "Error al enviar oferta"
+                                                )
+                                            }
+                                        isSendingOffer = false
+                                    }
+                                }
+                            )
                         }
 
                         Spacer(modifier = Modifier.height(32.dp))

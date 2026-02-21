@@ -30,7 +30,7 @@ fun MapScreen(
     var selectedProduct by remember { mutableStateOf<Product?>(null) }
     val scope = rememberCoroutineScope()
 
-    val getProductsUseCase = appContainer.getProductsUseCase
+    val productRepository = appContainer.productRepository
 
     // Posición inicial del mapa (Barcelona como ejemplo)
     val defaultPosition = LatLng(41.3851, 2.1734)
@@ -41,7 +41,7 @@ fun MapScreen(
     LaunchedEffect(Unit) {
         scope.launch {
             productsState = UiState.Loading
-            getProductsUseCase(page = 1)
+            productRepository.getProducts(page = 1)
                 .onSuccess { products ->
                     productsState = UiState.Success(products)
                 }

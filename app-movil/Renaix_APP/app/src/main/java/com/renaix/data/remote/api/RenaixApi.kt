@@ -389,6 +389,42 @@ class RenaixApi(
         return authClient.put("${Endpoints.MESSAGES}/$messageId/marcar-leido").body()
     }
 
+    // ==================== OFERTAS (Negociación) ====================
+
+    /**
+     * Envía una oferta de precio sobre un producto
+     */
+    suspend fun sendOffer(request: SendOfferRequest): ApiResponse<MessageResponse> {
+        return authClient.post("${Endpoints.MESSAGES}/oferta") {
+            contentType(ContentType.Application.Json)
+            setBody(request)
+        }.body()
+    }
+
+    /**
+     * Acepta una oferta recibida (crea compra con precio negociado)
+     */
+    suspend fun acceptOffer(messageId: Int): ApiResponse<AcceptOfferResponse> {
+        return authClient.post("${Endpoints.MESSAGES}/oferta/$messageId/aceptar").body()
+    }
+
+    /**
+     * Rechaza una oferta recibida
+     */
+    suspend fun rejectOffer(messageId: Int): ApiResponse<MessageResponse> {
+        return authClient.post("${Endpoints.MESSAGES}/oferta/$messageId/rechazar").body()
+    }
+
+    /**
+     * Envía una contraoferta
+     */
+    suspend fun sendCounterOffer(request: SendCounterOfferRequest): ApiResponse<MessageResponse> {
+        return authClient.post("${Endpoints.MESSAGES}/contraoferta") {
+            contentType(ContentType.Application.Json)
+            setBody(request)
+        }.body()
+    }
+
     // ==================== DENUNCIAS ====================
 
     /**

@@ -21,7 +21,7 @@ fun ProductListScreen(
     appContainer: AppContainer,
     onProductClick: (Int) -> Unit
 ) {
-    val viewModel = remember { ProductListViewModel(appContainer.getProductsUseCase) }
+    val viewModel = remember { ProductListViewModel(appContainer.productRepository) }
     val state by viewModel.state.collectAsState()
     val snackbarHostState = remember { SnackbarHostState() }
 

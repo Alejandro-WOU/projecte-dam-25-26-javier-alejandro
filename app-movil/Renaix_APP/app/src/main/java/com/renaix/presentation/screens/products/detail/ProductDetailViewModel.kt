@@ -3,20 +3,17 @@ package com.renaix.presentation.screens.products.detail
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.renaix.domain.model.ProductDetail
-import com.renaix.domain.usecase.product.BuyProductUseCase
-import com.renaix.domain.usecase.product.GetProductDetailUseCase
+import com.renaix.domain.repository.ProductRepository
+import com.renaix.domain.repository.PurchaseRepository
 import com.renaix.presentation.common.state.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-/**
- * ViewModel para el detalle de producto
- */
 class ProductDetailViewModel(
-    private val getProductDetailUseCase: GetProductDetailUseCase,
-    private val buyProductUseCase: BuyProductUseCase
+    private val productRepository: ProductRepository,
+    private val purchaseRepository: PurchaseRepository
 ) : ViewModel() {
 
     private val _state = MutableStateFlow<UiState<ProductDetail>>(UiState.Loading)
@@ -29,7 +26,7 @@ class ProductDetailViewModel(
         viewModelScope.launch {
             _state.value = UiState.Loading
 
-            getProductDetailUseCase(productId)
+            productRepository.getProductDetail(productId)
                 .onSuccess { product ->
                     _state.value = UiState.Success(product)
                 }
@@ -43,7 +40,7 @@ class ProductDetailViewModel(
         viewModelScope.launch {
             _buyState.value = UiState.Loading
 
-            buyProductUseCase(productId, notas)
+            purchaseRepository.createPurchase(productId, notas)
                 .onSuccess {
                     _buyState.value = UiState.Success(Unit)
                 }

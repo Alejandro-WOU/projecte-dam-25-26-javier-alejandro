@@ -10,7 +10,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.renaix.di.AppContainer
 import com.renaix.domain.model.Product
-import com.renaix.domain.usecase.product.SearchProductsUseCase
 import com.renaix.presentation.common.components.*
 import com.renaix.presentation.common.state.UiState
 import com.renaix.ui.theme.CustomShapes
@@ -29,14 +28,14 @@ fun SearchScreen(
     var searchResults by remember { mutableStateOf<UiState<List<Product>>>(UiState.Idle) }
     val scope = rememberCoroutineScope()
 
-    val searchProducts = appContainer.searchProductsUseCase
+    val productRepository = appContainer.productRepository
 
     fun performSearch() {
         if (searchQuery.isBlank()) return
 
         scope.launch {
             searchResults = UiState.Loading
-            searchProducts(query = searchQuery)
+            productRepository.searchProducts(query = searchQuery)
                 .onSuccess { products ->
                     searchResults = UiState.Success(products)
                 }

@@ -17,8 +17,12 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import com.renaix.di.AppContainer
 import com.renaix.domain.model.Message
+import com.renaix.domain.model.MessageType
+import com.renaix.presentation.common.components.AcceptedOfferCard
 import com.renaix.presentation.common.components.ErrorView
 import com.renaix.presentation.common.components.LoadingIndicator
+import com.renaix.presentation.common.components.OfferMessageCard
+import com.renaix.presentation.common.components.RejectedOfferCard
 import com.renaix.presentation.common.components.RenaixTextField
 import com.renaix.presentation.common.state.UiState
 import kotlinx.coroutines.launch
@@ -43,14 +47,18 @@ fun ChatScreen(
     val listState = rememberLazyListState()
     val snackbarHostState = remember { SnackbarHostState() }
 
-    val getMessagesUseCase = appContainer.getMessagesUseCase
-    val sendMessageUseCase = appContainer.sendMessageUseCase
+    val chatRepository = appContainer.chatRepository
     val currentUserId = appContainer.preferencesManager.getUserId()
+
+    // Estado para diálogo de contraoferta
+    var showCounterOfferDialog by remember { mutableStateOf(false) }
+    var selectedOfferForCounter by remember { mutableStateOf<Message?>(null) }
+    var isProcessingOffer by remember { mutableStateOf(false) }
 
     fun loadMessages() {
         scope.launch {
             messagesState = UiState.Loading
-            getMessagesUseCase(otherUserId, productId)
+            chatRepository.getMessages(otherUserId, productId)
                 .onSuccess { messages ->
                     messagesState = UiState.Success(messages)
                     // Scroll al final
@@ -72,7 +80,7 @@ fun ChatScreen(
         isSending = true
 
         scope.launch {
-            sendMessageUseCase(
+            chatRepository.sendMessage(
                     receptorId = otherUserId,
                     texto = text,
                     productoId = productId
@@ -173,9 +181,49 @@ fun ChatScreen(
                             items = state.data,
                             key = { it.id }
                         ) { message ->
-                            MessageBubble(
+                            MessageItem(
                                 message = message,
-                                isOwnMessage = message.emisor.id == currentUserId
+                                isOwnMessage = message.emisor.id == currentUserId,
+                                onAcceptOffer = {
+                                    if (isProcessingOffer) return@MessageItem
+                                    isProcessingOffer = true
+                                    scope.launch {
+                                        chatRepository.acceptOffer(message.id)
+                                            .onSuccess { (_, purchase) ->
+                                                snackbarHostState.showSnackbar(
+                                                    "Oferta aceptada. Compra creada por ${String.format("%.2f", purchase.precioFinal)}€"
+                                                )
+                                                loadMessages()
+                                            }
+                                            .onFailure { exception ->
+                                                snackbarHostState.showSnackbar(
+                                                    exception.message ?: "Error al aceptar oferta"
+                                                )
+                                            }
+                                        isProcessingOffer = false
+                                    }
+                                },
+                                onRejectOffer = {
+                                    if (isProcessingOffer) return@MessageItem
+                                    isProcessingOffer = true
+                                    scope.launch {
+                                        chatRepository.rejectOffer(message.id)
+                                            .onSuccess {
+                                                snackbarHostState.showSnackbar("Oferta rechazada")
+                                                loadMessages()
+                                            }
+                                            .onFailure { exception ->
+                                                snackbarHostState.showSnackbar(
+                                                    exception.message ?: "Error al rechazar oferta"
+                                                )
+                                            }
+                                        isProcessingOffer = false
+                                    }
+                                },
+                                onCounterOffer = {
+                                    selectedOfferForCounter = message
+                                    showCounterOfferDialog = true
+                                }
                             )
                         }
                     }
@@ -185,6 +233,144 @@ fun ChatScreen(
             else -> {}
         }
     }
+
+    // Diálogo de contraoferta
+    if (showCounterOfferDialog && selectedOfferForCounter != null) {
+        CounterOfferDialog(
+            originalOffer = selectedOfferForCounter!!,
+            onDismiss = {
+                showCounterOfferDialog = false
+                selectedOfferForCounter = null
+            },
+            onConfirm = { counterPrice ->
+                showCounterOfferDialog = false
+                isProcessingOffer = true
+                scope.launch {
+                    chatRepository.sendCounterOffer(
+                        ofertaId = selectedOfferForCounter!!.id,
+                        precioContraoferta = counterPrice
+                    )
+                        .onSuccess {
+                            snackbarHostState.showSnackbar("Contraoferta enviada")
+                            loadMessages()
+                        }
+                        .onFailure { exception ->
+                            snackbarHostState.showSnackbar(
+                                exception.message ?: "Error al enviar contraoferta"
+                            )
+                        }
+                    isProcessingOffer = false
+                    selectedOfferForCounter = null
+                }
+            }
+        )
+    }
+}
+
+/**
+ * Diálogo para enviar una contraoferta
+ */
+@Composable
+private fun CounterOfferDialog(
+    originalOffer: Message,
+    onDismiss: () -> Unit,
+    onConfirm: (Double) -> Unit
+) {
+    var counterPrice by remember { mutableStateOf("") }
+    var error by remember { mutableStateOf<String?>(null) }
+
+    val offerData = originalOffer.offerData ?: return
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        icon = {
+            Icon(
+                imageVector = Icons.Filled.SwapHoriz,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.size(32.dp)
+            )
+        },
+        title = {
+            Text(
+                text = "Contraoferta",
+                style = MaterialTheme.typography.titleLarge
+            )
+        },
+        text = {
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                Text(
+                    text = "Producto: ${offerData.productName}",
+                    style = MaterialTheme.typography.bodyMedium
+                )
+
+                HorizontalDivider()
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text("Oferta recibida:", style = MaterialTheme.typography.bodyMedium)
+                    Text(
+                        text = "${String.format("%.2f", offerData.offeredPrice)}€",
+                        style = MaterialTheme.typography.titleMedium,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                }
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text("Precio original:", style = MaterialTheme.typography.bodySmall)
+                    Text(
+                        text = "${String.format("%.2f", offerData.originalPrice)}€",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                OutlinedTextField(
+                    value = counterPrice,
+                    onValueChange = {
+                        counterPrice = it
+                        error = null
+                    },
+                    label = { Text("Tu contraoferta (€)") },
+                    isError = error != null,
+                    supportingText = error?.let {
+                        { Text(it, color = MaterialTheme.colorScheme.error) }
+                    },
+                    modifier = Modifier.fillMaxWidth(),
+                    singleLine = true,
+                    prefix = { Text("€ ") }
+                )
+            }
+        },
+        confirmButton = {
+            Button(
+                onClick = {
+                    val amount = counterPrice.toDoubleOrNull()
+                    when {
+                        amount == null -> error = "Introduce un precio válido"
+                        amount <= 0 -> error = "El precio debe ser mayor que 0€"
+                        else -> onConfirm(amount)
+                    }
+                }
+            ) {
+                Text("Enviar Contraoferta")
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) {
+                Text("Cancelar")
+            }
+        }
+    )
 }
 
 @Composable
@@ -227,6 +413,48 @@ private fun ChatInputBar(
                 } else {
                     Icon(Icons.Filled.Send, contentDescription = "Enviar")
                 }
+            }
+        }
+    }
+}
+
+/**
+ * Componente que decide qué tipo de mensaje mostrar según el MessageType
+ */
+@Composable
+private fun MessageItem(
+    message: Message,
+    isOwnMessage: Boolean,
+    onAcceptOffer: () -> Unit,
+    onRejectOffer: () -> Unit,
+    onCounterOffer: () -> Unit
+) {
+    when (message.messageType) {
+        MessageType.TEXT -> {
+            MessageBubble(
+                message = message,
+                isOwnMessage = isOwnMessage
+            )
+        }
+        MessageType.OFFER, MessageType.COUNTER_OFFER -> {
+            message.offerData?.let { offer ->
+                OfferMessageCard(
+                    offer = offer,
+                    isOwnMessage = isOwnMessage,
+                    onAccept = onAcceptOffer,
+                    onReject = onRejectOffer,
+                    onCounterOffer = if (message.messageType == MessageType.OFFER) onCounterOffer else null
+                )
+            }
+        }
+        MessageType.OFFER_ACCEPTED -> {
+            message.offerData?.let { offer ->
+                AcceptedOfferCard(offer = offer)
+            }
+        }
+        MessageType.OFFER_REJECTED -> {
+            message.offerData?.let { offer ->
+                RejectedOfferCard(offer = offer)
             }
         }
     }

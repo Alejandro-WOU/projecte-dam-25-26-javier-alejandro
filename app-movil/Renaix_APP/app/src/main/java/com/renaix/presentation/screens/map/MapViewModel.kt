@@ -3,7 +3,7 @@ package com.renaix.presentation.screens.map
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.renaix.domain.model.Product
-import com.renaix.domain.usecase.product.GetProductsUseCase
+import com.renaix.domain.repository.ProductRepository
 import com.renaix.presentation.common.state.UiState
 import com.google.android.gms.maps.model.LatLng
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -11,17 +11,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-/**
- * ViewModel para la pantalla del mapa
- *
- * Responsabilidades:
- * - Cargar productos con ubicación
- * - Gestionar la ubicación del usuario
- * - Filtrar productos por distancia
- * - Manejar el estado de la cámara del mapa
- */
 class MapViewModel(
-    private val getProductsUseCase: GetProductsUseCase
+    private val productRepository: ProductRepository
 ) : ViewModel() {
 
     private val _products = MutableStateFlow<UiState<List<Product>>>(UiState.Idle)
@@ -57,19 +48,13 @@ class MapViewModel(
         _userLocation.value = latLng
     }
 
-    /**
-     * Carga los productos disponibles
-     */
     fun loadProducts() {
         viewModelScope.launch {
             _products.value = UiState.Loading
-
-            getProductsUseCase(
-                page = 1,
-                limit = 100 // Cargar más productos para el mapa
-            ).onSuccess { products ->
+            productRepository.getProducts(page = 1, limit = 100)
+                .onSuccess { products ->
                 _products.value = UiState.Success(products)
-            }.onFailure { error ->
+                .onFailure { error ->
                 _products.value = UiState.Error(
                     error.message ?: "Error al cargar productos"
                 )
