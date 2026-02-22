@@ -125,7 +125,7 @@ fun SplashScreen(
         delay(Constants.SPLASH_DELAY_MILLIS - 700)
 
         // Verificar sesión
-        if (authRepository.isSessionValid()) {
+        if (authRepository.hasValidSession()) {
             onNavigateToMain()
         } else {
             onNavigateToLogin()

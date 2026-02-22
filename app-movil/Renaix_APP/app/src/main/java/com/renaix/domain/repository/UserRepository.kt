@@ -42,6 +42,11 @@ interface UserRepository {
     suspend fun getPublicProfile(userId: Int): Result<PublicUser>
 
     /**
+     * Obtiene los productos de un usuario público
+     */
+    suspend fun getUserProducts(userId: Int): Result<List<Product>>
+
+    /**
      * Obtiene las estadísticas del usuario
      */
     suspend fun getStats(): Result<UserStats>

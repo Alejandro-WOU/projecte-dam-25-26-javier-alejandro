@@ -58,7 +58,7 @@ fun ChatScreen(
     fun loadMessages() {
         scope.launch {
             messagesState = UiState.Loading
-            chatRepository.getMessages(otherUserId, productId)
+            chatRepository.getConversation(otherUserId, productId)
                 .onSuccess { messages ->
                     messagesState = UiState.Success(messages)
                     // Scroll al final

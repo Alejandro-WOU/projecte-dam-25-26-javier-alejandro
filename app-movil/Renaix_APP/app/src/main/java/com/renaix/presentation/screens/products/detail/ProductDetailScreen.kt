@@ -25,6 +25,7 @@ import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.*
 import com.renaix.di.AppContainer
+import com.renaix.domain.model.CategoriaDenuncia
 import com.renaix.presentation.common.components.ErrorView
 import com.renaix.presentation.common.components.LoadingIndicator
 import com.renaix.presentation.common.components.OfferDialog
@@ -52,13 +53,19 @@ fun ProductDetailScreen(
     val viewModel = remember {
         ProductDetailViewModel(
             appContainer.productRepository,
-            appContainer.purchaseRepository
+            appContainer.purchaseRepository,
+            appContainer.commentRepository,
+            appContainer.reportRepository,
+            appContainer.userRepository
         )
     }
 
     val state by viewModel.state.collectAsState()
     val buyState by viewModel.buyState.collectAsState()
     val isFavorite by viewModel.isFavorite.collectAsState()
+    val currentUserId by viewModel.currentUserId.collectAsState()
+    val commentActionState by viewModel.commentActionState.collectAsState()
+    val reportState by viewModel.reportState.collectAsState()
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
     val chatRepository = appContainer.chatRepository
@@ -104,6 +111,31 @@ fun ProductDetailScreen(
         }
     }
 
+    LaunchedEffect(commentActionState) {
+        when (commentActionState) {
+            is UiState.Error -> {
+                snackbarHostState.showSnackbar((commentActionState as UiState.Error).message)
+                viewModel.resetCommentActionState()
+            }
+            is UiState.Success -> viewModel.resetCommentActionState()
+            else -> {}
+        }
+    }
+
+    LaunchedEffect(reportState) {
+        when (reportState) {
+            is UiState.Success -> {
+                snackbarHostState.showSnackbar("Denuncia enviada correctamente")
+                viewModel.resetReportState()
+            }
+            is UiState.Error -> {
+                snackbarHostState.showSnackbar((reportState as UiState.Error).message)
+                viewModel.resetReportState()
+            }
+            else -> {}
+        }
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -132,7 +164,7 @@ fun ProductDetailScreen(
                                 shareProduct(
                                     product.nombre,
                                     product.precio.toEuroPrice(),
-                                    product.descripcion.take(100) + if (product.descripcion.length > 100) "..." else ""
+                                    product.descripcion?.let { if (it.length > 100) it.take(100) + "..." else it } ?: ""
                                 )
                             }
                         ) {
@@ -517,6 +549,205 @@ fun ProductDetailScreen(
                                                 )
                                             }
                                         isSendingOffer = false
+                                    }
+                                }
+                            )
+                        }
+
+                        // ── Comentarios ──────────────────────────────────
+                        Spacer(modifier = Modifier.height(24.dp))
+                        HorizontalDivider()
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        Text(
+                            text = "Comentarios (${product.comentarios.size})",
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.SemiBold
+                        )
+
+                        Spacer(modifier = Modifier.height(8.dp))
+
+                        if (product.comentarios.isEmpty()) {
+                            Text(
+                                text = "Sé el primero en comentar",
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        } else {
+                            product.comentarios.forEach { comment ->
+                                Card(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(vertical = 4.dp),
+                                    colors = CardDefaults.cardColors(
+                                        containerColor = MaterialTheme.colorScheme.surfaceVariant
+                                    )
+                                ) {
+                                    Column(modifier = Modifier.padding(12.dp)) {
+                                        Row(
+                                            modifier = Modifier.fillMaxWidth(),
+                                            horizontalArrangement = Arrangement.SpaceBetween,
+                                            verticalAlignment = Alignment.CenterVertically
+                                        ) {
+                                            Text(
+                                                text = comment.usuario.name,
+                                                style = MaterialTheme.typography.labelLarge,
+                                                fontWeight = FontWeight.SemiBold
+                                            )
+                                            if (comment.usuario.id == currentUserId) {
+                                                IconButton(
+                                                    onClick = { viewModel.deleteComment(comment.id) },
+                                                    modifier = Modifier.size(32.dp)
+                                                ) {
+                                                    Icon(
+                                                        Icons.Filled.Delete,
+                                                        contentDescription = "Eliminar comentario",
+                                                        modifier = Modifier.size(16.dp),
+                                                        tint = MaterialTheme.colorScheme.error
+                                                    )
+                                                }
+                                            }
+                                        }
+                                        Spacer(modifier = Modifier.height(4.dp))
+                                        Text(
+                                            text = comment.texto,
+                                            style = MaterialTheme.typography.bodyMedium
+                                        )
+                                        comment.fecha?.let { fecha ->
+                                            Spacer(modifier = Modifier.height(4.dp))
+                                            Text(
+                                                text = fecha,
+                                                style = MaterialTheme.typography.bodySmall,
+                                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                                            )
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        // Campo para nuevo comentario
+                        Spacer(modifier = Modifier.height(12.dp))
+                        var commentText by remember { mutableStateOf("") }
+                        val isPostingComment = commentActionState is UiState.Loading
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            OutlinedTextField(
+                                value = commentText,
+                                onValueChange = { commentText = it },
+                                placeholder = { Text("Añadir un comentario...") },
+                                modifier = Modifier.weight(1f),
+                                maxLines = 3,
+                                enabled = !isPostingComment
+                            )
+                            IconButton(
+                                onClick = {
+                                    if (commentText.isNotBlank()) {
+                                        viewModel.createComment(commentText)
+                                        commentText = ""
+                                    }
+                                },
+                                enabled = commentText.isNotBlank() && !isPostingComment
+                            ) {
+                                if (isPostingComment) {
+                                    CircularProgressIndicator(modifier = Modifier.size(20.dp))
+                                } else {
+                                    Icon(
+                                        Icons.Filled.Send,
+                                        contentDescription = "Enviar comentario"
+                                    )
+                                }
+                            }
+                        }
+
+                        // ── Denunciar producto ────────────────────────────
+                        Spacer(modifier = Modifier.height(16.dp))
+                        var showReportDialog by remember { mutableStateOf(false) }
+
+                        TextButton(
+                            onClick = { showReportDialog = true },
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Icon(
+                                Icons.Filled.Flag,
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.error
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(
+                                text = "Denunciar producto",
+                                color = MaterialTheme.colorScheme.error
+                            )
+                        }
+
+                        if (showReportDialog) {
+                            var reportMotivo by remember { mutableStateOf("") }
+                            var reportCategoria by remember { mutableStateOf(CategoriaDenuncia.OTRO) }
+                            var expandedCategoria by remember { mutableStateOf(false) }
+
+                            AlertDialog(
+                                onDismissRequest = { showReportDialog = false },
+                                title = { Text("Denunciar producto") },
+                                text = {
+                                    Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                                        OutlinedTextField(
+                                            value = reportMotivo,
+                                            onValueChange = { reportMotivo = it },
+                                            label = { Text("Motivo") },
+                                            placeholder = { Text("Describe el motivo de la denuncia") },
+                                            modifier = Modifier.fillMaxWidth(),
+                                            maxLines = 4
+                                        )
+                                        ExposedDropdownMenuBox(
+                                            expanded = expandedCategoria,
+                                            onExpandedChange = { expandedCategoria = it }
+                                        ) {
+                                            OutlinedTextField(
+                                                value = reportCategoria.displayName,
+                                                onValueChange = {},
+                                                readOnly = true,
+                                                label = { Text("Categoría") },
+                                                trailingIcon = {
+                                                    ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandedCategoria)
+                                                },
+                                                modifier = Modifier
+                                                    .fillMaxWidth()
+                                                    .menuAnchor()
+                                            )
+                                            ExposedDropdownMenu(
+                                                expanded = expandedCategoria,
+                                                onDismissRequest = { expandedCategoria = false }
+                                            ) {
+                                                CategoriaDenuncia.entries.forEach { cat ->
+                                                    DropdownMenuItem(
+                                                        text = { Text(cat.displayName) },
+                                                        onClick = {
+                                                            reportCategoria = cat
+                                                            expandedCategoria = false
+                                                        }
+                                                    )
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                confirmButton = {
+                                    TextButton(
+                                        onClick = {
+                                            viewModel.reportProduct(reportMotivo, reportCategoria)
+                                            showReportDialog = false
+                                        },
+                                        enabled = reportMotivo.isNotBlank()
+                                    ) {
+                                        Text("Denunciar")
+                                    }
+                                },
+                                dismissButton = {
+                                    TextButton(onClick = { showReportDialog = false }) {
+                                        Text("Cancelar")
                                     }
                                 }
                             )

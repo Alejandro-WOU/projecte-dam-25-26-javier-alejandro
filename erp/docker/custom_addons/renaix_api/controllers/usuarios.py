@@ -485,3 +485,58 @@ class UsuariosController(http.Controller):
         except Exception as e:
             _logger.error(f'Error al obtener estadísticas: {str(e)}')
             return response_helpers.server_error_response(str(e))
+
+
+    @http.route('/api/v1/usuarios/<int:user_id>/productos', type='http', auth='none',
+                methods=['GET'], csrf=False, cors='*')
+    def get_productos_usuario_publico(self, user_id, **params):
+        """
+        Obtener productos disponibles de un usuario público.
+
+        Path params:
+            user_id: ID del usuario
+
+        Query params:
+            page: Número de página (default: 1)
+            limit: Elementos por página (default: 20)
+
+        Returns:
+            JSON: {productos} (paginado)
+        """
+        try:
+            # Verificar que el usuario existe
+            partner = request.env['res.partner'].sudo().browse(user_id)
+
+            if not partner.exists() or not partner.es_usuario_app:
+                return response_helpers.not_found_response('Usuario no encontrado')
+
+            # Parámetros de paginación
+            page, limit = validators.validate_pagination_params(
+                params.get('page'),
+                params.get('limit')
+            )
+
+            # Buscar productos disponibles del usuario
+            productos = request.env['renaix.producto'].sudo().search([
+                ('propietario_id', '=', user_id),
+                ('active', '=', True),
+                ('estado_venta', '=', 'disponible')
+            ], order='fecha_publicacion DESC')
+
+            total = len(productos)
+            offset = (page - 1) * limit
+            productos_pagina = productos[offset:offset + limit]
+
+            productos_data = [serializers.serialize_producto(p, include_images=True) for p in productos_pagina]
+
+            return response_helpers.paginated_response(
+                items=productos_data,
+                total=total,
+                page=page,
+                limit=limit,
+                message='Productos recuperados'
+            )
+
+        except Exception as e:
+            _logger.error(f'Error al obtener productos del usuario: {str(e)}')
+            return response_helpers.server_error_response(str(e))

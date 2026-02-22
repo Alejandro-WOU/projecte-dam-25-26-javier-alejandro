@@ -62,6 +62,13 @@ class UserRepositoryImpl(
         }
     }
 
+    override suspend fun getUserProducts(userId: Int): Result<List<Product>> {
+        return when (val result = remoteDataSource.getUserProducts(userId)) {
+            is NetworkResult.Success -> Result.success(result.data.map { it.toDomain() })
+            is NetworkResult.Error -> Result.failure(Exception(result.message))
+        }
+    }
+
     override suspend fun getStats(): Result<UserStats> {
         return when (val result = remoteDataSource.getMyStats()) {
             is NetworkResult.Success -> Result.success(result.data.toDomain())

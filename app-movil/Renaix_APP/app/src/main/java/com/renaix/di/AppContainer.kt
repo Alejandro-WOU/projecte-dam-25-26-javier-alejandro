@@ -10,20 +10,32 @@ import com.renaix.data.remote.api.RenaixApi
 import com.renaix.data.remote.datasource.AuthRemoteDataSource
 import com.renaix.data.remote.datasource.CategoryRemoteDataSource
 import com.renaix.data.remote.datasource.ChatRemoteDataSource
+import com.renaix.data.remote.datasource.CommentRemoteDataSource
 import com.renaix.data.remote.datasource.ProductRemoteDataSource
 import com.renaix.data.remote.datasource.PurchaseRemoteDataSource
+import com.renaix.data.remote.datasource.RatingRemoteDataSource
+import com.renaix.data.remote.datasource.ReportRemoteDataSource
+import com.renaix.data.remote.datasource.TagRemoteDataSource
 import com.renaix.data.remote.datasource.UserRemoteDataSource
 import com.renaix.data.repository.AuthRepositoryImpl
 import com.renaix.data.repository.CategoryRepositoryImpl
 import com.renaix.data.repository.ChatRepositoryImpl
+import com.renaix.data.repository.CommentRepositoryImpl
 import com.renaix.data.repository.ProductRepositoryImpl
 import com.renaix.data.repository.PurchaseRepositoryImpl
+import com.renaix.data.repository.RatingRepositoryImpl
+import com.renaix.data.repository.ReportRepositoryImpl
+import com.renaix.data.repository.TagRepositoryImpl
 import com.renaix.data.repository.UserRepositoryImpl
 import com.renaix.domain.repository.AuthRepository
 import com.renaix.domain.repository.CategoryRepository
 import com.renaix.domain.repository.ChatRepository
+import com.renaix.domain.repository.CommentRepository
 import com.renaix.domain.repository.ProductRepository
 import com.renaix.domain.repository.PurchaseRepository
+import com.renaix.domain.repository.RatingRepository
+import com.renaix.domain.repository.ReportRepository
+import com.renaix.domain.repository.TagRepository
 import com.renaix.domain.repository.UserRepository
 
 /**
@@ -38,6 +50,10 @@ interface AppContainer {
     val categoryRepository: CategoryRepository
     val chatRepository: ChatRepository
     val purchaseRepository: PurchaseRepository
+    val commentRepository: CommentRepository
+    val ratingRepository: RatingRepository
+    val reportRepository: ReportRepository
+    val tagRepository: TagRepository
 }
 
 /**
@@ -105,6 +121,22 @@ class AppContainerImpl(private val context: Context) : AppContainer {
         PurchaseRemoteDataSource(renaixApi)
     }
 
+    private val commentRemoteDataSource by lazy {
+        CommentRemoteDataSource(renaixApi)
+    }
+
+    private val ratingRemoteDataSource by lazy {
+        RatingRemoteDataSource(renaixApi)
+    }
+
+    private val reportRemoteDataSource by lazy {
+        ReportRemoteDataSource(renaixApi)
+    }
+
+    private val tagRemoteDataSource by lazy {
+        TagRemoteDataSource(renaixApi)
+    }
+
     // Repositories
     override val authRepository: AuthRepository by lazy {
         AuthRepositoryImpl(authRemoteDataSource, preferencesManager)
@@ -128,5 +160,21 @@ class AppContainerImpl(private val context: Context) : AppContainer {
 
     override val purchaseRepository: PurchaseRepository by lazy {
         PurchaseRepositoryImpl(purchaseRemoteDataSource)
+    }
+
+    override val commentRepository: CommentRepository by lazy {
+        CommentRepositoryImpl(commentRemoteDataSource)
+    }
+
+    override val ratingRepository: RatingRepository by lazy {
+        RatingRepositoryImpl(ratingRemoteDataSource)
+    }
+
+    override val reportRepository: ReportRepository by lazy {
+        ReportRepositoryImpl(reportRemoteDataSource)
+    }
+
+    override val tagRepository: TagRepository by lazy {
+        TagRepositoryImpl(tagRemoteDataSource)
     }
 }

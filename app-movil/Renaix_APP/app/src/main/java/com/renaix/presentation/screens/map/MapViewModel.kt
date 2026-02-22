@@ -53,12 +53,13 @@ class MapViewModel(
             _products.value = UiState.Loading
             productRepository.getProducts(page = 1, limit = 100)
                 .onSuccess { products ->
-                _products.value = UiState.Success(products)
+                    _products.value = UiState.Success(products)
+                }
                 .onFailure { error ->
-                _products.value = UiState.Error(
-                    error.message ?: "Error al cargar productos"
-                )
-            }
+                    _products.value = UiState.Error(
+                        error.message ?: "Error al cargar productos"
+                    )
+                }
         }
     }
 

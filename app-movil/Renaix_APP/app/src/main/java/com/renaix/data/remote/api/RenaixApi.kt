@@ -338,6 +338,13 @@ class RenaixApi(
     // ==================== VALORACIONES ====================
 
     /**
+     * Obtiene los productos públicos de un usuario
+     */
+    suspend fun getUserProducts(userId: Int): ApiResponse<List<ProductListResponse>> {
+        return publicClient.get("${Endpoints.USERS_PUBLIC}/$userId/productos").body()
+    }
+
+    /**
      * Obtiene valoraciones de un usuario
      */
     suspend fun getUserRatings(userId: Int): ApiResponse<List<RatingResponse>> {

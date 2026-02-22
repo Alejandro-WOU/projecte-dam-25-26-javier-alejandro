@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import com.renaix.di.AppContainer
 import com.renaix.domain.model.Product
 import com.renaix.domain.model.PublicUser
+import com.renaix.domain.model.Rating
 import com.renaix.presentation.common.components.*
 import com.renaix.presentation.common.state.UiState
 import kotlinx.coroutines.launch
@@ -31,9 +32,11 @@ fun PublicProfileScreen(
 ) {
     var userState by remember { mutableStateOf<UiState<PublicUser>>(UiState.Loading) }
     var productsState by remember { mutableStateOf<UiState<List<Product>>>(UiState.Loading) }
+    var ratingsState by remember { mutableStateOf<UiState<List<Rating>>>(UiState.Loading) }
     val scope = rememberCoroutineScope()
 
     val userRepository = appContainer.userRepository
+    val ratingRepository = appContainer.ratingRepository
 
     fun loadData() {
         scope.launch {
@@ -47,6 +50,12 @@ fun PublicProfileScreen(
             userRepository.getUserProducts(userId)
                 .onSuccess { products -> productsState = UiState.Success(products) }
                 .onFailure { e -> productsState = UiState.Error(e.message ?: "Error") }
+        }
+        scope.launch {
+            ratingsState = UiState.Loading
+            ratingRepository.getUserRatings(userId)
+                .onSuccess { ratings -> ratingsState = UiState.Success(ratings) }
+                .onFailure { ratingsState = UiState.Idle }
         }
     }
 
@@ -217,6 +226,109 @@ fun PublicProfileScreen(
                                         product = product,
                                         onClick = { onProductClick(product.id) }
                                     )
+                                }
+                            }
+                        }
+
+                        else -> {}
+                    }
+
+                    // ── Valoraciones recibidas ────────────────────────
+                    item(span = { GridItemSpan(2) }) {
+                        Spacer(modifier = Modifier.height(8.dp))
+                        HorizontalDivider()
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "Valoraciones",
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.SemiBold,
+                            modifier = Modifier.padding(vertical = 8.dp)
+                        )
+                    }
+
+                    when (val currentRatingsState = ratingsState) {
+                        is UiState.Loading -> {
+                            item(span = { GridItemSpan(2) }) {
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(60.dp),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    CircularProgressIndicator()
+                                }
+                            }
+                        }
+
+                        is UiState.Success -> {
+                            val ratings = currentRatingsState.data
+                            if (ratings.isEmpty()) {
+                                item(span = { GridItemSpan(2) }) {
+                                    Text(
+                                        text = "Sin valoraciones todavía",
+                                        style = MaterialTheme.typography.bodyMedium,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                        modifier = Modifier.padding(vertical = 4.dp)
+                                    )
+                                }
+                            } else {
+                                items(
+                                    items = ratings,
+                                    key = { it.id },
+                                    span = { GridItemSpan(2) }
+                                ) { rating ->
+                                    Card(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .padding(vertical = 4.dp)
+                                    ) {
+                                        Column(modifier = Modifier.padding(12.dp)) {
+                                            Row(
+                                                verticalAlignment = Alignment.CenterVertically,
+                                                horizontalArrangement = Arrangement.spacedBy(2.dp)
+                                            ) {
+                                                repeat(rating.puntuacion) {
+                                                    Icon(
+                                                        Icons.Filled.Star,
+                                                        contentDescription = null,
+                                                        modifier = Modifier.size(16.dp),
+                                                        tint = MaterialTheme.colorScheme.primary
+                                                    )
+                                                }
+                                                repeat(5 - rating.puntuacion) {
+                                                    Icon(
+                                                        Icons.Filled.Star,
+                                                        contentDescription = null,
+                                                        modifier = Modifier.size(16.dp),
+                                                        tint = MaterialTheme.colorScheme.outlineVariant
+                                                    )
+                                                }
+                                                rating.valorador?.let { valorador ->
+                                                    Spacer(modifier = Modifier.width(8.dp))
+                                                    Text(
+                                                        text = valorador.name,
+                                                        style = MaterialTheme.typography.bodySmall,
+                                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                                    )
+                                                }
+                                            }
+                                            rating.comentario?.takeIf { it.isNotBlank() }?.let { texto ->
+                                                Spacer(modifier = Modifier.height(6.dp))
+                                                Text(
+                                                    text = texto,
+                                                    style = MaterialTheme.typography.bodyMedium
+                                                )
+                                            }
+                                            rating.fecha?.let { fecha ->
+                                                Spacer(modifier = Modifier.height(4.dp))
+                                                Text(
+                                                    text = fecha,
+                                                    style = MaterialTheme.typography.bodySmall,
+                                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                                )
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }

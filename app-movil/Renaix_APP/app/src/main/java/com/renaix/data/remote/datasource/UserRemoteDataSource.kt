@@ -138,6 +138,29 @@ class UserRemoteDataSource(private val api: RenaixApi) {
     }
 
     /**
+     * Obtiene los productos públicos de un usuario
+     */
+    suspend fun getUserProducts(userId: Int): NetworkResult<List<ProductListResponse>> {
+        return try {
+            val response = api.getUserProducts(userId)
+
+            if (response.success && response.data != null) {
+                NetworkResult.Success(response.data)
+            } else {
+                NetworkResult.Error(
+                    message = response.error ?: "Error al obtener productos del usuario",
+                    code = response.code
+                )
+            }
+        } catch (e: Exception) {
+            NetworkResult.Error(
+                message = e.message ?: "Error de conexión",
+                exception = e
+            )
+        }
+    }
+
+    /**
      * Obtiene perfil público de un usuario
      */
     suspend fun getPublicProfile(userId: Int): NetworkResult<PublicUserResponse> {

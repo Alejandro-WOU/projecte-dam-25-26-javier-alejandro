@@ -23,7 +23,7 @@ class SplashViewModel(
     private fun checkSession() {
         viewModelScope.launch {
             delay(2000)
-            val hasValidSession = authRepository.isSessionValid()
+            val hasValidSession = authRepository.hasValidSession()
             _navigationEvent.value = if (hasValidSession) {
                 NavigationEvent.NavigateToMain
             } else {
