@@ -62,8 +62,8 @@ BASE_URL = "http://10.0.2.2:8069"
 API_VERSION = "/api/v1"
 API_BASE_URL = "http://10.0.2.2:8069/api/v1"
 
-// Google Maps
-MAPS_API_KEY = "AIzaSyC5_APswRVmkJs91rK1r5Z3SpJ_MpMvCfY"
+// Google Maps (configurar en local.properties)
+MAPS_API_KEY = "configurar_en_local_properties"
 
 // Package
 package = "com.renaix"

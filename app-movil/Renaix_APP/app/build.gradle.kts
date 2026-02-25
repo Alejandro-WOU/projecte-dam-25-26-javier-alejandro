@@ -1,4 +1,5 @@
 import java.net.URL
+import java.util.Properties
 
 plugins {
     id("com.android.application")
@@ -7,6 +8,14 @@ plugins {
     id("app.cash.sqldelight")
     id("org.jetbrains.dokka")
     id("com.google.gms.google-services")
+}
+
+// Cargar propiedades locales (API keys, etc.)
+val localProperties = Properties().apply {
+    val localPropertiesFile = rootProject.file("local.properties")
+    if (localPropertiesFile.exists()) {
+        load(localPropertiesFile.inputStream())
+    }
 }
 
 android {
@@ -20,8 +29,8 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        // Google Maps API Key
-        manifestPlaceholders["MAPS_API_KEY"] = "AIzaSyC5_APswRVmkJs91rK1r5Z3SpJ_MpMvCfY"
+        // Google Maps API Key (cargada desde local.properties)
+        manifestPlaceholders["MAPS_API_KEY"] = localProperties.getProperty("MAPS_API_KEY", "")
         
         vectorDrawables {
             useSupportLibrary = true

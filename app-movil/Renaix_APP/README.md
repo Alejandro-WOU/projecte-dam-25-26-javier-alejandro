@@ -1,293 +1,162 @@
-# 🦋 RENAIX - App Móvil Android
+# Renaix - App Movil Android
 
-Marketplace de productos de segunda mano con Jetpack Compose.
+Marketplace de productos de segunda mano desarrollado con Jetpack Compose.
 
-## 📋 INFORMACIÓN DEL PROYECTO
+## Informacion del Proyecto
 
-- **Nombre:** Renaix
-- **Package:** com.renaix
-- **Min SDK:** 26 (Android 8.0)
-- **Target SDK:** 35
-- **API Backend:** http://10.0.2.2:8069/api/v1
-- **Google Maps API Key:** AIzaSyC5_APswRVmkJs91rK1r5Z3SpJ_MpMvCfY
+| Campo | Valor |
+|-------|-------|
+| Package | `com.renaix` |
+| Min SDK | 26 (Android 8.0) |
+| Target SDK | 35 |
+| Lenguaje | Kotlin |
 
-## 🏗️ ARQUITECTURA
+## Arquitectura
 
-```
-Clean Architecture + MVVM
-├── Presentation Layer (UI + ViewModels)
-├── Domain Layer (Models + Use Cases)
-└── Data Layer (Repositories + Data Sources)
-```
-
-## 📦 STACK TECNOLÓGICO
-
-- **UI:** Jetpack Compose + Material 3
-- **Navegación:** Navigation Compose
-- **Networking:** Ktor Client
-- **Serialización:** Kotlinx Serialization
-- **Base de Datos:** SQLDelight
-- **Almacenamiento Seguro:** EncryptedSharedPreferences
-- **Imágenes:** Coil
-- **Mapas:** Google Maps Compose
-- **Async:** Coroutines + Flow
-- **DI:** Manual (AppContainer)
-
-## 🚀 INSTRUCCIONES DE IMPORTACIÓN
-
-### OPCIÓN 1: Crear desde cero en Android Studio
-
-1. **Crear nuevo proyecto:**
-   - New Project → Empty Activity (Compose)
-   - Name: Renaix
-   - Package: com.renaix
-   - Min SDK: 26
-   - Build configuration: Kotlin DSL
-
-2. **Reemplazar archivos:**
-   - Copia `build.gradle.kts` (root)
-   - Copia `build.gradle.kts` (app)
-   - Copia `settings.gradle.kts`
-   - Copia `AndroidManifest.xml`
-
-3. **Sync Gradle:**
-   - Click en "Sync Now"
-   - Espera a que descargue dependencias (5-10 min)
-
-4. **Copiar estructura de carpetas:**
-   - Copia toda la carpeta `app/src/main/java/com/renaix`
-   - Copia `app/src/main/sqldelight`
-
-### OPCIÓN 2: Importar proyecto existente
-
-1. Extrae el ZIP completo
-2. Android Studio → Open → Selecciona la carpeta del proyecto
-3. Sync Gradle
-4. Run
-
-## 📁 ESTRUCTURA DE CARPETAS
+El proyecto sigue Clean Architecture con patron MVVM:
 
 ```
-app/src/main/java/com/renaix/
-│
+com.renaix/
 ├── data/
 │   ├── local/
-│   │   ├── database/          # SQLDelight
-│   │   └── preferences/       # EncryptedSharedPrefs
+│   │   ├── database/        # SQLDelight (cache local)
+│   │   └── preferences/     # EncryptedSharedPreferences
 │   ├── remote/
-│   │   ├── api/              # Ktor Client
-│   │   ├── dto/              # Request/Response
-│   │   └── datasource/       # Remote Data Sources
-│   └── repository/           # Repository Implementations
-│
+│   │   ├── api/             # Ktor Client + RenaixApi
+│   │   ├── datasource/      # Data Sources remotos
+│   │   ├── dto/             # Request/Response DTOs
+│   │   └── firebase/        # Firebase Cloud Messaging
+│   ├── mapper/              # Mappers DTO <-> Domain
+│   └── repository/          # Implementaciones de repositorios
 ├── domain/
-│   ├── model/                # Business Models
-│   ├── repository/           # Repository Interfaces
-│   └── usecase/              # Use Cases
-│
+│   ├── model/               # Modelos de negocio
+│   └── repository/          # Interfaces de repositorios
 ├── presentation/
-│   ├── screens/              # Pantallas Compose
-│   ├── navigation/           # NavGraph
-│   └── common/               # Componentes reutilizables
-│
-├── di/                       # Dependency Injection
-├── ui/theme/                 # Theme (Colors, Typography)
-└── util/                     # Constants, Extensions
+│   ├── screens/             # Pantallas (Screen + ViewModel)
+│   ├── navigation/          # NavGraph
+│   └── common/              # Componentes y estados reutilizables
+├── di/                      # Inyeccion de dependencias manual
+├── ui/theme/                # Tema Material 3
+└── util/                    # Constantes y extensiones
 ```
 
-## 🗄️ SCHEMA DE BASE DE DATOS (SQLDelight)
+## Stack Tecnologico
 
-Crear archivo: `app/src/main/sqldelight/com/renaix/data/local/database/RenaixDatabase.sq`
+| Categoria | Tecnologia |
+|-----------|------------|
+| UI | Jetpack Compose + Material 3 |
+| Navegacion | Navigation Compose |
+| Networking | Ktor Client |
+| Serializacion | Kotlinx Serialization |
+| Base de Datos Local | SQLDelight |
+| Almacenamiento Seguro | EncryptedSharedPreferences |
+| Carga de Imagenes | Coil |
+| Mapas | Google Maps Compose |
+| Asincronia | Coroutines + Flow |
+| Notificaciones Push | Firebase Cloud Messaging |
+| DI | Manual (AppContainer) |
 
-```sql
--- Tabla de Productos (Caché)
-CREATE TABLE Product (
-    id INTEGER PRIMARY KEY NOT NULL,
-    nombre TEXT NOT NULL,
-    descripcion TEXT,
-    precio REAL NOT NULL,
-    categoria_id INTEGER,
-    categoria_nombre TEXT,
-    estado_producto TEXT NOT NULL,
-    estado_venta TEXT NOT NULL,
-    imagen_principal TEXT,
-    propietario_id INTEGER NOT NULL,
-    propietario_nombre TEXT,
-    fecha_publicacion INTEGER,
-    fecha_actualizacion INTEGER NOT NULL
-);
+## Pantallas
 
--- Tabla de Categorías (Caché)
-CREATE TABLE Category (
-    id INTEGER PRIMARY KEY NOT NULL,
-    nombre TEXT NOT NULL UNIQUE,
-    descripcion TEXT,
-    imagen_url TEXT,
-    producto_count INTEGER NOT NULL DEFAULT 0
-);
+| Pantalla | Descripcion |
+|----------|-------------|
+| Splash | Carga inicial y verificacion de sesion |
+| Login | Inicio de sesion |
+| Register | Registro de usuario |
+| Main | Pantalla principal con navegacion |
+| Product List | Lista de productos disponibles |
+| Product Detail | Detalle con comentarios, valoraciones y mapa |
+| Create Product | Crear nuevo producto con imagenes |
+| Edit Product | Editar producto existente |
+| Search | Busqueda con filtros (categoria, precio, orden) |
+| Chat | Lista de conversaciones |
+| Chat Detail | Mensajes de una conversacion |
+| Map | Mapa con ubicacion de productos |
+| Profile | Perfil de usuario |
 
--- Tabla de Usuario (Perfil actual)
-CREATE TABLE UserProfile (
-    id INTEGER PRIMARY KEY NOT NULL,
-    nombre TEXT NOT NULL,
-    email TEXT NOT NULL UNIQUE,
-    telefono TEXT,
-    imagen_url TEXT,
-    valoracion_promedio REAL NOT NULL DEFAULT 0.0,
-    productos_en_venta INTEGER NOT NULL DEFAULT 0,
-    productos_vendidos INTEGER NOT NULL DEFAULT 0
-);
+## Modelos de Dominio
 
--- Tabla de Favoritos (Local only)
-CREATE TABLE Favorite (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    producto_id INTEGER NOT NULL UNIQUE,
-    fecha_agregado INTEGER NOT NULL,
-    FOREIGN KEY (producto_id) REFERENCES Product(id) ON DELETE CASCADE
-);
+- **User** - Usuario con perfil y valoraciones
+- **Product** - Producto con imagenes, estado y ubicacion
+- **Category** - Categoria de productos
+- **Message** - Mensaje de chat
+- **Comment** - Comentario en producto
+- **Rating** - Valoracion de usuario
+- **Report** - Denuncia de producto/usuario
+- **Purchase** - Compra/transaccion
+- **Tag** - Etiqueta de producto
 
--- Queries
-selectAllProducts:
-SELECT * FROM Product WHERE estado_venta = 'disponible' ORDER BY fecha_publicacion DESC;
+## Configuracion
 
-selectProductById:
-SELECT * FROM Product WHERE id = ?;
+### 1. Clonar el repositorio
 
-insertProduct:
-INSERT OR REPLACE INTO Product VALUES ?;
-
-deleteProduct:
-DELETE FROM Product WHERE id = ?;
-
-selectAllCategories:
-SELECT * FROM Category ORDER BY nombre ASC;
-
-insertCategory:
-INSERT OR REPLACE INTO Category VALUES ?;
-
-selectUserProfile:
-SELECT * FROM UserProfile LIMIT 1;
-
-insertUserProfile:
-INSERT OR REPLACE INTO UserProfile VALUES ?;
-
-selectAllFavorites:
-SELECT p.* FROM Product p
-INNER JOIN Favorite f ON p.id = f.producto_id
-ORDER BY f.fecha_agregado DESC;
-
-insertFavorite:
-INSERT OR IGNORE INTO Favorite(producto_id, fecha_agregado) VALUES (?, ?);
-
-deleteFavorite:
-DELETE FROM Favorite WHERE producto_id = ?;
-
-isFavorite:
-SELECT EXISTS(SELECT 1 FROM Favorite WHERE producto_id = ?);
+```bash
+git clone https://github.com/H3rr41z/Proyecto-Intermodular-DAM-2025.git
+cd Proyecto-Intermodular-DAM-2025/app-movil/Renaix_APP
 ```
 
-## 🎨 TEMA VISUAL
+### 2. Configurar API Key de Google Maps
 
-Los colores principales están basados en el logo morado de Renaix:
+Editar el archivo `local.properties` en la raiz del proyecto:
 
-- **Primary:** Purple500 (#9C27B0)
-- **Secondary:** PurpleAccent (#CE93D8)
-- **Background:** BackgroundLight (#FAFAFA)
-- **Surface:** SurfaceLight (#FFFFFF)
-
-## ⚙️ CONFIGURACIÓN INICIAL
-
-### 1. Verificar que Odoo responde
-
-Abre el navegador en tu PC y ve a:
-```
-http://localhost:8069/api/v1/categorias
+```properties
+MAPS_API_KEY=tu_api_key_de_google_maps
 ```
 
-Debes ver un JSON con categorías.
+> Este archivo no se sube al repositorio por seguridad.
 
-### 2. Configurar emulador
+### 3. Configurar Backend
 
-En Android Studio:
-- Tools → Device Manager
-- Crear dispositivo con API 26 o superior
-- Iniciar emulador
+La app se conecta a un backend Odoo. La URL se configura en `util/Constants.kt`:
 
-### 3. Verificar conectividad
+- **Emulador:** `http://10.0.2.2:8069` (apunta a localhost del PC)
+- **Dispositivo fisico:** Usar IP de la maquina
 
-Desde el emulador, la app usará:
-```
-http://10.0.2.2:8069
-```
+### 4. Ejecutar
 
-Que automáticamente apunta a `localhost` de tu PC.
+1. Abrir en Android Studio
+2. Sync Gradle
+3. Run en emulador o dispositivo
 
-## 🔧 PRÓXIMOS PASOS
+## Funcionalidades
 
-Una vez importado el proyecto:
+### Autenticacion
+- Login/Registro con JWT
+- Persistencia segura de tokens con EncryptedSharedPreferences
+- Sesion persistente entre reinicios
 
-1. **Sync Gradle** (importante)
-2. **Generar código de SQLDelight:**
-   - Build → Rebuild Project
-   - Esto genera las clases de SQLDelight automáticamente
+### Productos
+- Listado con scroll infinito
+- Detalle con galeria de imagenes
+- Crear/Editar productos con subida de imagenes
+- Busqueda con filtros:
+  - Por texto (con debounce)
+  - Por categoria
+  - Por rango de precio
+  - Ordenamiento (fecha, precio)
 
-3. **Crear archivos faltantes:**
-   - Ver ARCHIVOS_PENDIENTES.md para la lista completa
+### Social
+- Sistema de chat entre usuarios
+- Comentarios en productos
+- Valoraciones de usuarios
+- Sistema de denuncias
 
-4. **Run en emulador:**
-   - Click en Run ▶️
-   - Seleccionar emulador
-   - Esperar a que instale
+### Mapas
+- Visualizacion de ubicacion de productos
+- Geolocalizacion del usuario
 
-## 📱 FUNCIONALIDADES IMPLEMENTADAS
+### Notificaciones
+- Push notifications con Firebase Cloud Messaging
 
-### ✅ Obligatorias (6 puntos)
-- [x] Autenticación JWT con persistencia
-- [x] Arquitectura Clean + MVVM
-- [x] Procesos en segundo plano
-- [x] CRUD de productos con imágenes
-- [x] Documentación
+## Troubleshooting
 
-### ✅ Avanzadas (4 puntos)
-- [x] Google Maps + Geolocalización
-- [x] Búsqueda con filtros
-- [x] Sistema de chat
-- [x] Gestión avanzada de estados
+| Error | Solucion |
+|-------|----------|
+| Cannot resolve symbol | Sync Gradle o Rebuild Project |
+| Error de conexion a API | Verificar que el backend esta corriendo |
+| Maps no funciona | Verificar `MAPS_API_KEY` en `local.properties` |
 
-## 🐛 TROUBLESHOOTING
+## Autores
 
-### Error: "Cannot resolve symbol"
-- Sync Gradle
-- Build → Rebuild Project
-- Invalidate Caches → Restart
-
-### Error: SQLDelight no genera código
-- Sync Gradle
-- Build → Rebuild Project
-- Verificar que el archivo .sq está en la ruta correcta
-
-### Error de conexión a API
-- Verificar que Odoo corre en http://localhost:8069
-- Verificar que usas http://10.0.2.2:8069 en la app
-- Verificar AndroidManifest tiene `usesCleartextTraffic="true"`
-
-### Error de Maps API Key
-- Verificar que la key está en build.gradle.kts
-- Sync Gradle
-- Clean Project → Rebuild
-
-## 📚 RECURSOS
-
-- [Jetpack Compose Docs](https://developer.android.com/jetpack/compose)
-- [Ktor Client Docs](https://ktor.io/docs/client.html)
-- [SQLDelight Docs](https://cashapp.github.io/sqldelight/)
-- [Material 3 Guidelines](https://m3.material.io/)
-
-## 👥 AUTORES
-
-Javier Herraiz & Alejandro Sánchez
+**Javier Herraiz & Alejandro Sanchez**
 Proyecto DAM 2025-26
-
-## 📄 LICENCIA
-
-Proyecto educativo - Todos los derechos reservados

@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Renaix App</title>
+    <link href="images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="scripts/sourceset_dependencies.js" async="async"></script>
+<link href="styles/style.css" rel="Stylesheet">
+<link href="styles/main.css" rel="Stylesheet">
+<link href="styles/prism.css" rel="Stylesheet">
+<link href="styles/logo-styles.css" rel="Stylesheet">
+<link href="styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+                    <a class="library-name--link" href="index.html">
+                            Renaix App
+                    </a>
+            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":app:dokkaHtml/release">androidJvm</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" id="content" pageIds="Renaix App::////PointingToDeclaration//492899073">
+  <div class="breadcrumbs"></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Renaix</span></span> <span><span>App</span></span></h1>
+    <div class="platform-hinted UnderCoverText" data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><p class="paragraph">Aplicacion Android para el marketplace de productos de segunda mano Renaix.</p><h2 class=""> Arquitectura</h2><p class="paragraph">El proyecto sigue <strong>Clean Architecture</strong> con patron <strong>MVVM</strong>:</p><ul><li><p class="paragraph"><code class="lang-kotlin">data/</code> - Capa de datos (API, base de datos local, repositorios)</p></li><li><p class="paragraph"><code class="lang-kotlin">domain/</code> - Capa de dominio (modelos de negocio, interfaces)</p></li><li><p class="paragraph"><code class="lang-kotlin">presentation/</code> - Capa de presentacion (UI con Jetpack Compose, ViewModels)</p></li><li><p class="paragraph"><code class="lang-kotlin">di/</code> - Inyeccion de dependencias manual</p></li></ul><h2 class=""> Tecnologias</h2><ul><li><p class="paragraph">Jetpack Compose + Material 3</p></li><li><p class="paragraph">Ktor Client</p></li><li><p class="paragraph">SQLDelight</p></li><li><p class="paragraph">Coroutines + Flow</p></li><li><p class="paragraph">Google Maps</p></li><li><p class="paragraph">Firebase Cloud Messaging</p></li></ul></div></div>
+  </div>
+  <h2 class="">Packages</h2>
+  <div class="table"><a data-name="856652356%2FPackages%2F492899073" anchor-label="com.renaix" id="856652356%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="-renaix -app/com.renaix/index.html">com.renaix</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="856652356%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-592249672%2FPackages%2F492899073" anchor-label="com.renaix.data.local.database" id="-592249672%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="-renaix -app/com.renaix.data.local.database/index.html">com.renaix.data.local.database</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-592249672%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="803680735%2FPackages%2F492899073" anchor-label="com.renaix.data.local.preferences" id="803680735%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="-renaix -app/com.renaix.data.local.preferences/index.html">com.renaix.data.local.preferences</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="803680735%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-1558376293%2FPackages%2F492899073" anchor-label="com.renaix.data.mapper" id="-1558376293%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="-renaix -app/com.renaix.data.mapper/index.html">com.renaix.data.mapper</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1558376293%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="1856091020%2FPackages%2F492899073" anchor-label="com.renaix.data.remote.api" id="1856091020%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="-renaix -app/com.renaix.data.remote.api/index.html">com.renaix.data.remote.api</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1856091020%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="1856091020%2FPackages%2F492899073" anchor-label="com.renaix.data.remote.api" id="1856091020%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+            <p class="paragraph">Cliente HTTP con Ktor para comunicacion con el backend Odoo.</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="-704164393%2FPackages%2F492899073" anchor-label="com.renaix.data.remote.datasource" id="-704164393%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="-renaix -app/com.renaix.data.remote.datasource/index.html">com.renaix.data.remote.datasource</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-704164393%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-1459335310%2FPackages%2F492899073" anchor-label="com.renaix.data.remote.dto.request" id="-1459335310%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="-renaix -app/com.renaix.data.remote.dto.request/index.html">com.renaix.data.remote.dto.request</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1459335310%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-79553214%2FPackages%2F492899073" anchor-label="com.renaix.data.remote.dto.response" id="-79553214%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="-renaix -app/com.renaix.data.remote.dto.response/index.html">com.renaix.data.remote.dto.response</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-79553214%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-1673872103%2FPackages%2F492899073" anchor-label="com.renaix.data.remote.firebase" id="-1673872103%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="-renaix -app/com.renaix.data.remote.firebase/index.html">com.renaix.data.remote.firebase</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1673872103%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-641963932%2FPackages%2F492899073" anchor-label="com.renaix.data.repository" id="-641963932%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="-renaix -app/com.renaix.data.repository/index.html">com.renaix.data.repository</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-641963932%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="881357747%2FPackages%2F492899073" anchor-label="com.renaix.di" id="881357747%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="-renaix -app/com.renaix.di/index.html">com.renaix.di</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="881357747%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="881357747%2FPackages%2F492899073" anchor-label="com.renaix.di" id="881357747%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+            <p class="paragraph">Contenedor de dependencias manual (AppContainer).</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="-1695408851%2FPackages%2F492899073" anchor-label="com.renaix.domain.model" id="-1695408851%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="-renaix -app/com.renaix.domain.model/index.html">com.renaix.domain.model</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1695408851%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="-1695408851%2FPackages%2F492899073" anchor-label="com.renaix.domain.model" id="-1695408851%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+            <p class="paragraph">Modelos de negocio: User, Product, Category, Message, Comment, Rating, etc.</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="1153441418%2FPackages%2F492899073" anchor-label="com.renaix.domain.repository" id="1153441418%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="-renaix -app/com.renaix.domain.repository/index.html">com.renaix.domain.repository</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1153441418%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="1153441418%2FPackages%2F492899073" anchor-label="com.renaix.domain.repository" id="1153441418%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+            <p class="paragraph">Interfaces de repositorios que definen las operaciones de datos.</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="-1540273581%2FPackages%2F492899073" anchor-label="com.renaix.presentation.common.components" id="-1540273581%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="-renaix -app/com.renaix.presentation.common.components/index.html">com.renaix.presentation.common.components</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1540273581%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="477093752%2FPackages%2F492899073" anchor-label="com.renaix.presentation.common.state" id="477093752%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="-renaix -app/com.renaix.presentation.common.state/index.html">com.renaix.presentation.common.state</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="477093752%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-1518538434%2FPackages%2F492899073" anchor-label="com.renaix.presentation.navigation" id="-1518538434%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="-renaix -app/com.renaix.presentation.navigation/index.html">com.renaix.presentation.navigation</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1518538434%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-787578348%2FPackages%2F492899073" anchor-label="com.renaix.presentation.screens.auth.login" id="-787578348%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="-renaix -app/com.renaix.presentation.screens.auth.login/index.html">com.renaix.presentation.screens.auth.login</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-787578348%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="770330140%2FPackages%2F492899073" anchor-label="com.renaix.presentation.screens.auth.register" id="770330140%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="-renaix -app/com.renaix.presentation.screens.auth.register/index.html">com.renaix.presentation.screens.auth.register</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="770330140%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-1792296759%2FPackages%2F492899073" anchor-label="com.renaix.presentation.screens.chat" id="-1792296759%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="-renaix -app/com.renaix.presentation.screens.chat/index.html">com.renaix.presentation.screens.chat</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1792296759%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-1453521942%2FPackages%2F492899073" anchor-label="com.renaix.presentation.screens.main" id="-1453521942%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="-renaix -app/com.renaix.presentation.screens.main/index.html">com.renaix.presentation.screens.main</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1453521942%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-186881329%2FPackages%2F492899073" anchor-label="com.renaix.presentation.screens.map" id="-186881329%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="-renaix -app/com.renaix.presentation.screens.map/index.html">com.renaix.presentation.screens.map</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-186881329%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-336986055%2FPackages%2F492899073" anchor-label="com.renaix.presentation.screens.products.create" id="-336986055%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="-renaix -app/com.renaix.presentation.screens.products.create/index.html">com.renaix.presentation.screens.products.create</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-336986055%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-1499314354%2FPackages%2F492899073" anchor-label="com.renaix.presentation.screens.products.detail" id="-1499314354%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="-renaix -app/com.renaix.presentation.screens.products.detail/index.html">com.renaix.presentation.screens.products.detail</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1499314354%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="380965511%2FPackages%2F492899073" anchor-label="com.renaix.presentation.screens.products.edit" id="380965511%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="-renaix -app/com.renaix.presentation.screens.products.edit/index.html">com.renaix.presentation.screens.products.edit</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="380965511%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="1378321435%2FPackages%2F492899073" anchor-label="com.renaix.presentation.screens.products.list" id="1378321435%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="-renaix -app/com.renaix.presentation.screens.products.list/index.html">com.renaix.presentation.screens.products.list</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1378321435%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-926349851%2FPackages%2F492899073" anchor-label="com.renaix.presentation.screens.products.search" id="-926349851%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="-renaix -app/com.renaix.presentation.screens.products.search/index.html">com.renaix.presentation.screens.products.search</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-926349851%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="1629890652%2FPackages%2F492899073" anchor-label="com.renaix.presentation.screens.profile" id="1629890652%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="-renaix -app/com.renaix.presentation.screens.profile/index.html">com.renaix.presentation.screens.profile</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1629890652%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-2105531560%2FPackages%2F492899073" anchor-label="com.renaix.presentation.screens.splash" id="-2105531560%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="-renaix -app/com.renaix.presentation.screens.splash/index.html">com.renaix.presentation.screens.splash</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2105531560%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="1201418141%2FPackages%2F492899073" anchor-label="com.renaix.ui.theme" id="1201418141%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="-renaix -app/com.renaix.ui.theme/index.html">com.renaix.ui.theme</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1201418141%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-338538000%2FPackages%2F492899073" anchor-label="com.renaix.util" id="-338538000%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="-renaix -app/com.renaix.util/index.html">com.renaix.util</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-338538000%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2026 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>RenaixApi</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+                    <a class="library-name--link" href="../../../index.html">
+                            Renaix App
+                    </a>
+            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":app:dokkaHtml/release">androidJvm</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="Renaix App::com.renaix.data.remote.api/RenaixApi///PointingToDeclaration//492899073">
+  <div class="breadcrumbs"><a href="../../../index.html">Renaix App</a><span class="delimiter">/</span><a href="../index.html">com.renaix.data.remote.api</a><span class="delimiter">/</span><span class="current">RenaixApi</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Renaix</span><wbr></wbr><span><span>Api</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">RenaixApi</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">publicClient<span class="token operator">: </span><span data-unresolved-link="io.ktor.client/HttpClient///PointingToDeclaration/">HttpClient</span><span class="token punctuation">, </span></span><span class="parameter ">authClient<span class="token operator">: </span><span data-unresolved-link="io.ktor.client/HttpClient///PointingToDeclaration/">HttpClient</span></span></span><span class="token punctuation">)</span></div><p class="paragraph">Interfaz de la API de Renaix Contiene todas las llamadas a los endpoints del backend</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-1209348122%2FConstructors%2F492899073" anchor-label="RenaixApi" id="-1209348122%2FConstructors%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-renaix-api.html"><span>Renaix</span><wbr></wbr><span><span>Api</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1209348122%2FConstructors%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">publicClient<span class="token operator">: </span><span data-unresolved-link="io.ktor.client/HttpClient///PointingToDeclaration/">HttpClient</span><span class="token punctuation">, </span></span><span class="parameter ">authClient<span class="token operator">: </span><span data-unresolved-link="io.ktor.client/HttpClient///PointingToDeclaration/">HttpClient</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-642221546%2FFunctions%2F492899073" anchor-label="acceptOffer" id="-642221546%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="accept-offer.html"><span>accept</span><wbr></wbr><span><span>Offer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-642221546%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="accept-offer.html"><span class="token function">acceptOffer</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-accept-offer-response/index.html">AcceptOfferResponse</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Acepta una oferta recibida (crea compra con precio negociado)</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1777406528%2FFunctions%2F492899073" anchor-label="addProductImage" id="1777406528%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="add-product-image.html"><span>add</span><wbr></wbr><span>Product</span><wbr></wbr><span><span>Image</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1777406528%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="add-product-image.html"><span class="token function">addProductImage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">productId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">request<span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.request/-add-product-image-request/index.html">AddProductImageRequest</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-product-image-response/index.html">ProductImageResponse</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Añade imagen a un producto</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1687929967%2FFunctions%2F492899073" anchor-label="cancelPurchase" id="-1687929967%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="cancel-purchase.html"><span>cancel</span><wbr></wbr><span><span>Purchase</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1687929967%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="cancel-purchase.html"><span class="token function">cancelPurchase</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">purchaseId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-purchase-status-response/index.html">PurchaseStatusResponse</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Cancela una compra</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1150373507%2FFunctions%2F492899073" anchor-label="changePassword" id="-1150373507%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="change-password.html"><span>change</span><wbr></wbr><span><span>Password</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1150373507%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="change-password.html"><span class="token function">changePassword</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">request<span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.request/-change-password-request/index.html">ChangePasswordRequest</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Cambia la contraseña</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="406708018%2FFunctions%2F492899073" anchor-label="completePurchase" id="406708018%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="complete-purchase.html"><span>complete</span><wbr></wbr><span><span>Purchase</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="406708018%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="complete-purchase.html"><span class="token function">completePurchase</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">purchaseId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-purchase-status-response/index.html">PurchaseStatusResponse</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Completa una compra (comprador)</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1821258295%2FFunctions%2F492899073" anchor-label="confirmPurchase" id="-1821258295%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="confirm-purchase.html"><span>confirm</span><wbr></wbr><span><span>Purchase</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1821258295%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="confirm-purchase.html"><span class="token function">confirmPurchase</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">purchaseId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-purchase-status-response/index.html">PurchaseStatusResponse</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Confirma una compra (vendedor)</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1568017920%2FFunctions%2F492899073" anchor-label="createComment" id="-1568017920%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="create-comment.html"><span>create</span><wbr></wbr><span><span>Comment</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1568017920%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="create-comment.html"><span class="token function">createComment</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">productId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">request<span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.request/-create-comment-request/index.html">CreateCommentRequest</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-comment-response/index.html">CommentResponse</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Crea un comentario en un producto</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1933166353%2FFunctions%2F492899073" anchor-label="createProduct" id="-1933166353%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="create-product.html"><span>create</span><wbr></wbr><span><span>Product</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1933166353%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="create-product.html"><span class="token function">createProduct</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">request<span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.request/-create-product-request/index.html">CreateProductRequest</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-product-create-response/index.html">ProductCreateResponse</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Crea un producto</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1191716803%2FFunctions%2F492899073" anchor-label="createPurchase" id="-1191716803%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="create-purchase.html"><span>create</span><wbr></wbr><span><span>Purchase</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1191716803%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="create-purchase.html"><span class="token function">createPurchase</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">request<span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.request/-create-purchase-request/index.html">CreatePurchaseRequest</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-purchase-response/index.html">PurchaseResponse</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Crea una compra</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-398573475%2FFunctions%2F492899073" anchor-label="createReport" id="-398573475%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="create-report.html"><span>create</span><wbr></wbr><span><span>Report</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-398573475%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="create-report.html"><span class="token function">createReport</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">request<span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.request/-create-report-request/index.html">CreateReportRequest</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-report-response/index.html">ReportResponse</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Crea una denuncia</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-617364987%2FFunctions%2F492899073" anchor-label="createTag" id="-617364987%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="create-tag.html"><span>create</span><wbr></wbr><span><span>Tag</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-617364987%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="create-tag.html"><span class="token function">createTag</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">request<span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.request/-create-tag-request/index.html">CreateTagRequest</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-tag-response/index.html">TagResponse</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Crea una etiqueta</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1705751978%2FFunctions%2F492899073" anchor-label="deleteComment" id="-1705751978%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="delete-comment.html"><span>delete</span><wbr></wbr><span><span>Comment</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1705751978%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="delete-comment.html"><span class="token function">deleteComment</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">commentId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Elimina un comentario</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2055168454%2FFunctions%2F492899073" anchor-label="deleteProduct" id="2055168454%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="delete-product.html"><span>delete</span><wbr></wbr><span><span>Product</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2055168454%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="delete-product.html"><span class="token function">deleteProduct</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">productId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Elimina un producto</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="531085832%2FFunctions%2F492899073" anchor-label="deleteProductImage" id="531085832%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="delete-product-image.html"><span>delete</span><wbr></wbr><span>Product</span><wbr></wbr><span><span>Image</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="531085832%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="delete-product-image.html"><span class="token function">deleteProductImage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">productId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">imageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Elimina imagen de un producto</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1300193937%2FFunctions%2F492899073" anchor-label="deleteProfileImage" id="1300193937%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="delete-profile-image.html"><span>delete</span><wbr></wbr><span>Profile</span><wbr></wbr><span><span>Image</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1300193937%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="delete-profile-image.html"><span class="token function">deleteProfileImage</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-user-profile-response/index.html">UserProfileResponse</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Elimina imagen de perfil</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1074669722%2FFunctions%2F492899073" anchor-label="getCategories" id="1074669722%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-categories.html"><span>get</span><wbr></wbr><span><span>Categories</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1074669722%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="get-categories.html"><span class="token function">getCategories</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-category-response/index.html">CategoryResponse</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Lista categorías</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="783874903%2FFunctions%2F492899073" anchor-label="getConversation" id="783874903%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-conversation.html"><span>get</span><wbr></wbr><span><span>Conversation</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="783874903%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="get-conversation.html"><span class="token function">getConversation</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">userId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">productId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-message-response/index.html">MessageResponse</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Obtiene conversación con un usuario</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-408512684%2FFunctions%2F492899073" anchor-label="getConversations" id="-408512684%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-conversations.html"><span>get</span><wbr></wbr><span><span>Conversations</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-408512684%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="get-conversations.html"><span class="token function">getConversations</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-conversation-response/index.html">ConversationResponse</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Lista conversaciones</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1439433031%2FFunctions%2F492899073" anchor-label="getMyProducts" id="-1439433031%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-my-products.html"><span>get</span><wbr></wbr><span>My</span><wbr></wbr><span><span>Products</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1439433031%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="get-my-products.html"><span class="token function">getMyProducts</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">page<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">1</span><span class="token punctuation">, </span></span><span class="parameter ">limit<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">20</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-product-list-response/index.html">ProductListResponse</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Obtiene los productos del usuario autenticado</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="799523041%2FFunctions%2F492899073" anchor-label="getMyPurchases" id="799523041%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-my-purchases.html"><span>get</span><wbr></wbr><span>My</span><wbr></wbr><span><span>Purchases</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="799523041%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="get-my-purchases.html"><span class="token function">getMyPurchases</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">page<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">1</span><span class="token punctuation">, </span></span><span class="parameter ">limit<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">20</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-purchase-response/index.html">PurchaseResponse</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Obtiene las compras del usuario</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1323741894%2FFunctions%2F492899073" anchor-label="getMyRatings" id="-1323741894%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-my-ratings.html"><span>get</span><wbr></wbr><span>My</span><wbr></wbr><span><span>Ratings</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1323741894%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="get-my-ratings.html"><span class="token function">getMyRatings</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-rating-response/index.html">RatingResponse</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Obtiene las valoraciones del usuario</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1505029615%2FFunctions%2F492899073" anchor-label="getMyReports" id="-1505029615%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-my-reports.html"><span>get</span><wbr></wbr><span>My</span><wbr></wbr><span><span>Reports</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1505029615%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="get-my-reports.html"><span class="token function">getMyReports</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-report-response/index.html">ReportResponse</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Obtiene mis denuncias</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1815783259%2FFunctions%2F492899073" anchor-label="getMySales" id="1815783259%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-my-sales.html"><span>get</span><wbr></wbr><span>My</span><wbr></wbr><span><span>Sales</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1815783259%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="get-my-sales.html"><span class="token function">getMySales</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">page<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">1</span><span class="token punctuation">, </span></span><span class="parameter ">limit<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">20</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-purchase-response/index.html">PurchaseResponse</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Obtiene las ventas del usuario</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-919680015%2FFunctions%2F492899073" anchor-label="getMyStats" id="-919680015%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-my-stats.html"><span>get</span><wbr></wbr><span>My</span><wbr></wbr><span><span>Stats</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-919680015%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="get-my-stats.html"><span class="token function">getMyStats</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-user-stats-response/index.html">UserStatsResponse</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Obtiene las estadísticas del usuario</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1018609938%2FFunctions%2F492899073" anchor-label="getPopularTags" id="1018609938%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-popular-tags.html"><span>get</span><wbr></wbr><span>Popular</span><wbr></wbr><span><span>Tags</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1018609938%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="get-popular-tags.html"><span class="token function">getPopularTags</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-tag-response/index.html">TagResponse</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Lista etiquetas populares</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="184375711%2FFunctions%2F492899073" anchor-label="getProductComments" id="184375711%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-product-comments.html"><span>get</span><wbr></wbr><span>Product</span><wbr></wbr><span><span>Comments</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="184375711%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="get-product-comments.html"><span class="token function">getProductComments</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">productId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-comment-response/index.html">CommentResponse</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Lista comentarios de un producto</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="949860386%2FFunctions%2F492899073" anchor-label="getProductDetail" id="949860386%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-product-detail.html"><span>get</span><wbr></wbr><span>Product</span><wbr></wbr><span><span>Detail</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="949860386%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="get-product-detail.html"><span class="token function">getProductDetail</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">productId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-product-detail-response/index.html">ProductDetailResponse</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Obtiene detalle de un producto</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2063043026%2FFunctions%2F492899073" anchor-label="getProducts" id="2063043026%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-products.html"><span>get</span><wbr></wbr><span><span>Products</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2063043026%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="get-products.html"><span class="token function">getProducts</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">page<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">1</span><span class="token punctuation">, </span></span><span class="parameter ">limit<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">20</span><span class="token punctuation">, </span></span><span class="parameter ">estadoVenta<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">&quot;disponible&quot;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-product-list-response/index.html">ProductListResponse</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Lista productos públicos</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1107525979%2FFunctions%2F492899073" anchor-label="getProfile" id="1107525979%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-profile.html"><span>get</span><wbr></wbr><span><span>Profile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1107525979%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="get-profile.html"><span class="token function">getProfile</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-user-profile-response/index.html">UserProfileResponse</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Obtiene el perfil del usuario autenticado</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1687742654%2FFunctions%2F492899073" anchor-label="getPublicProfile" id="-1687742654%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-public-profile.html"><span>get</span><wbr></wbr><span>Public</span><wbr></wbr><span><span>Profile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1687742654%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="get-public-profile.html"><span class="token function">getPublicProfile</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">userId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-public-user-response/index.html">PublicUserResponse</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Obtiene el perfil público de un usuario</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="202632930%2FFunctions%2F492899073" anchor-label="getPurchaseDetail" id="202632930%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-purchase-detail.html"><span>get</span><wbr></wbr><span>Purchase</span><wbr></wbr><span><span>Detail</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="202632930%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="get-purchase-detail.html"><span class="token function">getPurchaseDetail</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">purchaseId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-purchase-response/index.html">PurchaseResponse</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Obtiene detalle de una compra</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="949976315%2FFunctions%2F492899073" anchor-label="getUnreadMessages" id="949976315%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-unread-messages.html"><span>get</span><wbr></wbr><span>Unread</span><wbr></wbr><span><span>Messages</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="949976315%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="get-unread-messages.html"><span class="token function">getUnreadMessages</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-unread-messages-response/index.html">UnreadMessagesResponse</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Obtiene mensajes no leídos</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="559405669%2FFunctions%2F492899073" anchor-label="getUserProducts" id="559405669%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-user-products.html"><span>get</span><wbr></wbr><span>User</span><wbr></wbr><span><span>Products</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="559405669%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="get-user-products.html"><span class="token function">getUserProducts</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">userId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-product-list-response/index.html">ProductListResponse</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Obtiene los productos públicos de un usuario</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1230684151%2FFunctions%2F492899073" anchor-label="getUserRatings" id="1230684151%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-user-ratings.html"><span>get</span><wbr></wbr><span>User</span><wbr></wbr><span><span>Ratings</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1230684151%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="get-user-ratings.html"><span class="token function">getUserRatings</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">userId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-rating-response/index.html">RatingResponse</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Obtiene valoraciones de un usuario</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2025505179%2FFunctions%2F492899073" anchor-label="login" id="2025505179%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="login.html"><span><span>login</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2025505179%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="login.html"><span class="token function">login</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">request<span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.request/-login-request/index.html">LoginRequest</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-auth-response/index.html">AuthResponse</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Inicia sesión</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1853150812%2FFunctions%2F492899073" anchor-label="logout" id="-1853150812%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="logout.html"><span><span>logout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1853150812%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="logout.html"><span class="token function">logout</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Cierra la sesión</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1364310088%2FFunctions%2F492899073" anchor-label="markMessageAsRead" id="1364310088%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="mark-message-as-read.html"><span>mark</span><wbr></wbr><span>Message</span><wbr></wbr><span>As</span><wbr></wbr><span><span>Read</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1364310088%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="mark-message-as-read.html"><span class="token function">markMessageAsRead</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Marca un mensaje como leído</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1765425708%2FFunctions%2F492899073" anchor-label="publishProduct" id="1765425708%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="publish-product.html"><span>publish</span><wbr></wbr><span><span>Product</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1765425708%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="publish-product.html"><span class="token function">publishProduct</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">productId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-product-publish-response/index.html">ProductPublishResponse</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Publica un producto (borrador -> disponible)</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-180035364%2FFunctions%2F492899073" anchor-label="ratePurchase" id="-180035364%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="rate-purchase.html"><span>rate</span><wbr></wbr><span><span>Purchase</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-180035364%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="rate-purchase.html"><span class="token function">ratePurchase</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">purchaseId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">request<span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.request/-create-rating-request/index.html">CreateRatingRequest</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-rating-response/index.html">RatingResponse</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Valora una compra</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1689130525%2FFunctions%2F492899073" anchor-label="refreshToken" id="1689130525%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="refresh-token.html"><span>refresh</span><wbr></wbr><span><span>Token</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1689130525%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="refresh-token.html"><span class="token function">refreshToken</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">request<span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.request/-refresh-token-request/index.html">RefreshTokenRequest</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-refresh-token-response/index.html">RefreshTokenResponse</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Renueva el access token</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1354456771%2FFunctions%2F492899073" anchor-label="register" id="-1354456771%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="register.html"><span><span>register</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1354456771%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="register.html"><span class="token function">register</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">request<span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.request/-register-request/index.html">RegisterRequest</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-auth-response/index.html">AuthResponse</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Registra un nuevo usuario</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1413322157%2FFunctions%2F492899073" anchor-label="rejectOffer" id="1413322157%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="reject-offer.html"><span>reject</span><wbr></wbr><span><span>Offer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1413322157%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="reject-offer.html"><span class="token function">rejectOffer</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">messageId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-message-response/index.html">MessageResponse</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Rechaza una oferta recibida</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1318136899%2FFunctions%2F492899073" anchor-label="searchProducts" id="1318136899%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="search-products.html"><span>search</span><wbr></wbr><span><span>Products</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1318136899%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="search-products.html"><span class="token function">searchProducts</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">params<span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.request/-product-search-params/index.html">ProductSearchParams</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-product-list-response/index.html">ProductListResponse</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Búsqueda avanzada de productos</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="689393015%2FFunctions%2F492899073" anchor-label="searchTags" id="689393015%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="search-tags.html"><span>search</span><wbr></wbr><span><span>Tags</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="689393015%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="search-tags.html"><span class="token function">searchTags</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">query<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-tag-response/index.html">TagResponse</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Busca etiquetas</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1632420189%2FFunctions%2F492899073" anchor-label="sendCounterOffer" id="1632420189%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="send-counter-offer.html"><span>send</span><wbr></wbr><span>Counter</span><wbr></wbr><span><span>Offer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1632420189%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="send-counter-offer.html"><span class="token function">sendCounterOffer</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">request<span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.request/-send-counter-offer-request/index.html">SendCounterOfferRequest</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-message-response/index.html">MessageResponse</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Envía una contraoferta</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="537316295%2FFunctions%2F492899073" anchor-label="sendMessage" id="537316295%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="send-message.html"><span>send</span><wbr></wbr><span><span>Message</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="537316295%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="send-message.html"><span class="token function">sendMessage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">request<span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.request/-send-message-request/index.html">SendMessageRequest</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-message-response/index.html">MessageResponse</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Envía un mensaje</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1742390257%2FFunctions%2F492899073" anchor-label="sendOffer" id="1742390257%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="send-offer.html"><span>send</span><wbr></wbr><span><span>Offer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1742390257%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="send-offer.html"><span class="token function">sendOffer</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">request<span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.request/-send-offer-request/index.html">SendOfferRequest</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-message-response/index.html">MessageResponse</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Envía una oferta de precio sobre un producto</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-405623584%2FFunctions%2F492899073" anchor-label="updateProduct" id="-405623584%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="update-product.html"><span>update</span><wbr></wbr><span><span>Product</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-405623584%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="update-product.html"><span class="token function">updateProduct</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">productId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">request<span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.request/-update-product-request/index.html">UpdateProductRequest</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-product-detail-response/index.html">ProductDetailResponse</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Actualiza un producto</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-921912631%2FFunctions%2F492899073" anchor-label="updateProfile" id="-921912631%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="update-profile.html"><span>update</span><wbr></wbr><span><span>Profile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-921912631%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="update-profile.html"><span class="token function">updateProfile</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">request<span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.request/-update-profile-request/index.html">UpdateProfileRequest</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-user-profile-response/index.html">UserProfileResponse</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Actualiza el perfil del usuario</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-12209155%2FFunctions%2F492899073" anchor-label="uploadProfileImage" id="-12209155%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="upload-profile-image.html"><span>upload</span><wbr></wbr><span>Profile</span><wbr></wbr><span><span>Image</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-12209155%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="upload-profile-image.html"><span class="token function">uploadProfileImage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">request<span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.request/-upload-profile-image-request/index.html">UploadProfileImageRequest</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.renaix.data.remote.dto.response/-api-response/index.html">ApiResponse</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.renaix.data.remote.dto.response/-user-profile-response/index.html">UserProfileResponse</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Sube imagen de perfil</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2026 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
