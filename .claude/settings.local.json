@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(node --version)",
+      "Bash(npm --version)",
+      "Bash(npm init -y)",
+      "Bash(npm install puppeteer)",
+      "Bash(mkdir -p pdf-generator)",
+      "Bash(mv generate-pdf.js package.json package-lock.json pdf-generator/)",
+      "Bash(mv templates pdf-generator/)",
+      "Bash(mv node_modules pdf-generator/)",
+      "Bash(where pandoc:*)",
+      "Bash(python3 -c \":*)",
+      "Bash(python -c \":*)",
+      "Bash(node generate-pdf.js)",
+      "Bash(node -e \":*)",
+      "Bash(sed -i \"s|src=\\\\\"img/odoo_\\\\\\([^\\\\\"]*\\\\\\)\\\\\" style=|src=\\\\\"img/odoo_\\\\1\\\\\" onerror=\\\\\"this.style.display='none'\\\\\" style=|g\" /c/Users/user/Documents/PI/projecte-dam-25-26-javier-alejandro/docs/manuales/manuals-pdf-generator/templates/odoo.html)",
+      "Bash(sed -i \"s|src=\\\\\"img/android_\\\\\\([^\\\\\"]*\\\\\\)\\\\\" style=|src=\\\\\"img/android_\\\\1\\\\\" onerror=\\\\\"this.style.display='none'\\\\\" style=|g\" /c/Users/user/Documents/PI/projecte-dam-25-26-javier-alejandro/docs/manuales/manuals-pdf-generator/templates/android.html)",
+      "Bash(docker-compose up *)",
+      "Bash(powershell -Command \"Start-Process 'C:\\\\Program Files\\\\Docker\\\\Docker\\\\Docker Desktop.exe'\")",
+      "Bash(docker info *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8069/web/login)"
+    ]
+  }
+}

@@ -1,0 +1,1296 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Reference — Modelos Renaix &mdash; Renaix — Módulos Odoo v1.0.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=197645ac" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=36c4ab74"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../search.html" />
+    <link rel="next" title="API Reference — Controladores renaix_api" href="renaix_api_controllers.html" />
+    <link rel="prev" title="Módulo: renaix_api (API REST)" href="../modules/renaix_api.html" />
+ 
+<link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Renaix — Módulos Odoo
+              <img src="../../_static/logo.png" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Módulos Odoo</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/renaix.html">Módulo: renaix (Core)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/renaix.html#descripcion-funcional">Descripción funcional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/renaix.html#instalacion-y-dependencias">Instalación y dependencias</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../modules/renaix.html#dependencias-de-odoo">Dependencias de Odoo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/renaix.html#instalacion-en-docker">Instalación en Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/renaix.html#estructura-de-archivos">Estructura de archivos</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/renaix.html#modelos-principales">Modelos principales</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../modules/renaix.html#producto-renaix-producto">Producto (renaix.producto)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/renaix.html#etiqueta-renaix-etiqueta">Etiqueta (renaix.etiqueta)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/renaix.html#denuncia-renaix-denuncia">Denuncia (renaix.denuncia)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/renaix.html#usuario-app-res-partner-extendido">Usuario App (res.partner extendido)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/renaix.html#comentario-renaix-comentario">Comentario (renaix.comentario)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/renaix.html#compra-renaix-compra">Compra (renaix.compra)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/renaix.html#seguridad-y-roles">Seguridad y roles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/renaix.html#vistas-y-menus">Vistas y menús</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/renaix.html#informes-reports">Informes (Reports)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/renaix.html#module-renaix.models.producto">Referencia de API (autodoc)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../modules/renaix.html#renaix.models.producto.Producto"><code class="docutils literal notranslate"><span class="pre">Producto</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.producto.Producto.estado_producto"><code class="docutils literal notranslate"><span class="pre">Producto.estado_producto</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.producto.Producto.estado_venta"><code class="docutils literal notranslate"><span class="pre">Producto.estado_venta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.producto.Producto.propietario_id"><code class="docutils literal notranslate"><span class="pre">Producto.propietario_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.producto.Producto.categoria_id"><code class="docutils literal notranslate"><span class="pre">Producto.categoria_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.producto.Producto.etiqueta_ids"><code class="docutils literal notranslate"><span class="pre">Producto.etiqueta_ids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.producto.Producto.imagen_ids"><code class="docutils literal notranslate"><span class="pre">Producto.imagen_ids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.producto.Producto.comentario_ids"><code class="docutils literal notranslate"><span class="pre">Producto.comentario_ids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.producto.Producto.compra_id"><code class="docutils literal notranslate"><span class="pre">Producto.compra_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.producto.Producto.denuncia_ids"><code class="docutils literal notranslate"><span class="pre">Producto.denuncia_ids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.producto.Producto.currency_id"><code class="docutils literal notranslate"><span class="pre">Producto.currency_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.producto.Producto.create"><code class="docutils literal notranslate"><span class="pre">Producto.create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.producto.Producto.write"><code class="docutils literal notranslate"><span class="pre">Producto.write()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.producto.Producto.action_publicar"><code class="docutils literal notranslate"><span class="pre">Producto.action_publicar()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.producto.Producto.action_reservar"><code class="docutils literal notranslate"><span class="pre">Producto.action_reservar()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.producto.Producto.action_marcar_vendido"><code class="docutils literal notranslate"><span class="pre">Producto.action_marcar_vendido()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.producto.Producto.action_view_comentarios"><code class="docutils literal notranslate"><span class="pre">Producto.action_view_comentarios()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.producto.Producto.action_view_denuncias"><code class="docutils literal notranslate"><span class="pre">Producto.action_view_denuncias()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/renaix.html#renaix.models.etiqueta.Etiqueta"><code class="docutils literal notranslate"><span class="pre">Etiqueta</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.etiqueta.Etiqueta.producto_ids"><code class="docutils literal notranslate"><span class="pre">Etiqueta.producto_ids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.etiqueta.Etiqueta.create"><code class="docutils literal notranslate"><span class="pre">Etiqueta.create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.etiqueta.Etiqueta.write"><code class="docutils literal notranslate"><span class="pre">Etiqueta.write()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.etiqueta.Etiqueta.name_create"><code class="docutils literal notranslate"><span class="pre">Etiqueta.name_create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.etiqueta.Etiqueta.name_get"><code class="docutils literal notranslate"><span class="pre">Etiqueta.name_get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.etiqueta.Etiqueta.action_view_productos"><code class="docutils literal notranslate"><span class="pre">Etiqueta.action_view_productos()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.etiqueta.Etiqueta.get_etiquetas_mas_usadas"><code class="docutils literal notranslate"><span class="pre">Etiqueta.get_etiquetas_mas_usadas()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/renaix.html#renaix.models.denuncia.Denuncia"><code class="docutils literal notranslate"><span class="pre">Denuncia</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.denuncia.Denuncia.tipo"><code class="docutils literal notranslate"><span class="pre">Denuncia.tipo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.denuncia.Denuncia.producto_id"><code class="docutils literal notranslate"><span class="pre">Denuncia.producto_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.denuncia.Denuncia.comentario_id"><code class="docutils literal notranslate"><span class="pre">Denuncia.comentario_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.denuncia.Denuncia.usuario_reportado_id"><code class="docutils literal notranslate"><span class="pre">Denuncia.usuario_reportado_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.denuncia.Denuncia.usuario_reportante_id"><code class="docutils literal notranslate"><span class="pre">Denuncia.usuario_reportante_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.denuncia.Denuncia.categoria"><code class="docutils literal notranslate"><span class="pre">Denuncia.categoria</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.denuncia.Denuncia.estado"><code class="docutils literal notranslate"><span class="pre">Denuncia.estado</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.denuncia.Denuncia.empleado_asignado_id"><code class="docutils literal notranslate"><span class="pre">Denuncia.empleado_asignado_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.denuncia.Denuncia.create"><code class="docutils literal notranslate"><span class="pre">Denuncia.create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.denuncia.Denuncia.action_asignar_a_mi"><code class="docutils literal notranslate"><span class="pre">Denuncia.action_asignar_a_mi()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.denuncia.Denuncia.action_resolver"><code class="docutils literal notranslate"><span class="pre">Denuncia.action_resolver()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.denuncia.Denuncia.action_rechazar"><code class="docutils literal notranslate"><span class="pre">Denuncia.action_rechazar()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.denuncia.Denuncia.name_get"><code class="docutils literal notranslate"><span class="pre">Denuncia.name_get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.denuncia.Denuncia.action_view_producto"><code class="docutils literal notranslate"><span class="pre">Denuncia.action_view_producto()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/renaix.html#renaix.models.res_partner.ResPartner"><code class="docutils literal notranslate"><span class="pre">ResPartner</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.res_partner.ResPartner.producto_ids"><code class="docutils literal notranslate"><span class="pre">ResPartner.producto_ids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.res_partner.ResPartner.compra_comprador_ids"><code class="docutils literal notranslate"><span class="pre">ResPartner.compra_comprador_ids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.res_partner.ResPartner.compra_vendedor_ids"><code class="docutils literal notranslate"><span class="pre">ResPartner.compra_vendedor_ids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.res_partner.ResPartner.valoracion_ids"><code class="docutils literal notranslate"><span class="pre">ResPartner.valoracion_ids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.res_partner.ResPartner.comentario_ids"><code class="docutils literal notranslate"><span class="pre">ResPartner.comentario_ids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.res_partner.ResPartner.denuncia_ids"><code class="docutils literal notranslate"><span class="pre">ResPartner.denuncia_ids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.res_partner.ResPartner.mensaje_enviado_ids"><code class="docutils literal notranslate"><span class="pre">ResPartner.mensaje_enviado_ids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.res_partner.ResPartner.mensaje_recibido_ids"><code class="docutils literal notranslate"><span class="pre">ResPartner.mensaje_recibido_ids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.res_partner.ResPartner.create"><code class="docutils literal notranslate"><span class="pre">ResPartner.create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.res_partner.ResPartner.name_get"><code class="docutils literal notranslate"><span class="pre">ResPartner.name_get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.res_partner.ResPartner.action_view_productos"><code class="docutils literal notranslate"><span class="pre">ResPartner.action_view_productos()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.res_partner.ResPartner.action_view_compras"><code class="docutils literal notranslate"><span class="pre">ResPartner.action_view_compras()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.res_partner.ResPartner.action_view_ventas"><code class="docutils literal notranslate"><span class="pre">ResPartner.action_view_ventas()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.res_partner.ResPartner.action_desactivar_cuenta"><code class="docutils literal notranslate"><span class="pre">ResPartner.action_desactivar_cuenta()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.res_partner.ResPartner.action_activar_cuenta"><code class="docutils literal notranslate"><span class="pre">ResPartner.action_activar_cuenta()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.res_partner.ResPartner.action_regenerar_gid"><code class="docutils literal notranslate"><span class="pre">ResPartner.action_regenerar_gid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.res_partner.ResPartner.set_password"><code class="docutils literal notranslate"><span class="pre">ResPartner.set_password()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.res_partner.ResPartner.authenticate_app_user"><code class="docutils literal notranslate"><span class="pre">ResPartner.authenticate_app_user()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/renaix.html#renaix.models.comentario.Comentario"><code class="docutils literal notranslate"><span class="pre">Comentario</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.comentario.Comentario.producto_id"><code class="docutils literal notranslate"><span class="pre">Comentario.producto_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.comentario.Comentario.usuario_id"><code class="docutils literal notranslate"><span class="pre">Comentario.usuario_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.comentario.Comentario.create"><code class="docutils literal notranslate"><span class="pre">Comentario.create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.comentario.Comentario.write"><code class="docutils literal notranslate"><span class="pre">Comentario.write()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.comentario.Comentario.action_eliminar"><code class="docutils literal notranslate"><span class="pre">Comentario.action_eliminar()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.comentario.Comentario.action_restaurar"><code class="docutils literal notranslate"><span class="pre">Comentario.action_restaurar()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix.html#renaix.models.comentario.Comentario.name_get"><code class="docutils literal notranslate"><span class="pre">Comentario.name_get()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/renaix_api.html">Módulo: renaix_api (API REST)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/renaix_api.html#descripcion-funcional">Descripción funcional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/renaix_api.html#instalacion-y-dependencias">Instalación y dependencias</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../modules/renaix_api.html#estructura-de-archivos">Estructura de archivos</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/renaix_api.html#autenticacion-jwt">Autenticación JWT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/renaix_api.html#endpoints-de-la-api">Endpoints de la API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../modules/renaix_api.html#autenticacion">Autenticación</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/renaix_api.html#productos">Productos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/renaix_api.html#denuncias">Denuncias</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/renaix_api.html#comentarios">Comentarios</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/renaix_api.html#usuarios">Usuarios</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/renaix_api.html#mensajeria">Mensajería</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/renaix_api.html#codigos-de-estado-http">Códigos de estado HTTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/renaix_api.html#module-renaix_api.controllers.auth">Referencia de API (autodoc)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.auth.AuthController"><code class="docutils literal notranslate"><span class="pre">AuthController</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.auth.AuthController.register"><code class="docutils literal notranslate"><span class="pre">AuthController.register()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.auth.AuthController.login"><code class="docutils literal notranslate"><span class="pre">AuthController.login()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.auth.AuthController.refresh_token"><code class="docutils literal notranslate"><span class="pre">AuthController.refresh_token()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.auth.AuthController.logout"><code class="docutils literal notranslate"><span class="pre">AuthController.logout()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.productos.ProductosController"><code class="docutils literal notranslate"><span class="pre">ProductosController</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.productos.ProductosController.listar_productos"><code class="docutils literal notranslate"><span class="pre">ProductosController.listar_productos()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.productos.ProductosController.detalle_producto"><code class="docutils literal notranslate"><span class="pre">ProductosController.detalle_producto()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.productos.ProductosController.crear_producto"><code class="docutils literal notranslate"><span class="pre">ProductosController.crear_producto()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.productos.ProductosController.actualizar_producto"><code class="docutils literal notranslate"><span class="pre">ProductosController.actualizar_producto()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.productos.ProductosController.eliminar_producto"><code class="docutils literal notranslate"><span class="pre">ProductosController.eliminar_producto()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.productos.ProductosController.publicar_producto"><code class="docutils literal notranslate"><span class="pre">ProductosController.publicar_producto()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.productos.ProductosController.buscar_productos"><code class="docutils literal notranslate"><span class="pre">ProductosController.buscar_productos()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.productos.ProductosController.agregar_imagen"><code class="docutils literal notranslate"><span class="pre">ProductosController.agregar_imagen()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.productos.ProductosController.eliminar_imagen"><code class="docutils literal notranslate"><span class="pre">ProductosController.eliminar_imagen()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.productos.ProductosController.get_imagen_binaria"><code class="docutils literal notranslate"><span class="pre">ProductosController.get_imagen_binaria()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.denuncias.DenunciasController"><code class="docutils literal notranslate"><span class="pre">DenunciasController</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.denuncias.DenunciasController.crear_denuncia"><code class="docutils literal notranslate"><span class="pre">DenunciasController.crear_denuncia()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.denuncias.DenunciasController.listar_mis_denuncias"><code class="docutils literal notranslate"><span class="pre">DenunciasController.listar_mis_denuncias()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.comentarios.ComentariosController"><code class="docutils literal notranslate"><span class="pre">ComentariosController</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.comentarios.ComentariosController.listar_comentarios"><code class="docutils literal notranslate"><span class="pre">ComentariosController.listar_comentarios()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.comentarios.ComentariosController.crear_comentario"><code class="docutils literal notranslate"><span class="pre">ComentariosController.crear_comentario()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.comentarios.ComentariosController.eliminar_comentario"><code class="docutils literal notranslate"><span class="pre">ComentariosController.eliminar_comentario()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.usuarios.UsuariosController"><code class="docutils literal notranslate"><span class="pre">UsuariosController</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.usuarios.UsuariosController.get_perfil"><code class="docutils literal notranslate"><span class="pre">UsuariosController.get_perfil()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.usuarios.UsuariosController.update_perfil"><code class="docutils literal notranslate"><span class="pre">UsuariosController.update_perfil()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.usuarios.UsuariosController.update_imagen_perfil"><code class="docutils literal notranslate"><span class="pre">UsuariosController.update_imagen_perfil()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.usuarios.UsuariosController.cambiar_password"><code class="docutils literal notranslate"><span class="pre">UsuariosController.cambiar_password()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.usuarios.UsuariosController.get_usuario_publico"><code class="docutils literal notranslate"><span class="pre">UsuariosController.get_usuario_publico()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.usuarios.UsuariosController.get_mis_productos"><code class="docutils literal notranslate"><span class="pre">UsuariosController.get_mis_productos()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.usuarios.UsuariosController.get_mis_compras"><code class="docutils literal notranslate"><span class="pre">UsuariosController.get_mis_compras()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.usuarios.UsuariosController.get_mis_ventas"><code class="docutils literal notranslate"><span class="pre">UsuariosController.get_mis_ventas()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.usuarios.UsuariosController.get_mis_valoraciones"><code class="docutils literal notranslate"><span class="pre">UsuariosController.get_mis_valoraciones()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.usuarios.UsuariosController.get_estadisticas"><code class="docutils literal notranslate"><span class="pre">UsuariosController.get_estadisticas()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.usuarios.UsuariosController.get_productos_usuario_publico"><code class="docutils literal notranslate"><span class="pre">UsuariosController.get_productos_usuario_publico()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../modules/renaix_api.html#renaix_api.controllers.usuarios.UsuariosController.get_imagen_usuario"><code class="docutils literal notranslate"><span class="pre">UsuariosController.get_imagen_usuario()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference — Modelos Renaix</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-renaix.models.producto">renaix.models.producto</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#renaix.models.producto.Producto"><code class="docutils literal notranslate"><span class="pre">Producto</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.producto.Producto.estado_producto"><code class="docutils literal notranslate"><span class="pre">Producto.estado_producto</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.producto.Producto.estado_venta"><code class="docutils literal notranslate"><span class="pre">Producto.estado_venta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.producto.Producto.propietario_id"><code class="docutils literal notranslate"><span class="pre">Producto.propietario_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.producto.Producto.categoria_id"><code class="docutils literal notranslate"><span class="pre">Producto.categoria_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.producto.Producto.etiqueta_ids"><code class="docutils literal notranslate"><span class="pre">Producto.etiqueta_ids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.producto.Producto.imagen_ids"><code class="docutils literal notranslate"><span class="pre">Producto.imagen_ids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.producto.Producto.comentario_ids"><code class="docutils literal notranslate"><span class="pre">Producto.comentario_ids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.producto.Producto.compra_id"><code class="docutils literal notranslate"><span class="pre">Producto.compra_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.producto.Producto.denuncia_ids"><code class="docutils literal notranslate"><span class="pre">Producto.denuncia_ids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.producto.Producto.currency_id"><code class="docutils literal notranslate"><span class="pre">Producto.currency_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.producto.Producto.create"><code class="docutils literal notranslate"><span class="pre">Producto.create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.producto.Producto.write"><code class="docutils literal notranslate"><span class="pre">Producto.write()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.producto.Producto.action_publicar"><code class="docutils literal notranslate"><span class="pre">Producto.action_publicar()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.producto.Producto.action_reservar"><code class="docutils literal notranslate"><span class="pre">Producto.action_reservar()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.producto.Producto.action_marcar_vendido"><code class="docutils literal notranslate"><span class="pre">Producto.action_marcar_vendido()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.producto.Producto.action_view_comentarios"><code class="docutils literal notranslate"><span class="pre">Producto.action_view_comentarios()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.producto.Producto.action_view_denuncias"><code class="docutils literal notranslate"><span class="pre">Producto.action_view_denuncias()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-renaix.models.etiqueta">renaix.models.etiqueta</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#renaix.models.etiqueta.Etiqueta"><code class="docutils literal notranslate"><span class="pre">Etiqueta</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.etiqueta.Etiqueta.producto_ids"><code class="docutils literal notranslate"><span class="pre">Etiqueta.producto_ids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.etiqueta.Etiqueta.create"><code class="docutils literal notranslate"><span class="pre">Etiqueta.create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.etiqueta.Etiqueta.write"><code class="docutils literal notranslate"><span class="pre">Etiqueta.write()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.etiqueta.Etiqueta.name_create"><code class="docutils literal notranslate"><span class="pre">Etiqueta.name_create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.etiqueta.Etiqueta.name_get"><code class="docutils literal notranslate"><span class="pre">Etiqueta.name_get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.etiqueta.Etiqueta.action_view_productos"><code class="docutils literal notranslate"><span class="pre">Etiqueta.action_view_productos()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.etiqueta.Etiqueta.get_etiquetas_mas_usadas"><code class="docutils literal notranslate"><span class="pre">Etiqueta.get_etiquetas_mas_usadas()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-renaix.models.denuncia">renaix.models.denuncia</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#renaix.models.denuncia.Denuncia"><code class="docutils literal notranslate"><span class="pre">Denuncia</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.denuncia.Denuncia.tipo"><code class="docutils literal notranslate"><span class="pre">Denuncia.tipo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.denuncia.Denuncia.producto_id"><code class="docutils literal notranslate"><span class="pre">Denuncia.producto_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.denuncia.Denuncia.comentario_id"><code class="docutils literal notranslate"><span class="pre">Denuncia.comentario_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.denuncia.Denuncia.usuario_reportado_id"><code class="docutils literal notranslate"><span class="pre">Denuncia.usuario_reportado_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.denuncia.Denuncia.usuario_reportante_id"><code class="docutils literal notranslate"><span class="pre">Denuncia.usuario_reportante_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.denuncia.Denuncia.categoria"><code class="docutils literal notranslate"><span class="pre">Denuncia.categoria</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.denuncia.Denuncia.estado"><code class="docutils literal notranslate"><span class="pre">Denuncia.estado</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.denuncia.Denuncia.empleado_asignado_id"><code class="docutils literal notranslate"><span class="pre">Denuncia.empleado_asignado_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.denuncia.Denuncia.create"><code class="docutils literal notranslate"><span class="pre">Denuncia.create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.denuncia.Denuncia.action_asignar_a_mi"><code class="docutils literal notranslate"><span class="pre">Denuncia.action_asignar_a_mi()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.denuncia.Denuncia.action_resolver"><code class="docutils literal notranslate"><span class="pre">Denuncia.action_resolver()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.denuncia.Denuncia.action_rechazar"><code class="docutils literal notranslate"><span class="pre">Denuncia.action_rechazar()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.denuncia.Denuncia.name_get"><code class="docutils literal notranslate"><span class="pre">Denuncia.name_get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.denuncia.Denuncia.action_view_producto"><code class="docutils literal notranslate"><span class="pre">Denuncia.action_view_producto()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-renaix.models.comentario">renaix.models.comentario</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#renaix.models.comentario.Comentario"><code class="docutils literal notranslate"><span class="pre">Comentario</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.comentario.Comentario.producto_id"><code class="docutils literal notranslate"><span class="pre">Comentario.producto_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.comentario.Comentario.usuario_id"><code class="docutils literal notranslate"><span class="pre">Comentario.usuario_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.comentario.Comentario.create"><code class="docutils literal notranslate"><span class="pre">Comentario.create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.comentario.Comentario.write"><code class="docutils literal notranslate"><span class="pre">Comentario.write()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.comentario.Comentario.action_eliminar"><code class="docutils literal notranslate"><span class="pre">Comentario.action_eliminar()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.comentario.Comentario.action_restaurar"><code class="docutils literal notranslate"><span class="pre">Comentario.action_restaurar()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.comentario.Comentario.name_get"><code class="docutils literal notranslate"><span class="pre">Comentario.name_get()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-renaix.models.compra">renaix.models.compra</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#renaix.models.compra.Compra"><code class="docutils literal notranslate"><span class="pre">Compra</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.compra.Compra.producto_id"><code class="docutils literal notranslate"><span class="pre">Compra.producto_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.compra.Compra.comprador_id"><code class="docutils literal notranslate"><span class="pre">Compra.comprador_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.compra.Compra.vendedor_id"><code class="docutils literal notranslate"><span class="pre">Compra.vendedor_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.compra.Compra.currency_id"><code class="docutils literal notranslate"><span class="pre">Compra.currency_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.compra.Compra.estado"><code class="docutils literal notranslate"><span class="pre">Compra.estado</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.compra.Compra.valoracion_comprador_ids"><code class="docutils literal notranslate"><span class="pre">Compra.valoracion_comprador_ids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.compra.Compra.valoracion_vendedor_ids"><code class="docutils literal notranslate"><span class="pre">Compra.valoracion_vendedor_ids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.compra.Compra.create"><code class="docutils literal notranslate"><span class="pre">Compra.create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.compra.Compra.action_confirmar"><code class="docutils literal notranslate"><span class="pre">Compra.action_confirmar()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.compra.Compra.action_completar"><code class="docutils literal notranslate"><span class="pre">Compra.action_completar()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.compra.Compra.action_cancelar"><code class="docutils literal notranslate"><span class="pre">Compra.action_cancelar()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.compra.Compra.action_solicitar_valoraciones"><code class="docutils literal notranslate"><span class="pre">Compra.action_solicitar_valoraciones()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.compra.Compra.name_get"><code class="docutils literal notranslate"><span class="pre">Compra.name_get()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-renaix.models.valoracion">renaix.models.valoracion</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#renaix.models.valoracion.Valoracion"><code class="docutils literal notranslate"><span class="pre">Valoracion</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.valoracion.Valoracion.compra_id"><code class="docutils literal notranslate"><span class="pre">Valoracion.compra_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.valoracion.Valoracion.tipo_valoracion"><code class="docutils literal notranslate"><span class="pre">Valoracion.tipo_valoracion</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.valoracion.Valoracion.usuario_valorador_id"><code class="docutils literal notranslate"><span class="pre">Valoracion.usuario_valorador_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.valoracion.Valoracion.usuario_valorado_id"><code class="docutils literal notranslate"><span class="pre">Valoracion.usuario_valorado_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.valoracion.Valoracion.create"><code class="docutils literal notranslate"><span class="pre">Valoracion.create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.valoracion.Valoracion.name_get"><code class="docutils literal notranslate"><span class="pre">Valoracion.name_get()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-renaix.models.res_partner">renaix.models.res_partner</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#renaix.models.res_partner.ResPartner"><code class="docutils literal notranslate"><span class="pre">ResPartner</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.res_partner.ResPartner.producto_ids"><code class="docutils literal notranslate"><span class="pre">ResPartner.producto_ids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.res_partner.ResPartner.compra_comprador_ids"><code class="docutils literal notranslate"><span class="pre">ResPartner.compra_comprador_ids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.res_partner.ResPartner.compra_vendedor_ids"><code class="docutils literal notranslate"><span class="pre">ResPartner.compra_vendedor_ids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.res_partner.ResPartner.valoracion_ids"><code class="docutils literal notranslate"><span class="pre">ResPartner.valoracion_ids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.res_partner.ResPartner.comentario_ids"><code class="docutils literal notranslate"><span class="pre">ResPartner.comentario_ids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.res_partner.ResPartner.denuncia_ids"><code class="docutils literal notranslate"><span class="pre">ResPartner.denuncia_ids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.res_partner.ResPartner.mensaje_enviado_ids"><code class="docutils literal notranslate"><span class="pre">ResPartner.mensaje_enviado_ids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.res_partner.ResPartner.mensaje_recibido_ids"><code class="docutils literal notranslate"><span class="pre">ResPartner.mensaje_recibido_ids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.res_partner.ResPartner.create"><code class="docutils literal notranslate"><span class="pre">ResPartner.create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.res_partner.ResPartner.name_get"><code class="docutils literal notranslate"><span class="pre">ResPartner.name_get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.res_partner.ResPartner.action_view_productos"><code class="docutils literal notranslate"><span class="pre">ResPartner.action_view_productos()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.res_partner.ResPartner.action_view_compras"><code class="docutils literal notranslate"><span class="pre">ResPartner.action_view_compras()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.res_partner.ResPartner.action_view_ventas"><code class="docutils literal notranslate"><span class="pre">ResPartner.action_view_ventas()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.res_partner.ResPartner.action_desactivar_cuenta"><code class="docutils literal notranslate"><span class="pre">ResPartner.action_desactivar_cuenta()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.res_partner.ResPartner.action_activar_cuenta"><code class="docutils literal notranslate"><span class="pre">ResPartner.action_activar_cuenta()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.res_partner.ResPartner.action_regenerar_gid"><code class="docutils literal notranslate"><span class="pre">ResPartner.action_regenerar_gid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.res_partner.ResPartner.set_password"><code class="docutils literal notranslate"><span class="pre">ResPartner.set_password()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.res_partner.ResPartner.authenticate_app_user"><code class="docutils literal notranslate"><span class="pre">ResPartner.authenticate_app_user()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-renaix.models.mensaje">renaix.models.mensaje</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#renaix.models.mensaje.Mensaje"><code class="docutils literal notranslate"><span class="pre">Mensaje</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.mensaje.Mensaje.emisor_id"><code class="docutils literal notranslate"><span class="pre">Mensaje.emisor_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.mensaje.Mensaje.receptor_id"><code class="docutils literal notranslate"><span class="pre">Mensaje.receptor_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.mensaje.Mensaje.producto_id"><code class="docutils literal notranslate"><span class="pre">Mensaje.producto_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.mensaje.Mensaje.tipo_mensaje"><code class="docutils literal notranslate"><span class="pre">Mensaje.tipo_mensaje</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.mensaje.Mensaje.oferta_relacionada_id"><code class="docutils literal notranslate"><span class="pre">Mensaje.oferta_relacionada_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.mensaje.Mensaje.create"><code class="docutils literal notranslate"><span class="pre">Mensaje.create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.mensaje.Mensaje.action_marcar_leido"><code class="docutils literal notranslate"><span class="pre">Mensaje.action_marcar_leido()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.mensaje.Mensaje.action_marcar_no_leido"><code class="docutils literal notranslate"><span class="pre">Mensaje.action_marcar_no_leido()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.mensaje.Mensaje.get_conversacion"><code class="docutils literal notranslate"><span class="pre">Mensaje.get_conversacion()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.mensaje.Mensaje.get_mensajes_no_leidos"><code class="docutils literal notranslate"><span class="pre">Mensaje.get_mensajes_no_leidos()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaix.models.mensaje.Mensaje.name_get"><code class="docutils literal notranslate"><span class="pre">Mensaje.name_get()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="renaix_api_controllers.html">API Reference — Controladores renaix_api</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="renaix_api_controllers.html#module-renaix_api.controllers.auth">renaix_api.controllers.auth</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.auth.AuthController"><code class="docutils literal notranslate"><span class="pre">AuthController</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.auth.AuthController.register"><code class="docutils literal notranslate"><span class="pre">AuthController.register()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.auth.AuthController.login"><code class="docutils literal notranslate"><span class="pre">AuthController.login()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.auth.AuthController.refresh_token"><code class="docutils literal notranslate"><span class="pre">AuthController.refresh_token()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.auth.AuthController.logout"><code class="docutils literal notranslate"><span class="pre">AuthController.logout()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="renaix_api_controllers.html#module-renaix_api.controllers.productos">renaix_api.controllers.productos</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.productos.ProductosController"><code class="docutils literal notranslate"><span class="pre">ProductosController</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.productos.ProductosController.listar_productos"><code class="docutils literal notranslate"><span class="pre">ProductosController.listar_productos()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.productos.ProductosController.detalle_producto"><code class="docutils literal notranslate"><span class="pre">ProductosController.detalle_producto()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.productos.ProductosController.crear_producto"><code class="docutils literal notranslate"><span class="pre">ProductosController.crear_producto()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.productos.ProductosController.actualizar_producto"><code class="docutils literal notranslate"><span class="pre">ProductosController.actualizar_producto()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.productos.ProductosController.eliminar_producto"><code class="docutils literal notranslate"><span class="pre">ProductosController.eliminar_producto()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.productos.ProductosController.publicar_producto"><code class="docutils literal notranslate"><span class="pre">ProductosController.publicar_producto()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.productos.ProductosController.buscar_productos"><code class="docutils literal notranslate"><span class="pre">ProductosController.buscar_productos()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.productos.ProductosController.agregar_imagen"><code class="docutils literal notranslate"><span class="pre">ProductosController.agregar_imagen()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.productos.ProductosController.eliminar_imagen"><code class="docutils literal notranslate"><span class="pre">ProductosController.eliminar_imagen()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.productos.ProductosController.get_imagen_binaria"><code class="docutils literal notranslate"><span class="pre">ProductosController.get_imagen_binaria()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="renaix_api_controllers.html#module-renaix_api.controllers.denuncias">renaix_api.controllers.denuncias</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.denuncias.DenunciasController"><code class="docutils literal notranslate"><span class="pre">DenunciasController</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.denuncias.DenunciasController.crear_denuncia"><code class="docutils literal notranslate"><span class="pre">DenunciasController.crear_denuncia()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.denuncias.DenunciasController.listar_mis_denuncias"><code class="docutils literal notranslate"><span class="pre">DenunciasController.listar_mis_denuncias()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="renaix_api_controllers.html#module-renaix_api.controllers.comentarios">renaix_api.controllers.comentarios</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.comentarios.ComentariosController"><code class="docutils literal notranslate"><span class="pre">ComentariosController</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.comentarios.ComentariosController.listar_comentarios"><code class="docutils literal notranslate"><span class="pre">ComentariosController.listar_comentarios()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.comentarios.ComentariosController.crear_comentario"><code class="docutils literal notranslate"><span class="pre">ComentariosController.crear_comentario()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.comentarios.ComentariosController.eliminar_comentario"><code class="docutils literal notranslate"><span class="pre">ComentariosController.eliminar_comentario()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="renaix_api_controllers.html#module-renaix_api.controllers.usuarios">renaix_api.controllers.usuarios</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.usuarios.UsuariosController"><code class="docutils literal notranslate"><span class="pre">UsuariosController</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.usuarios.UsuariosController.get_perfil"><code class="docutils literal notranslate"><span class="pre">UsuariosController.get_perfil()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.usuarios.UsuariosController.update_perfil"><code class="docutils literal notranslate"><span class="pre">UsuariosController.update_perfil()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.usuarios.UsuariosController.update_imagen_perfil"><code class="docutils literal notranslate"><span class="pre">UsuariosController.update_imagen_perfil()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.usuarios.UsuariosController.cambiar_password"><code class="docutils literal notranslate"><span class="pre">UsuariosController.cambiar_password()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.usuarios.UsuariosController.get_usuario_publico"><code class="docutils literal notranslate"><span class="pre">UsuariosController.get_usuario_publico()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.usuarios.UsuariosController.get_mis_productos"><code class="docutils literal notranslate"><span class="pre">UsuariosController.get_mis_productos()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.usuarios.UsuariosController.get_mis_compras"><code class="docutils literal notranslate"><span class="pre">UsuariosController.get_mis_compras()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.usuarios.UsuariosController.get_mis_ventas"><code class="docutils literal notranslate"><span class="pre">UsuariosController.get_mis_ventas()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.usuarios.UsuariosController.get_mis_valoraciones"><code class="docutils literal notranslate"><span class="pre">UsuariosController.get_mis_valoraciones()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.usuarios.UsuariosController.get_estadisticas"><code class="docutils literal notranslate"><span class="pre">UsuariosController.get_estadisticas()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.usuarios.UsuariosController.get_productos_usuario_publico"><code class="docutils literal notranslate"><span class="pre">UsuariosController.get_productos_usuario_publico()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.usuarios.UsuariosController.get_imagen_usuario"><code class="docutils literal notranslate"><span class="pre">UsuariosController.get_imagen_usuario()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="renaix_api_controllers.html#module-renaix_api.controllers.mensajes">renaix_api.controllers.mensajes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.mensajes.MensajesController"><code class="docutils literal notranslate"><span class="pre">MensajesController</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.mensajes.MensajesController.listar_conversaciones"><code class="docutils literal notranslate"><span class="pre">MensajesController.listar_conversaciones()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.mensajes.MensajesController.enviar_mensaje"><code class="docutils literal notranslate"><span class="pre">MensajesController.enviar_mensaje()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.mensajes.MensajesController.get_conversacion"><code class="docutils literal notranslate"><span class="pre">MensajesController.get_conversacion()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.mensajes.MensajesController.get_no_leidos"><code class="docutils literal notranslate"><span class="pre">MensajesController.get_no_leidos()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.mensajes.MensajesController.marcar_leido"><code class="docutils literal notranslate"><span class="pre">MensajesController.marcar_leido()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.mensajes.MensajesController.enviar_oferta"><code class="docutils literal notranslate"><span class="pre">MensajesController.enviar_oferta()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.mensajes.MensajesController.aceptar_oferta"><code class="docutils literal notranslate"><span class="pre">MensajesController.aceptar_oferta()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.mensajes.MensajesController.rechazar_oferta"><code class="docutils literal notranslate"><span class="pre">MensajesController.rechazar_oferta()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.mensajes.MensajesController.enviar_contraoferta"><code class="docutils literal notranslate"><span class="pre">MensajesController.enviar_contraoferta()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="renaix_api_controllers.html#module-renaix_api.controllers.valoraciones">renaix_api.controllers.valoraciones</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.valoraciones.ValoracionesController"><code class="docutils literal notranslate"><span class="pre">ValoracionesController</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.valoraciones.ValoracionesController.valorar_transaccion"><code class="docutils literal notranslate"><span class="pre">ValoracionesController.valorar_transaccion()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.valoraciones.ValoracionesController.listar_valoraciones"><code class="docutils literal notranslate"><span class="pre">ValoracionesController.listar_valoraciones()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="renaix_api_controllers.html#module-renaix_api.controllers.compras">renaix_api.controllers.compras</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.compras.ComprasController"><code class="docutils literal notranslate"><span class="pre">ComprasController</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.compras.ComprasController.crear_compra"><code class="docutils literal notranslate"><span class="pre">ComprasController.crear_compra()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.compras.ComprasController.detalle_compra"><code class="docutils literal notranslate"><span class="pre">ComprasController.detalle_compra()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.compras.ComprasController.confirmar_compra"><code class="docutils literal notranslate"><span class="pre">ComprasController.confirmar_compra()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.compras.ComprasController.completar_compra"><code class="docutils literal notranslate"><span class="pre">ComprasController.completar_compra()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.compras.ComprasController.cancelar_compra"><code class="docutils literal notranslate"><span class="pre">ComprasController.cancelar_compra()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="renaix_api_controllers.html#module-renaix_api.controllers.etiquetas">renaix_api.controllers.etiquetas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.etiquetas.EtiquetasController"><code class="docutils literal notranslate"><span class="pre">EtiquetasController</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.etiquetas.EtiquetasController.listar_etiquetas"><code class="docutils literal notranslate"><span class="pre">EtiquetasController.listar_etiquetas()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.etiquetas.EtiquetasController.crear_etiqueta"><code class="docutils literal notranslate"><span class="pre">EtiquetasController.crear_etiqueta()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="renaix_api_controllers.html#renaix_api.controllers.etiquetas.EtiquetasController.buscar_etiquetas"><code class="docutils literal notranslate"><span class="pre">EtiquetasController.buscar_etiquetas()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Información adicional</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../instalacion.html">Instalación y configuración del entorno</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../instalacion.html#requisitos-previos">Requisitos previos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instalacion.html#despliegue-con-docker">Despliegue con Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instalacion.html#primera-configuracion">Primera configuración</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instalacion.html#variables-de-entorno">Variables de entorno</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instalacion.html#generar-esta-documentacion">Generar esta documentación</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../seguridad.html">Seguridad y control de acceso</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../seguridad.html#grupos-de-acceso-odoo">Grupos de acceso (Odoo)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seguridad.html#permisos-por-modelo-ir-model-access-csv">Permisos por modelo (ir.model.access.csv)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seguridad.html#autenticacion-api-jwt">Autenticación API (JWT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../seguridad.html#buenas-practicas-aplicadas">Buenas prácticas aplicadas</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Renaix — Módulos Odoo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">API Reference — Modelos Renaix</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/api/renaix_models.rst.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="../modules/renaix_api.html" class="btn btn-neutral float-left" title="Módulo: renaix_api (API REST)" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="renaix_api_controllers.html" class="btn btn-neutral float-right" title="API Reference — Controladores renaix_api" accesskey="n">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-reference-modelos-renaix">
+<h1>API Reference — Modelos Renaix<a class="headerlink" href="#api-reference-modelos-renaix" title="Link to this heading"></a></h1>
+<p>Esta sección contiene la referencia automática generada desde los docstrings
+de los modelos Python del módulo <code class="docutils literal notranslate"><span class="pre">renaix</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Para regenerar esta documentación desde el código fuente:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sphinx-apidoc<span class="w"> </span>-o<span class="w"> </span>source/api<span class="w"> </span>../../erp/docker/custom_addons/renaix/models<span class="w"> </span>--force
+make<span class="w"> </span>html
+</pre></div>
+</div>
+</div>
+<section id="module-renaix.models.producto">
+<span id="renaix-models-producto"></span><h2>renaix.models.producto<a class="headerlink" href="#module-renaix.models.producto" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="renaix.models.producto.Producto">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">renaix.models.producto.</span></span><span class="sig-name descname"><span class="pre">Producto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/producto.html#Producto"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.producto.Producto" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>Modelo: Producto
+Descripción: Productos de segunda mano publicados por usuarios</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>args</strong> (<em>Any</em>)</p></li>
+<li><p><strong>kwargs</strong> (<em>Any</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Tipo del valor devuelto<span class="colon">:</span></dt>
+<dd class="field-even"><p>Any</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.producto.Producto.estado_producto">
+<span class="sig-name descname"><span class="pre">estado_producto</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[('nuevo',</span> <span class="pre">'Nuevo'),</span> <span class="pre">('como_nuevo',</span> <span class="pre">'Como</span> <span class="pre">Nuevo'),</span> <span class="pre">('buen_estado',</span> <span class="pre">'Buen</span> <span class="pre">Estado'),</span> <span class="pre">('aceptable',</span> <span class="pre">'Estado</span> <span class="pre">Aceptable'),</span> <span class="pre">('para_reparar',</span> <span class="pre">'Para</span> <span class="pre">Reparar')]</span></span><a class="headerlink" href="#renaix.models.producto.Producto.estado_producto" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.producto.Producto.estado_venta">
+<span class="sig-name descname"><span class="pre">estado_venta</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[('borrador',</span> <span class="pre">'Borrador'),</span> <span class="pre">('disponible',</span> <span class="pre">'Disponible'),</span> <span class="pre">('reservado',</span> <span class="pre">'Reservado'),</span> <span class="pre">('vendido',</span> <span class="pre">'Vendido'),</span> <span class="pre">('eliminado',</span> <span class="pre">'Eliminado')]</span></span><a class="headerlink" href="#renaix.models.producto.Producto.estado_venta" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.producto.Producto.propietario_id">
+<span class="sig-name descname"><span class="pre">propietario_id</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'res.partner'</span></span><a class="headerlink" href="#renaix.models.producto.Producto.propietario_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.producto.Producto.categoria_id">
+<span class="sig-name descname"><span class="pre">categoria_id</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'renaix.categoria'</span></span><a class="headerlink" href="#renaix.models.producto.Producto.categoria_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.producto.Producto.etiqueta_ids">
+<span class="sig-name descname"><span class="pre">etiqueta_ids</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'renaix.etiqueta'</span></span><a class="headerlink" href="#renaix.models.producto.Producto.etiqueta_ids" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.producto.Producto.imagen_ids">
+<span class="sig-name descname"><span class="pre">imagen_ids</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'renaix.producto.imagen'</span></span><a class="headerlink" href="#renaix.models.producto.Producto.imagen_ids" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.producto.Producto.comentario_ids">
+<span class="sig-name descname"><span class="pre">comentario_ids</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'renaix.comentario'</span></span><a class="headerlink" href="#renaix.models.producto.Producto.comentario_ids" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.producto.Producto.compra_id">
+<span class="sig-name descname"><span class="pre">compra_id</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'renaix.compra'</span></span><a class="headerlink" href="#renaix.models.producto.Producto.compra_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.producto.Producto.denuncia_ids">
+<span class="sig-name descname"><span class="pre">denuncia_ids</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'renaix.denuncia'</span></span><a class="headerlink" href="#renaix.models.producto.Producto.denuncia_ids" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.producto.Producto.currency_id">
+<span class="sig-name descname"><span class="pre">currency_id</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'res.currency'</span></span><a class="headerlink" href="#renaix.models.producto.Producto.currency_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.producto.Producto.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vals</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#renaix.models.producto.Producto.create" title="Link to this definition"></a></dt>
+<dd><p>Al crear: añadir propietario como seguidor</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.producto.Producto.write">
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vals</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/producto.html#Producto.write"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.producto.Producto.write" title="Link to this definition"></a></dt>
+<dd><p>Al actualizar: registrar cambios importantes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.producto.Producto.action_publicar">
+<span class="sig-name descname"><span class="pre">action_publicar</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/producto.html#Producto.action_publicar"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.producto.Producto.action_publicar" title="Link to this definition"></a></dt>
+<dd><p>Publica el producto (cambia estado a disponible)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.producto.Producto.action_reservar">
+<span class="sig-name descname"><span class="pre">action_reservar</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/producto.html#Producto.action_reservar"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.producto.Producto.action_reservar" title="Link to this definition"></a></dt>
+<dd><p>Marca el producto como reservado</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.producto.Producto.action_marcar_vendido">
+<span class="sig-name descname"><span class="pre">action_marcar_vendido</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/producto.html#Producto.action_marcar_vendido"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.producto.Producto.action_marcar_vendido" title="Link to this definition"></a></dt>
+<dd><p>Marca el producto como vendido</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.producto.Producto.action_view_comentarios">
+<span class="sig-name descname"><span class="pre">action_view_comentarios</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/producto.html#Producto.action_view_comentarios"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.producto.Producto.action_view_comentarios" title="Link to this definition"></a></dt>
+<dd><p>Ver todos los comentarios del producto</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.producto.Producto.action_view_denuncias">
+<span class="sig-name descname"><span class="pre">action_view_denuncias</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/producto.html#Producto.action_view_denuncias"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.producto.Producto.action_view_denuncias" title="Link to this definition"></a></dt>
+<dd><p>Ver todas las denuncias del producto</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-renaix.models.etiqueta">
+<span id="renaix-models-etiqueta"></span><h2>renaix.models.etiqueta<a class="headerlink" href="#module-renaix.models.etiqueta" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="renaix.models.etiqueta.Etiqueta">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">renaix.models.etiqueta.</span></span><span class="sig-name descname"><span class="pre">Etiqueta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/etiqueta.html#Etiqueta"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.etiqueta.Etiqueta" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>Modelo: Etiqueta
+Descripción: Etiquetas/tags para clasificar productos (hasta 5 por producto)
+Ejemplo: #nuevo, #vintage, #gaming, #deportivo, etc.
+Normalizado para evitar duplicados y facilitar búsquedas</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>args</strong> (<em>Any</em>)</p></li>
+<li><p><strong>kwargs</strong> (<em>Any</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Tipo del valor devuelto<span class="colon">:</span></dt>
+<dd class="field-even"><p>Any</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.etiqueta.Etiqueta.producto_ids">
+<span class="sig-name descname"><span class="pre">producto_ids</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'renaix.producto'</span></span><a class="headerlink" href="#renaix.models.etiqueta.Etiqueta.producto_ids" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.etiqueta.Etiqueta.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vals</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#renaix.models.etiqueta.Etiqueta.create" title="Link to this definition"></a></dt>
+<dd><p>Al crear: normaliza el nombre (lowercase, sin espacios extras)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.etiqueta.Etiqueta.write">
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vals</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/etiqueta.html#Etiqueta.write"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.etiqueta.Etiqueta.write" title="Link to this definition"></a></dt>
+<dd><p>Al actualizar: normaliza el nombre si se está modificando</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.etiqueta.Etiqueta.name_create">
+<span class="sig-name descname"><span class="pre">name_create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#renaix.models.etiqueta.Etiqueta.name_create" title="Link to this definition"></a></dt>
+<dd><p>Permite crear etiquetas rápidamente desde campos Many2many
+con el widget “many2many_tags”</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.etiqueta.Etiqueta.name_get">
+<span class="sig-name descname"><span class="pre">name_get</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/etiqueta.html#Etiqueta.name_get"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.etiqueta.Etiqueta.name_get" title="Link to this definition"></a></dt>
+<dd><p>Personaliza cómo se muestra en selects.
+Formato: «#etiqueta (X productos)»</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.etiqueta.Etiqueta.action_view_productos">
+<span class="sig-name descname"><span class="pre">action_view_productos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/etiqueta.html#Etiqueta.action_view_productos"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.etiqueta.Etiqueta.action_view_productos" title="Link to this definition"></a></dt>
+<dd><p>Acción para ver todos los productos con esta etiqueta.
+Se usa desde un botón en la vista form.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.etiqueta.Etiqueta.get_etiquetas_mas_usadas">
+<span class="sig-name descname"><span class="pre">get_etiquetas_mas_usadas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#renaix.models.etiqueta.Etiqueta.get_etiquetas_mas_usadas" title="Link to this definition"></a></dt>
+<dd><p>Método para obtener las etiquetas más populares.
+Útil para sugerencias en la app móvil.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-renaix.models.denuncia">
+<span id="renaix-models-denuncia"></span><h2>renaix.models.denuncia<a class="headerlink" href="#module-renaix.models.denuncia" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="renaix.models.denuncia.Denuncia">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">renaix.models.denuncia.</span></span><span class="sig-name descname"><span class="pre">Denuncia</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/denuncia.html#Denuncia"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.denuncia.Denuncia" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>Modelo: Denuncia
+Descripción: Sistema de denuncias para moderar contenido inapropiado</p>
+<blockquote>
+<div><p>Puede denunciar: productos, comentarios o usuarios</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>args</strong> (<em>Any</em>)</p></li>
+<li><p><strong>kwargs</strong> (<em>Any</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Tipo del valor devuelto<span class="colon">:</span></dt>
+<dd class="field-even"><p>Any</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.denuncia.Denuncia.tipo">
+<span class="sig-name descname"><span class="pre">tipo</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[('producto',</span> <span class="pre">'Producto'),</span> <span class="pre">('comentario',</span> <span class="pre">'Comentario'),</span> <span class="pre">('usuario',</span> <span class="pre">'Usuario')]</span></span><a class="headerlink" href="#renaix.models.denuncia.Denuncia.tipo" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.denuncia.Denuncia.producto_id">
+<span class="sig-name descname"><span class="pre">producto_id</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'renaix.producto'</span></span><a class="headerlink" href="#renaix.models.denuncia.Denuncia.producto_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.denuncia.Denuncia.comentario_id">
+<span class="sig-name descname"><span class="pre">comentario_id</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'renaix.comentario'</span></span><a class="headerlink" href="#renaix.models.denuncia.Denuncia.comentario_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.denuncia.Denuncia.usuario_reportado_id">
+<span class="sig-name descname"><span class="pre">usuario_reportado_id</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'res.partner'</span></span><a class="headerlink" href="#renaix.models.denuncia.Denuncia.usuario_reportado_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.denuncia.Denuncia.usuario_reportante_id">
+<span class="sig-name descname"><span class="pre">usuario_reportante_id</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'res.partner'</span></span><a class="headerlink" href="#renaix.models.denuncia.Denuncia.usuario_reportante_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.denuncia.Denuncia.categoria">
+<span class="sig-name descname"><span class="pre">categoria</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[('contenido_inapropiado',</span> <span class="pre">'Contenido</span> <span class="pre">Inapropiado'),</span> <span class="pre">('spam',</span> <span class="pre">'Spam'),</span> <span class="pre">('fraude',</span> <span class="pre">'Fraude</span> <span class="pre">/</span> <span class="pre">Estafa'),</span> <span class="pre">('violencia',</span> <span class="pre">'Violencia'),</span> <span class="pre">('informacion_falsa',</span> <span class="pre">'Información</span> <span class="pre">Falsa'),</span> <span class="pre">('otro',</span> <span class="pre">'Otro')]</span></span><a class="headerlink" href="#renaix.models.denuncia.Denuncia.categoria" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.denuncia.Denuncia.estado">
+<span class="sig-name descname"><span class="pre">estado</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[('pendiente',</span> <span class="pre">'Pendiente'),</span> <span class="pre">('en_revision',</span> <span class="pre">'En</span> <span class="pre">Revisión'),</span> <span class="pre">('resuelta',</span> <span class="pre">'Resuelta'),</span> <span class="pre">('rechazada',</span> <span class="pre">'Rechazada')]</span></span><a class="headerlink" href="#renaix.models.denuncia.Denuncia.estado" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.denuncia.Denuncia.empleado_asignado_id">
+<span class="sig-name descname"><span class="pre">empleado_asignado_id</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'res.users'</span></span><a class="headerlink" href="#renaix.models.denuncia.Denuncia.empleado_asignado_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.denuncia.Denuncia.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vals</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#renaix.models.denuncia.Denuncia.create" title="Link to this definition"></a></dt>
+<dd><p>Al crear: notificar a moderadores</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.denuncia.Denuncia.action_asignar_a_mi">
+<span class="sig-name descname"><span class="pre">action_asignar_a_mi</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/denuncia.html#Denuncia.action_asignar_a_mi"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.denuncia.Denuncia.action_asignar_a_mi" title="Link to this definition"></a></dt>
+<dd><p>Asigna la denuncia al usuario actual</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.denuncia.Denuncia.action_resolver">
+<span class="sig-name descname"><span class="pre">action_resolver</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/denuncia.html#Denuncia.action_resolver"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.denuncia.Denuncia.action_resolver" title="Link to this definition"></a></dt>
+<dd><p>Marca la denuncia como resuelta</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.denuncia.Denuncia.action_rechazar">
+<span class="sig-name descname"><span class="pre">action_rechazar</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/denuncia.html#Denuncia.action_rechazar"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.denuncia.Denuncia.action_rechazar" title="Link to this definition"></a></dt>
+<dd><p>Rechaza la denuncia</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.denuncia.Denuncia.name_get">
+<span class="sig-name descname"><span class="pre">name_get</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/denuncia.html#Denuncia.name_get"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.denuncia.Denuncia.name_get" title="Link to this definition"></a></dt>
+<dd><p>Personaliza cómo se muestra en selects</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.denuncia.Denuncia.action_view_producto">
+<span class="sig-name descname"><span class="pre">action_view_producto</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/denuncia.html#Denuncia.action_view_producto"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.denuncia.Denuncia.action_view_producto" title="Link to this definition"></a></dt>
+<dd><p>Abre el producto denunciado</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-renaix.models.comentario">
+<span id="renaix-models-comentario"></span><h2>renaix.models.comentario<a class="headerlink" href="#module-renaix.models.comentario" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="renaix.models.comentario.Comentario">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">renaix.models.comentario.</span></span><span class="sig-name descname"><span class="pre">Comentario</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/comentario.html#Comentario"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.comentario.Comentario" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>Modelo: Comentario
+Descripción: Comentarios que los usuarios hacen en productos</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>args</strong> (<em>Any</em>)</p></li>
+<li><p><strong>kwargs</strong> (<em>Any</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Tipo del valor devuelto<span class="colon">:</span></dt>
+<dd class="field-even"><p>Any</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.comentario.Comentario.producto_id">
+<span class="sig-name descname"><span class="pre">producto_id</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'renaix.producto'</span></span><a class="headerlink" href="#renaix.models.comentario.Comentario.producto_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.comentario.Comentario.usuario_id">
+<span class="sig-name descname"><span class="pre">usuario_id</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'res.partner'</span></span><a class="headerlink" href="#renaix.models.comentario.Comentario.usuario_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.comentario.Comentario.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vals</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#renaix.models.comentario.Comentario.create" title="Link to this definition"></a></dt>
+<dd><p>Al crear: notificar al propietario del producto</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.comentario.Comentario.write">
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vals</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/comentario.html#Comentario.write"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.comentario.Comentario.write" title="Link to this definition"></a></dt>
+<dd><p>Al desactivar: notificar al usuario</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.comentario.Comentario.action_eliminar">
+<span class="sig-name descname"><span class="pre">action_eliminar</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/comentario.html#Comentario.action_eliminar"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.comentario.Comentario.action_eliminar" title="Link to this definition"></a></dt>
+<dd><p>Elimina (desactiva) el comentario</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.comentario.Comentario.action_restaurar">
+<span class="sig-name descname"><span class="pre">action_restaurar</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/comentario.html#Comentario.action_restaurar"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.comentario.Comentario.action_restaurar" title="Link to this definition"></a></dt>
+<dd><p>Restaura un comentario eliminado</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.comentario.Comentario.name_get">
+<span class="sig-name descname"><span class="pre">name_get</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/comentario.html#Comentario.name_get"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.comentario.Comentario.name_get" title="Link to this definition"></a></dt>
+<dd><p>Personaliza cómo se muestra en selects</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-renaix.models.compra">
+<span id="renaix-models-compra"></span><h2>renaix.models.compra<a class="headerlink" href="#module-renaix.models.compra" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="renaix.models.compra.Compra">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">renaix.models.compra.</span></span><span class="sig-name descname"><span class="pre">Compra</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/compra.html#Compra"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.compra.Compra" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>Modelo: Compra / Transacción
+Descripción: Registra las transacciones de compra-venta entre usuarios</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>args</strong> (<em>Any</em>)</p></li>
+<li><p><strong>kwargs</strong> (<em>Any</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Tipo del valor devuelto<span class="colon">:</span></dt>
+<dd class="field-even"><p>Any</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.compra.Compra.producto_id">
+<span class="sig-name descname"><span class="pre">producto_id</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'renaix.producto'</span></span><a class="headerlink" href="#renaix.models.compra.Compra.producto_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.compra.Compra.comprador_id">
+<span class="sig-name descname"><span class="pre">comprador_id</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'res.partner'</span></span><a class="headerlink" href="#renaix.models.compra.Compra.comprador_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.compra.Compra.vendedor_id">
+<span class="sig-name descname"><span class="pre">vendedor_id</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'res.partner'</span></span><a class="headerlink" href="#renaix.models.compra.Compra.vendedor_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.compra.Compra.currency_id">
+<span class="sig-name descname"><span class="pre">currency_id</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'res.currency'</span></span><a class="headerlink" href="#renaix.models.compra.Compra.currency_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.compra.Compra.estado">
+<span class="sig-name descname"><span class="pre">estado</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[('pendiente',</span> <span class="pre">'Pendiente'),</span> <span class="pre">('confirmada',</span> <span class="pre">'Confirmada'),</span> <span class="pre">('completada',</span> <span class="pre">'Completada'),</span> <span class="pre">('cancelada',</span> <span class="pre">'Cancelada')]</span></span><a class="headerlink" href="#renaix.models.compra.Compra.estado" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.compra.Compra.valoracion_comprador_ids">
+<span class="sig-name descname"><span class="pre">valoracion_comprador_ids</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'renaix.valoracion'</span></span><a class="headerlink" href="#renaix.models.compra.Compra.valoracion_comprador_ids" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.compra.Compra.valoracion_vendedor_ids">
+<span class="sig-name descname"><span class="pre">valoracion_vendedor_ids</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'renaix.valoracion'</span></span><a class="headerlink" href="#renaix.models.compra.Compra.valoracion_vendedor_ids" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.compra.Compra.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vals</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#renaix.models.compra.Compra.create" title="Link to this definition"></a></dt>
+<dd><p>Al crear: generar código único y notificar</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.compra.Compra.action_confirmar">
+<span class="sig-name descname"><span class="pre">action_confirmar</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/compra.html#Compra.action_confirmar"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.compra.Compra.action_confirmar" title="Link to this definition"></a></dt>
+<dd><p>Confirma la compra</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.compra.Compra.action_completar">
+<span class="sig-name descname"><span class="pre">action_completar</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/compra.html#Compra.action_completar"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.compra.Compra.action_completar" title="Link to this definition"></a></dt>
+<dd><p>Completa la compra y marca el producto como vendido</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.compra.Compra.action_cancelar">
+<span class="sig-name descname"><span class="pre">action_cancelar</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/compra.html#Compra.action_cancelar"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.compra.Compra.action_cancelar" title="Link to this definition"></a></dt>
+<dd><p>Cancela la compra y libera el producto</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.compra.Compra.action_solicitar_valoraciones">
+<span class="sig-name descname"><span class="pre">action_solicitar_valoraciones</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/compra.html#Compra.action_solicitar_valoraciones"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.compra.Compra.action_solicitar_valoraciones" title="Link to this definition"></a></dt>
+<dd><p>Envía recordatorio para valorar</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.compra.Compra.name_get">
+<span class="sig-name descname"><span class="pre">name_get</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/compra.html#Compra.name_get"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.compra.Compra.name_get" title="Link to this definition"></a></dt>
+<dd><p>Personaliza cómo se muestra en selects</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-renaix.models.valoracion">
+<span id="renaix-models-valoracion"></span><h2>renaix.models.valoracion<a class="headerlink" href="#module-renaix.models.valoracion" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="renaix.models.valoracion.Valoracion">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">renaix.models.valoracion.</span></span><span class="sig-name descname"><span class="pre">Valoracion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/valoracion.html#Valoracion"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.valoracion.Valoracion" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>Modelo: Valoración
+Descripción: Valoraciones entre usuarios (1-5 estrellas) tras una compra</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>args</strong> (<em>Any</em>)</p></li>
+<li><p><strong>kwargs</strong> (<em>Any</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Tipo del valor devuelto<span class="colon">:</span></dt>
+<dd class="field-even"><p>Any</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.valoracion.Valoracion.compra_id">
+<span class="sig-name descname"><span class="pre">compra_id</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'renaix.compra'</span></span><a class="headerlink" href="#renaix.models.valoracion.Valoracion.compra_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.valoracion.Valoracion.tipo_valoracion">
+<span class="sig-name descname"><span class="pre">tipo_valoracion</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[('comprador_a_vendedor',</span> <span class="pre">'Comprador</span> <span class="pre">valora</span> <span class="pre">a</span> <span class="pre">Vendedor'),</span> <span class="pre">('vendedor_a_comprador',</span> <span class="pre">'Vendedor</span> <span class="pre">valora</span> <span class="pre">a</span> <span class="pre">Comprador')]</span></span><a class="headerlink" href="#renaix.models.valoracion.Valoracion.tipo_valoracion" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.valoracion.Valoracion.usuario_valorador_id">
+<span class="sig-name descname"><span class="pre">usuario_valorador_id</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'res.partner'</span></span><a class="headerlink" href="#renaix.models.valoracion.Valoracion.usuario_valorador_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.valoracion.Valoracion.usuario_valorado_id">
+<span class="sig-name descname"><span class="pre">usuario_valorado_id</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'res.partner'</span></span><a class="headerlink" href="#renaix.models.valoracion.Valoracion.usuario_valorado_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.valoracion.Valoracion.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vals</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#renaix.models.valoracion.Valoracion.create" title="Link to this definition"></a></dt>
+<dd><p>Al crear: notificar al usuario valorado</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.valoracion.Valoracion.name_get">
+<span class="sig-name descname"><span class="pre">name_get</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/valoracion.html#Valoracion.name_get"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.valoracion.Valoracion.name_get" title="Link to this definition"></a></dt>
+<dd><p>Personaliza cómo se muestra en selects</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-renaix.models.res_partner">
+<span id="renaix-models-res-partner"></span><h2>renaix.models.res_partner<a class="headerlink" href="#module-renaix.models.res_partner" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="renaix.models.res_partner.ResPartner">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">renaix.models.res_partner.</span></span><span class="sig-name descname"><span class="pre">ResPartner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/res_partner.html#ResPartner"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.res_partner.ResPartner" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>Modelo: res.partner extendido
+Descripción: Hereda de res.partner (Contactos) para añadir campos</p>
+<blockquote>
+<div><p>específicos de usuarios de la app móvil Renaix</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>args</strong> (<em>Any</em>)</p></li>
+<li><p><strong>kwargs</strong> (<em>Any</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Tipo del valor devuelto<span class="colon">:</span></dt>
+<dd class="field-even"><p>Any</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.res_partner.ResPartner.producto_ids">
+<span class="sig-name descname"><span class="pre">producto_ids</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'renaix.producto'</span></span><a class="headerlink" href="#renaix.models.res_partner.ResPartner.producto_ids" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.res_partner.ResPartner.compra_comprador_ids">
+<span class="sig-name descname"><span class="pre">compra_comprador_ids</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'renaix.compra'</span></span><a class="headerlink" href="#renaix.models.res_partner.ResPartner.compra_comprador_ids" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.res_partner.ResPartner.compra_vendedor_ids">
+<span class="sig-name descname"><span class="pre">compra_vendedor_ids</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'renaix.compra'</span></span><a class="headerlink" href="#renaix.models.res_partner.ResPartner.compra_vendedor_ids" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.res_partner.ResPartner.valoracion_ids">
+<span class="sig-name descname"><span class="pre">valoracion_ids</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'renaix.valoracion'</span></span><a class="headerlink" href="#renaix.models.res_partner.ResPartner.valoracion_ids" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.res_partner.ResPartner.comentario_ids">
+<span class="sig-name descname"><span class="pre">comentario_ids</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'renaix.comentario'</span></span><a class="headerlink" href="#renaix.models.res_partner.ResPartner.comentario_ids" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.res_partner.ResPartner.denuncia_ids">
+<span class="sig-name descname"><span class="pre">denuncia_ids</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'renaix.denuncia'</span></span><a class="headerlink" href="#renaix.models.res_partner.ResPartner.denuncia_ids" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.res_partner.ResPartner.mensaje_enviado_ids">
+<span class="sig-name descname"><span class="pre">mensaje_enviado_ids</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'renaix.mensaje'</span></span><a class="headerlink" href="#renaix.models.res_partner.ResPartner.mensaje_enviado_ids" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.res_partner.ResPartner.mensaje_recibido_ids">
+<span class="sig-name descname"><span class="pre">mensaje_recibido_ids</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'renaix.mensaje'</span></span><a class="headerlink" href="#renaix.models.res_partner.ResPartner.mensaje_recibido_ids" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.res_partner.ResPartner.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vals_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#renaix.models.res_partner.ResPartner.create" title="Link to this definition"></a></dt>
+<dd><p>Override create para generar partner_gid automáticamente
+Solo para usuarios de la app móvil</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.res_partner.ResPartner.name_get">
+<span class="sig-name descname"><span class="pre">name_get</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/res_partner.html#ResPartner.name_get"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.res_partner.ResPartner.name_get" title="Link to this definition"></a></dt>
+<dd><p>Personaliza cómo se muestra el nombre en selects</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.res_partner.ResPartner.action_view_productos">
+<span class="sig-name descname"><span class="pre">action_view_productos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/res_partner.html#ResPartner.action_view_productos"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.res_partner.ResPartner.action_view_productos" title="Link to this definition"></a></dt>
+<dd><p>Acción para ver todos los productos del usuario</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.res_partner.ResPartner.action_view_compras">
+<span class="sig-name descname"><span class="pre">action_view_compras</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/res_partner.html#ResPartner.action_view_compras"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.res_partner.ResPartner.action_view_compras" title="Link to this definition"></a></dt>
+<dd><p>Acción para ver todas las compras del usuario</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.res_partner.ResPartner.action_view_ventas">
+<span class="sig-name descname"><span class="pre">action_view_ventas</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/res_partner.html#ResPartner.action_view_ventas"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.res_partner.ResPartner.action_view_ventas" title="Link to this definition"></a></dt>
+<dd><p>Acción para ver todas las ventas del usuario</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.res_partner.ResPartner.action_desactivar_cuenta">
+<span class="sig-name descname"><span class="pre">action_desactivar_cuenta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/res_partner.html#ResPartner.action_desactivar_cuenta"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.res_partner.ResPartner.action_desactivar_cuenta" title="Link to this definition"></a></dt>
+<dd><p>Desactiva la cuenta del usuario</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.res_partner.ResPartner.action_activar_cuenta">
+<span class="sig-name descname"><span class="pre">action_activar_cuenta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/res_partner.html#ResPartner.action_activar_cuenta"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.res_partner.ResPartner.action_activar_cuenta" title="Link to this definition"></a></dt>
+<dd><p>Activa la cuenta del usuario</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.res_partner.ResPartner.action_regenerar_gid">
+<span class="sig-name descname"><span class="pre">action_regenerar_gid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/res_partner.html#ResPartner.action_regenerar_gid"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.res_partner.ResPartner.action_regenerar_gid" title="Link to this definition"></a></dt>
+<dd><p>Regenera el GID del usuario (solo para casos especiales)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.res_partner.ResPartner.set_password">
+<span class="sig-name descname"><span class="pre">set_password</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">password</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/res_partner.html#ResPartner.set_password"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.res_partner.ResPartner.set_password" title="Link to this definition"></a></dt>
+<dd><p>Establece la contraseña del usuario de la app (hasheada).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>password</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Contraseña en texto plano</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.res_partner.ResPartner.authenticate_app_user">
+<span class="sig-name descname"><span class="pre">authenticate_app_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#renaix.models.res_partner.ResPartner.authenticate_app_user" title="Link to this definition"></a></dt>
+<dd><p>Autentica un usuario de la app mediante email y contraseña.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>email</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Email del usuario</p></li>
+<li><p><strong>password</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Contraseña en texto plano</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Registro del usuario si la autenticación es exitosa, False si no</p>
+</dd>
+<dt class="field-odd">Tipo del valor devuelto<span class="colon">:</span></dt>
+<dd class="field-odd"><p>res.partner</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-renaix.models.mensaje">
+<span id="renaix-models-mensaje"></span><h2>renaix.models.mensaje<a class="headerlink" href="#module-renaix.models.mensaje" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="renaix.models.mensaje.Mensaje">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">renaix.models.mensaje.</span></span><span class="sig-name descname"><span class="pre">Mensaje</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/mensaje.html#Mensaje"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.mensaje.Mensaje" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>Modelo: Mensaje
+Descripción: Sistema de mensajería privada entre usuarios</p>
+<blockquote>
+<div><p>Los mensajes quedan vinculados al producto sobre el que se habla</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>args</strong> (<em>Any</em>)</p></li>
+<li><p><strong>kwargs</strong> (<em>Any</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Tipo del valor devuelto<span class="colon">:</span></dt>
+<dd class="field-even"><p>Any</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.mensaje.Mensaje.emisor_id">
+<span class="sig-name descname"><span class="pre">emisor_id</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'res.partner'</span></span><a class="headerlink" href="#renaix.models.mensaje.Mensaje.emisor_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.mensaje.Mensaje.receptor_id">
+<span class="sig-name descname"><span class="pre">receptor_id</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'res.partner'</span></span><a class="headerlink" href="#renaix.models.mensaje.Mensaje.receptor_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.mensaje.Mensaje.producto_id">
+<span class="sig-name descname"><span class="pre">producto_id</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'renaix.producto'</span></span><a class="headerlink" href="#renaix.models.mensaje.Mensaje.producto_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.mensaje.Mensaje.tipo_mensaje">
+<span class="sig-name descname"><span class="pre">tipo_mensaje</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[('text',</span> <span class="pre">'Texto'),</span> <span class="pre">('offer',</span> <span class="pre">'Oferta'),</span> <span class="pre">('offer_accepted',</span> <span class="pre">'Oferta</span> <span class="pre">Aceptada'),</span> <span class="pre">('offer_rejected',</span> <span class="pre">'Oferta</span> <span class="pre">Rechazada'),</span> <span class="pre">('counter_offer',</span> <span class="pre">'Contraoferta')]</span></span><a class="headerlink" href="#renaix.models.mensaje.Mensaje.tipo_mensaje" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="renaix.models.mensaje.Mensaje.oferta_relacionada_id">
+<span class="sig-name descname"><span class="pre">oferta_relacionada_id</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'renaix.mensaje'</span></span><a class="headerlink" href="#renaix.models.mensaje.Mensaje.oferta_relacionada_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.mensaje.Mensaje.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vals</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#renaix.models.mensaje.Mensaje.create" title="Link to this definition"></a></dt>
+<dd><p>Al crear: generar hilo_id si no existe y notificar</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.mensaje.Mensaje.action_marcar_leido">
+<span class="sig-name descname"><span class="pre">action_marcar_leido</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/mensaje.html#Mensaje.action_marcar_leido"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.mensaje.Mensaje.action_marcar_leido" title="Link to this definition"></a></dt>
+<dd><p>Marca el mensaje como leído</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.mensaje.Mensaje.action_marcar_no_leido">
+<span class="sig-name descname"><span class="pre">action_marcar_no_leido</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/mensaje.html#Mensaje.action_marcar_no_leido"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.mensaje.Mensaje.action_marcar_no_leido" title="Link to this definition"></a></dt>
+<dd><p>Marca el mensaje como no leído</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.mensaje.Mensaje.get_conversacion">
+<span class="sig-name descname"><span class="pre">get_conversacion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other_user_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">producto_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#renaix.models.mensaje.Mensaje.get_conversacion" title="Link to this definition"></a></dt>
+<dd><p>Obtiene todos los mensajes de una conversación entre dos usuarios.
+Útil para la API REST.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.mensaje.Mensaje.get_mensajes_no_leidos">
+<span class="sig-name descname"><span class="pre">get_mensajes_no_leidos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#renaix.models.mensaje.Mensaje.get_mensajes_no_leidos" title="Link to this definition"></a></dt>
+<dd><p>Obtiene todos los mensajes no leídos de un usuario.
+Útil para la API REST.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="renaix.models.mensaje.Mensaje.name_get">
+<span class="sig-name descname"><span class="pre">name_get</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/renaix/models/mensaje.html#Mensaje.name_get"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#renaix.models.mensaje.Mensaje.name_get" title="Link to this definition"></a></dt>
+<dd><p>Personaliza cómo se muestra en selects</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="../modules/renaix_api.html" class="btn btn-neutral float-left" title="Módulo: renaix_api (API REST)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="renaix_api_controllers.html" class="btn btn-neutral float-right" title="API Reference — Controladores renaix_api" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2026, Javier Herraiz Calatayud &amp; Alejandro Sánchez Serrano.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

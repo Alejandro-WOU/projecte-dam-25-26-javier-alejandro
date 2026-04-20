@@ -1,0 +1,1793 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Manual de Usuario — App Android Renaix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET ─────────────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+
+/* ─── TOKENS ─────────────────────────────────────────────────────── */
+:root{
+  --p950:#0d001a; --p900:#4A148C; --p800:#5e1aa3; --p700:#7B1FA2;
+  --p500:#9C27B0; --p300:#CE93D8; --p100:#F3E5F7; --p50:#FAF5FF;
+  --teal:#00897B; --teal2:#4DB6AC; --teal-light:#E0F2F1;
+  --ink:#1C1B1F; --ink2:#49454F; --ink3:#79747E; --surface:#fff;
+  --r:12px;
+  --font-d:'Poppins',sans-serif;
+  --font-b:'Inter',sans-serif;
+  --shadow-card:0 1px 2px rgba(74,20,140,.06),0 4px 16px rgba(74,20,140,.10),0 8px 32px rgba(74,20,140,.06);
+  --shadow-sm:0 1px 3px rgba(74,20,140,.08),0 2px 8px rgba(74,20,140,.08);
+}
+
+/* ─── PAGE ───────────────────────────────────────────────────────── */
+@page{size:A4;margin:0;}
+body{font-family:var(--font-b);background:#e8e8e8;}
+
+.page{
+  width:210mm; min-height:297mm;
+  margin:0 auto;
+  background:var(--surface);
+  position:relative; overflow:hidden;
+  page-break-after:always;
+}
+.page:last-child{page-break-after:avoid;}
+
+@media print{
+  body{background:#fff;}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
+  .page{page-break-after:always; margin:0;}
+  .page:last-child{page-break-after:avoid;}
+  .no-break{page-break-inside:avoid;}
+}
+
+/* ─── COVER ──────────────────────────────────────────────────────── */
+.cover{
+  min-height:297mm;
+  background:linear-gradient(145deg,#0d001a 0%,#1a0035 25%,#4A148C 55%,#1b5e20 85%,#2e7d32 100%);
+  display:flex; flex-direction:column;
+  position:relative; overflow:hidden; color:#fff;
+}
+
+.cover::before{
+  content:'';position:absolute;
+  top:-120px;right:-120px;
+  width:480px;height:480px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(77,182,172,.22) 0%,transparent 70%);
+}
+.cover::after{
+  content:'';position:absolute;
+  bottom:-80px;left:-80px;
+  width:320px;height:320px;
+  background:rgba(255,255,255,.04);
+  clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+}
+
+.cover-dots{
+  position:absolute;inset:0;
+  background-image:radial-gradient(rgba(255,255,255,.10) 1.5px,transparent 1.5px);
+  background-size:26px 26px;
+  pointer-events:none;
+}
+
+/* Android phone deco shape */
+.cover-phone{
+  position:absolute;
+  top:-30px;right:-40px;
+  width:180px;height:320px;
+  border:4px solid rgba(255,255,255,.08);
+  border-radius:32px;
+  background:rgba(255,255,255,.03);
+  transform:rotate(15deg);
+}
+.cover-phone-inner{
+  position:absolute;
+  top:10px;right:10px;
+  width:130px;height:240px;
+  border:2px solid rgba(255,255,255,.06);
+  border-radius:24px;
+}
+
+.cover-stripe{
+  position:absolute;top:0;left:0;
+  width:5px;height:100%;
+  background:linear-gradient(180deg,#4DB6AC,#00897B,#4A148C);
+}
+
+.cover-diag{
+  position:absolute;
+  top:0;right:80px;
+  width:1px;height:100%;
+  background:linear-gradient(180deg,transparent,rgba(77,182,172,.25),transparent);
+  transform:rotate(8deg) translateX(60px);
+}
+
+.cover-top{
+  padding:40px 48px 0;
+  display:flex;justify-content:space-between;align-items:flex-start;
+  position:relative;z-index:2;
+}
+
+.cover-pill{
+  background:rgba(255,255,255,.12);
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:99px;
+  padding:6px 16px;
+  font-family:var(--font-d);
+  font-size:11px;font-weight:600;letter-spacing:.6px;
+  color:rgba(255,255,255,.90);
+  text-transform:uppercase;
+}
+
+.cover-badge-android{
+  background:linear-gradient(135deg,#00897B,#4DB6AC);
+  border-radius:99px;
+  padding:6px 16px;
+  font-family:var(--font-d);
+  font-size:10px;font-weight:700;letter-spacing:.5px;
+  color:#fff;
+  display:flex;align-items:center;gap:6px;
+}
+
+.cover-body{
+  flex:1;
+  padding:50px 48px 0;
+  position:relative;z-index:2;
+  display:flex;flex-direction:column;justify-content:center;
+}
+
+.cover-label{
+  font-family:var(--font-d);
+  font-size:11px;font-weight:600;letter-spacing:2px;
+  color:rgba(206,147,216,.85);text-transform:uppercase;
+  margin-bottom:16px;
+}
+
+.cover-title{
+  font-family:var(--font-d);
+  font-size:48px;line-height:1.05;font-weight:800;
+  color:#fff;
+  margin-bottom:12px;
+}
+.cover-title span{
+  background:linear-gradient(90deg,#4DB6AC,#CE93D8);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+.cover-subtitle{
+  font-family:var(--font-d);
+  font-size:22px;font-weight:500;
+  color:rgba(255,255,255,.72);
+  margin-bottom:40px;
+  line-height:1.3;
+}
+
+.cover-divider{
+  width:64px;height:4px;
+  background:linear-gradient(90deg,#4DB6AC,#CE93D8);
+  border-radius:2px;
+  margin-bottom:40px;
+}
+
+.cover-meta{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:12px;
+  max-width:420px;
+  margin-bottom:56px;
+}
+.meta-card{
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:10px;
+  padding:14px 18px;
+}
+.meta-label{
+  font-size:9px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;
+  color:rgba(206,147,216,.7);margin-bottom:4px;
+}
+.meta-value{
+  font-family:var(--font-d);font-size:13px;font-weight:600;color:#fff;
+}
+
+.cover-nav-preview{
+  display:flex;gap:8px;margin-bottom:32px;
+}
+.nav-tab{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:8px;
+  padding:8px 14px;
+  font-family:var(--font-d);font-size:10px;font-weight:600;
+  color:rgba(255,255,255,.70);
+  display:flex;align-items:center;gap:5px;
+}
+.nav-tab.active{
+  background:rgba(77,182,172,.25);
+  border-color:rgba(77,182,172,.50);
+  color:#4DB6AC;
+}
+
+.cover-footer{
+  padding:0 48px 36px;
+  position:relative;z-index:2;
+  display:flex;align-items:center;gap:20px;
+}
+.cover-logo{
+  font-family:var(--font-d);font-size:26px;font-weight:800;
+  background:linear-gradient(90deg,#CE93D8,#4DB6AC);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.cover-logo-sub{
+  font-size:10px;color:rgba(255,255,255,.45);letter-spacing:.5px;
+}
+
+/* ─── CONTENT PAGES ──────────────────────────────────────────────── */
+.content-page{
+  min-height:297mm;
+  display:flex;flex-direction:column;
+  position:relative;
+}
+
+.page-sidebar{
+  position:absolute;top:0;left:0;
+  width:6px;height:100%;
+  background:linear-gradient(180deg,var(--teal),var(--p700));
+}
+
+.page-header{
+  padding:28px 40px 20px 52px;
+  display:flex;justify-content:space-between;align-items:center;
+  border-bottom:1px solid #f0e8f8;
+}
+.page-header-brand{
+  font-family:var(--font-d);font-size:16px;font-weight:800;
+  background:linear-gradient(90deg,var(--p900),var(--teal));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.page-header-section{
+  font-size:11px;font-weight:500;color:var(--ink3);
+  letter-spacing:.5px;text-transform:uppercase;
+}
+
+.page-body{
+  padding:24px 40px 32px 52px;
+  flex:1;
+}
+
+.page-footer{
+  padding:14px 40px 14px 52px;
+  border-top:1px solid #f0e8f8;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.page-footer-left{
+  font-size:10px;color:var(--ink3);
+}
+.page-footer-right{
+  font-size:10px;font-weight:600;color:var(--p700);
+  background:var(--p100);
+  padding:3px 10px;border-radius:99px;
+}
+
+/* ─── SECTION HEADER ─────────────────────────────────────────────── */
+.section-header{
+  background:linear-gradient(135deg,var(--p900) 0%,var(--p700) 100%);
+  border-radius:var(--r);
+  padding:22px 28px;
+  margin-bottom:24px;
+  display:flex;align-items:center;gap:16px;
+  position:relative;overflow:hidden;
+}
+.section-header::before{
+  content:attr(data-num);
+  position:absolute;right:16px;top:50%;transform:translateY(-50%);
+  font-family:var(--font-d);font-size:72px;font-weight:900;
+  color:rgba(255,255,255,.08);line-height:1;
+  pointer-events:none;
+}
+.section-icon{
+  width:44px;height:44px;border-radius:12px;
+  background:rgba(255,255,255,.15);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.section-icon svg{stroke:#fff;fill:none;}
+.section-title{
+  font-family:var(--font-d);font-size:20px;font-weight:700;color:#fff;
+  line-height:1.2;
+}
+.section-desc{
+  font-size:12px;color:rgba(255,255,255,.70);margin-top:2px;font-weight:400;
+}
+
+/* ─── SUBSECTION ─────────────────────────────────────────────────── */
+.sub-title{
+  font-family:var(--font-d);font-size:14px;font-weight:700;
+  color:var(--p900);margin:20px 0 8px;
+  display:flex;align-items:center;gap:8px;
+}
+.sub-title::before{
+  content:'';width:3px;height:16px;border-radius:2px;
+  background:linear-gradient(180deg,var(--teal),var(--p700));
+  flex-shrink:0;
+}
+
+/* ─── STEPS / TIMELINE ───────────────────────────────────────────── */
+.steps{display:flex;flex-direction:column;gap:0;position:relative;padding-left:28px;}
+.steps::before{
+  content:'';position:absolute;left:11px;top:12px;
+  width:2px;bottom:12px;
+  background:linear-gradient(180deg,var(--teal),var(--p300));
+  border-radius:1px;
+}
+.step{
+  display:flex;gap:16px;align-items:flex-start;
+  padding:6px 0;
+}
+.step-dot{
+  width:24px;height:24px;border-radius:50%;
+  background:linear-gradient(135deg,var(--teal),var(--p700));
+  color:#fff;
+  font-family:var(--font-d);font-size:11px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  margin-left:-28px;
+  box-shadow:0 2px 8px rgba(74,20,140,.30);
+  position:relative;z-index:1;
+}
+.step-content{
+  padding-top:3px;
+  font-size:13px;color:var(--ink2);line-height:1.55;
+}
+.step-content strong{color:var(--ink);font-weight:600;}
+
+/* ─── CARDS ──────────────────────────────────────────────────────── */
+.card{
+  background:var(--surface);
+  border:1px solid #ede7f6;
+  border-radius:var(--r);
+  padding:18px 20px;
+  margin-bottom:12px;
+  box-shadow:var(--shadow-card);
+}
+.card-title{
+  font-family:var(--font-d);font-size:13px;font-weight:700;
+  color:var(--p900);margin-bottom:6px;
+}
+.card p{font-size:12.5px;color:var(--ink2);line-height:1.55;}
+
+/* Screen card (simulates phone screen) */
+.screen-card{
+  background:#f8f5ff;
+  border:2px solid #d7c9f5;
+  border-radius:16px;
+  padding:16px 18px;
+  margin-bottom:10px;
+  position:relative;
+}
+.screen-card::before{
+  content:'';
+  position:absolute;top:8px;left:50%;transform:translateX(-50%);
+  width:40px;height:4px;background:#c5b3e8;border-radius:2px;
+}
+.screen-card-title{
+  font-family:var(--font-d);font-size:11px;font-weight:700;
+  color:var(--p700);text-align:center;
+  margin:12px 0 8px;letter-spacing:.3px;
+}
+.screen-card p{font-size:12px;color:var(--ink2);line-height:1.5;}
+
+/* ─── CALLOUTS ───────────────────────────────────────────────────── */
+.callout{
+  border-radius:10px;padding:14px 18px;
+  margin:14px 0;
+  display:flex;align-items:flex-start;gap:12px;
+  font-size:12.5px;line-height:1.55;
+}
+.callout-icon{width:20px;height:20px;flex-shrink:0;margin-top:1px;}
+.callout.info{background:#e8f4fd;border-left:4px solid #1976D2;}
+.callout.info .callout-icon{color:#1976D2;}
+.callout.warn{background:#fff8e1;border-left:4px solid #F57F17;}
+.callout.warn .callout-icon{color:#F57F17;}
+.callout.ok{background:var(--teal-light);border-left:4px solid var(--teal);}
+.callout.ok .callout-icon{color:var(--teal);}
+.callout.tip{background:var(--p100);border-left:4px solid var(--p700);}
+.callout.tip .callout-icon{color:var(--p700);}
+.callout p strong{font-weight:700;color:var(--ink);}
+.callout p{color:var(--ink2);}
+
+/* ─── TABLES ─────────────────────────────────────────────────────── */
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:12.5px;}
+thead tr{background:linear-gradient(135deg,var(--p900),var(--p700));}
+thead th{color:#fff;padding:10px 14px;text-align:left;
+  font-family:var(--font-d);font-size:11px;font-weight:600;letter-spacing:.4px;}
+tbody tr:nth-child(odd){background:var(--p50);}
+tbody tr:nth-child(even){background:#fafafa;}
+tbody tr:hover{background:var(--p100);}
+tbody td{padding:9px 14px;color:var(--ink2);border-bottom:1px solid #f0e8f8;}
+tbody td:first-child{font-weight:600;color:var(--ink);}
+
+/* ─── NAV BAR VISUAL ─────────────────────────────────────────────── */
+.navbar-visual{
+  display:flex;
+  border:2px solid #d7c9f5;
+  border-radius:16px;
+  overflow:hidden;
+  margin:12px 0;
+}
+.nav-item{
+  flex:1;
+  padding:12px 8px 8px;
+  text-align:center;
+  border-right:1px solid #e8dcf5;
+  background:#faf5ff;
+}
+.nav-item:last-child{border-right:none;}
+.nav-item.active{
+  background:linear-gradient(180deg,var(--p100),#fff);
+  border-bottom:3px solid var(--p700);
+}
+.nav-item svg{display:block;margin:0 auto 4px;}
+.nav-item-label{font-family:var(--font-d);font-size:10px;font-weight:600;color:var(--ink3);}
+.nav-item.active .nav-item-label{color:var(--p700);}
+
+/* ─── FEATURE PILLS ──────────────────────────────────────────────── */
+.feature-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;
+  margin:12px 0;
+}
+.feature-pill{
+  background:linear-gradient(135deg,var(--p50),#fff);
+  border:1px solid #d7c9f5;
+  border-radius:10px;
+  padding:12px 10px;
+  text-align:center;
+}
+.feature-pill svg{display:block;margin:0 auto 6px;}
+.feature-pill-label{
+  font-family:var(--font-d);font-size:11px;font-weight:600;
+  color:var(--p900);line-height:1.3;
+}
+.feature-pill-desc{
+  font-size:10.5px;color:var(--ink3);margin-top:2px;
+}
+
+/* ─── TOC ────────────────────────────────────────────────────────── */
+.toc-page{
+  min-height:297mm;
+  background:linear-gradient(160deg,var(--p50) 0%,#f0faf9 100%);
+  padding:0;
+  display:flex;flex-direction:column;
+}
+.toc-header{
+  background:linear-gradient(135deg,var(--p900),var(--teal));
+  padding:40px 48px 32px 52px;
+  position:relative;overflow:hidden;
+}
+.toc-header::after{
+  content:'';position:absolute;bottom:-24px;right:-24px;
+  width:160px;height:160px;
+  border-radius:50%;
+  background:rgba(255,255,255,.06);
+}
+.toc-header-label{
+  font-size:10px;font-weight:700;letter-spacing:2px;
+  color:rgba(206,147,216,.80);text-transform:uppercase;
+  margin-bottom:8px;
+}
+.toc-header-title{
+  font-family:var(--font-d);font-size:32px;font-weight:800;color:#fff;
+}
+.toc-header-sub{
+  font-size:13px;color:rgba(255,255,255,.65);margin-top:4px;
+}
+.toc-body{
+  padding:32px 48px 32px 52px;
+  flex:1;
+}
+.toc-item{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 16px;
+  border-radius:10px;
+  margin-bottom:6px;
+  background:#fff;
+  border:1px solid #ede7f6;
+  box-shadow:var(--shadow-sm);
+  text-decoration:none;
+  color:inherit;
+}
+.toc-num{
+  width:28px;height:28px;border-radius:8px;
+  background:linear-gradient(135deg,var(--teal),var(--p700));
+  color:#fff;
+  font-family:var(--font-d);font-size:12px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.toc-text{
+  font-family:var(--font-d);font-size:13px;font-weight:600;
+  color:var(--ink);flex:1;
+}
+.toc-dots{
+  flex:1;border-bottom:2px dotted #d7c9f5;margin:0 8px;
+}
+.toc-page-num{
+  font-family:var(--font-d);font-size:11px;font-weight:700;
+  color:var(--p700);
+  background:var(--p100);
+  padding:2px 8px;border-radius:99px;
+}
+
+/* ─── STATUS BADGES ──────────────────────────────────────────────── */
+.badge{
+  display:inline-block;
+  padding:2px 10px;border-radius:99px;
+  font-size:10.5px;font-weight:700;
+  font-family:var(--font-d);letter-spacing:.3px;
+}
+.badge-green{background:#e8f5e9;color:#2e7d32;}
+.badge-yellow{background:#fff8e1;color:#f57f17;}
+.badge-blue{background:#e3f2fd;color:#1565c0;}
+.badge-red{background:#fce4ec;color:#c62828;}
+.badge-purple{background:var(--p100);color:var(--p900);}
+.badge-teal{background:var(--teal-light);color:var(--teal);}
+
+/* ─── PERMISSION CARDS ───────────────────────────────────────────── */
+.perm-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0;
+}
+.perm-card{
+  background:#fff;border:1px solid #d7c9f5;border-radius:10px;
+  padding:14px 12px;text-align:center;
+}
+.perm-card svg{display:block;margin:0 auto 8px;}
+.perm-title{font-family:var(--font-d);font-size:12px;font-weight:700;color:var(--p900);}
+.perm-desc{font-size:10.5px;color:var(--ink3);margin-top:3px;}
+
+/* ─── SECTION DIVIDER ────────────────────────────────────────────── */
+.section-divider{
+  height:1px;
+  background:linear-gradient(90deg,var(--p300),transparent);
+  margin:20px 0;
+}
+
+/* ─── GLOSSARY ───────────────────────────────────────────────────── */
+.gloss-item{
+  display:flex;gap:14px;
+  padding:10px 0;
+  border-bottom:1px solid #f0e8f8;
+}
+.gloss-term{
+  font-family:var(--font-d);font-size:12.5px;font-weight:700;
+  color:var(--p900);min-width:100px;flex-shrink:0;
+}
+.gloss-def{font-size:12.5px;color:var(--ink2);line-height:1.55;}
+
+/* ─── FAQ ────────────────────────────────────────────────────────── */
+.faq-card{
+  background:#fff;border:1px solid #ede7f6;border-radius:var(--r);
+  padding:16px 20px;margin-bottom:10px;
+  box-shadow:var(--shadow-sm);
+}
+.faq-q{
+  font-family:var(--font-d);font-size:13px;font-weight:700;
+  color:var(--p900);margin-bottom:8px;
+  display:flex;align-items:flex-start;gap:8px;
+}
+.faq-q-icon{
+  width:20px;height:20px;border-radius:50%;
+  background:linear-gradient(135deg,var(--teal),var(--p700));
+  color:#fff;
+  font-family:var(--font-d);font-size:10px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;margin-top:1px;
+}
+.faq-a{font-size:12.5px;color:var(--ink2);line-height:1.55;padding-left:28px;}
+
+/* ─── INLINE CODE ────────────────────────────────────────────────── */
+code{
+  background:var(--p100);color:var(--p900);
+  border-radius:4px;padding:1px 6px;
+  font-size:11.5px;font-family:'Courier New',monospace;font-weight:600;
+}
+
+/* ─── TEXT UTILS ─────────────────────────────────────────────────── */
+p{font-size:13px;color:var(--ink2);line-height:1.6;margin-bottom:8px;}
+ul,ol{padding-left:20px;margin:6px 0;}
+li{font-size:13px;color:var(--ink2);line-height:1.6;margin-bottom:3px;}
+li strong{color:var(--ink);}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     PORTADA
+══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="cover">
+<div class="cover">
+  <div class="cover-dots"></div>
+  <div class="cover-stripe"></div>
+  <div class="cover-diag"></div>
+  <div class="cover-phone"><div class="cover-phone-inner"></div></div>
+
+  <div class="cover-top">
+    <span class="cover-pill">Renaix · v1.0.0</span>
+    <span class="cover-badge-android">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      Android · Kotlin + Compose
+    </span>
+  </div>
+
+  <div class="cover-body">
+    <div class="cover-label">Manual de Usuario</div>
+    <div class="cover-title">
+      App <span>Android</span><br>Renaix
+    </div>
+    <div class="cover-subtitle">Marketplace de Segunda Mano</div>
+    <div class="cover-divider"></div>
+
+    <!-- Nav bar preview -->
+    <div class="cover-nav-preview">
+      <div class="nav-tab active">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        Inicio
+      </div>
+      <div class="nav-tab">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        Buscar
+      </div>
+      <div class="nav-tab">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+        Mapa
+      </div>
+      <div class="nav-tab">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        Chat
+      </div>
+      <div class="nav-tab">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Perfil
+      </div>
+    </div>
+
+    <div class="cover-meta">
+      <div class="meta-card">
+        <div class="meta-label">Proyecto</div>
+        <div class="meta-value">Renaix</div>
+      </div>
+      <div class="meta-card">
+        <div class="meta-label">Versión</div>
+        <div class="meta-value">1.0.0</div>
+      </div>
+      <div class="meta-card">
+        <div class="meta-label">Fecha</div>
+        <div class="meta-value">Marzo 2026</div>
+      </div>
+      <div class="meta-card">
+        <div class="meta-label">Autores</div>
+        <div class="meta-value">J. Herraiz · A. Sánchez</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-footer">
+    <img src="img/logo_renaix.png" style="width:48px;height:48px;object-fit:contain;border-radius:10px;margin-right:4px;" alt="Logo Renaix" />
+    <div>
+      <div class="cover-logo">Renaix</div>
+      <div class="cover-logo-sub">Proyecto Intermodular DAM 2025–2026</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     ÍNDICE
+══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="toc">
+<div class="toc-page">
+  <div class="toc-header">
+    <div class="toc-header-label">Manual App Android</div>
+    <div class="toc-header-title">Índice de Contenidos</div>
+    <div class="toc-header-sub">Guía completa para usuarios de la app Renaix</div>
+  </div>
+  <div class="toc-body">
+    <a class="toc-item" href="#s1">
+      <div class="toc-num">1</div>
+      <div class="toc-text">Instalación y requisitos</div>
+      <div class="toc-dots"></div>
+      <div class="toc-page-num">3</div>
+    </a>
+    <a class="toc-item" href="#s2">
+      <div class="toc-num">2</div>
+      <div class="toc-text">Inicio de sesión y registro</div>
+      <div class="toc-dots"></div>
+      <div class="toc-page-num">4</div>
+    </a>
+    <a class="toc-item" href="#s3">
+      <div class="toc-num">3</div>
+      <div class="toc-text">Pantalla principal y navegación</div>
+      <div class="toc-dots"></div>
+      <div class="toc-page-num">5</div>
+    </a>
+    <a class="toc-item" href="#s4">
+      <div class="toc-num">4</div>
+      <div class="toc-text">Listado y búsqueda de productos</div>
+      <div class="toc-dots"></div>
+      <div class="toc-page-num">6</div>
+    </a>
+    <a class="toc-item" href="#s5">
+      <div class="toc-num">5</div>
+      <div class="toc-text">Detalle de producto</div>
+      <div class="toc-dots"></div>
+      <div class="toc-page-num">7</div>
+    </a>
+    <a class="toc-item" href="#s6">
+      <div class="toc-num">6</div>
+      <div class="toc-text">Alta de producto (crear)</div>
+      <div class="toc-dots"></div>
+      <div class="toc-page-num">8</div>
+    </a>
+    <a class="toc-item" href="#s7">
+      <div class="toc-num">7</div>
+      <div class="toc-text">Edición de producto</div>
+      <div class="toc-dots"></div>
+      <div class="toc-page-num">9</div>
+    </a>
+    <a class="toc-item" href="#s8">
+      <div class="toc-num">8</div>
+      <div class="toc-text">Denuncias</div>
+      <div class="toc-dots"></div>
+      <div class="toc-page-num">10</div>
+    </a>
+    <a class="toc-item" href="#s9">
+      <div class="toc-num">9</div>
+      <div class="toc-text">Perfil de usuario</div>
+      <div class="toc-dots"></div>
+      <div class="toc-page-num">11</div>
+    </a>
+    <a class="toc-item" href="#s10">
+      <div class="toc-num">10</div>
+      <div class="toc-text">Chat / Mensajería</div>
+      <div class="toc-dots"></div>
+      <div class="toc-page-num">12</div>
+    </a>
+    <a class="toc-item" href="#s11">
+      <div class="toc-num">11</div>
+      <div class="toc-text">Casos típicos paso a paso</div>
+      <div class="toc-dots"></div>
+      <div class="toc-page-num">13</div>
+    </a>
+    <a class="toc-item" href="#s12">
+      <div class="toc-num">12</div>
+      <div class="toc-text">Problemas frecuentes y soluciones</div>
+      <div class="toc-dots"></div>
+      <div class="toc-page-num">14</div>
+    </a>
+    <a class="toc-item" href="#s13">
+      <div class="toc-num">13</div>
+      <div class="toc-text">Glosario</div>
+      <div class="toc-dots"></div>
+      <div class="toc-page-num">15</div>
+    </a>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     S1 — INSTALACIÓN Y REQUISITOS
+══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="s1">
+<div class="content-page">
+  <div class="page-sidebar"></div>
+  <div class="page-header">
+    <span class="page-header-brand">Renaix Android</span>
+    <span class="page-header-section">Instalación y Requisitos</span>
+  </div>
+  <div class="page-body" style="padding-top:18px;padding-bottom:24px;">
+
+    <div class="section-header" data-num="1">
+      <div class="section-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+      </div>
+      <div>
+        <div class="section-title">Instalación y Requisitos</div>
+        <div class="section-desc">Cómo instalar Renaix en tu dispositivo Android</div>
+      </div>
+    </div>
+
+    <div class="sub-title">Requisitos del dispositivo</div>
+    <table>
+      <thead><tr><th>Requisito</th><th>Detalle</th></tr></thead>
+      <tbody>
+        <tr><td>Sistema operativo</td><td>Android 8.0 (API 26) o superior</td></tr>
+        <tr><td>Espacio libre</td><td>Mínimo 100 MB</td></tr>
+        <tr><td>Conexión</td><td>Wi-Fi o datos móviles (misma red que el servidor si es local)</td></tr>
+        <tr><td>Permisos requeridos</td><td>Cámara, Almacenamiento, Internet</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sub-title">Instalación mediante APK</div>
+    <div class="steps">
+      <div class="step"><div class="step-dot">1</div><div class="step-content">Descarga el archivo <code>renaix-app.apk</code> desde el repositorio del proyecto.</div></div>
+      <div class="step"><div class="step-dot">2</div><div class="step-content">Ve a <strong>Ajustes → Seguridad</strong> (o <strong>Privacidad</strong>).</div></div>
+      <div class="step"><div class="step-dot">3</div><div class="step-content">Activa <strong>"Instalar aplicaciones de fuentes desconocidas"</strong>.</div></div>
+      <div class="step"><div class="step-dot">4</div><div class="step-content">Abre el archivo APK desde el gestor de archivos.</div></div>
+      <div class="step"><div class="step-dot">5</div><div class="step-content">Toca <strong>"Instalar"</strong> y espera a que finalice.</div></div>
+      <div class="step"><div class="step-dot">6</div><div class="step-content">Toca <strong>"Abrir"</strong> para lanzar la app.</div></div>
+    </div>
+
+    <div class="sub-title">Permisos necesarios</div>
+    <div class="perm-grid">
+      <div class="perm-card">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9C27B0" stroke-width="2"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        <div class="perm-title">Cámara</div>
+        <div class="perm-desc">Fotografiar productos</div>
+      </div>
+      <div class="perm-card">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9C27B0" stroke-width="2"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>
+        <div class="perm-title">Almacenamiento</div>
+        <div class="perm-desc">Seleccionar imágenes</div>
+      </div>
+      <div class="perm-card">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9C27B0" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+        <div class="perm-title">Notificaciones</div>
+        <div class="perm-desc">Alertas de mensajes</div>
+      </div>
+    </div>
+
+    <div class="callout info">
+      <svg class="callout-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1976D2" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p>Acepta todos los permisos para disfrutar de la funcionalidad completa de la app.</p>
+    </div>
+
+    <div class="sub-title" style="margin-top:8px;">Primera apertura</div>
+    <div class="steps">
+      <div class="step"><div class="step-dot">1</div><div class="step-content">Aparece la pantalla <strong>Splash</strong> con el logo de Renaix durante 2-3 segundos.</div></div>
+      <div class="step"><div class="step-dot">2</div><div class="step-content">La app verifica si hay una sesión activa guardada en el dispositivo.</div></div>
+      <div class="step"><div class="step-dot">3</div><div class="step-content"><strong>Con sesión previa:</strong> vas directamente a la pantalla principal. <strong>Sin sesión:</strong> vas a Login.</div></div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span class="page-footer-left">Renaix · Manual App Android · v1.0.0</span>
+    <span class="page-footer-right">Pág. 3</span>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     S2 — INICIO DE SESIÓN Y REGISTRO
+══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="s2">
+<div class="content-page">
+  <div class="page-sidebar"></div>
+  <div class="page-header">
+    <span class="page-header-brand">Renaix Android</span>
+    <span class="page-header-section">Inicio de Sesión y Registro</span>
+  </div>
+  <div class="page-body">
+
+    <div class="section-header" data-num="2">
+      <div class="section-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/>
+        </svg>
+      </div>
+      <div>
+        <div class="section-title">Inicio de Sesión y Registro</div>
+        <div class="section-desc">Accede a tu cuenta o crea una nueva</div>
+      </div>
+    </div>
+
+    <div class="sub-title">Iniciar sesión</div>
+    <div class="steps">
+      <div class="step"><div class="step-dot">1</div><div class="step-content">En la pantalla de <strong>Login</strong>, introduce tu <strong>email</strong> y <strong>contraseña</strong>.</div></div>
+      <div class="step"><div class="step-dot">2</div><div class="step-content">Toca el botón <strong>"Iniciar sesión"</strong>.</div></div>
+      <div class="step"><div class="step-dot">3</div><div class="step-content">Si las credenciales son correctas, accedes a la pantalla principal.</div></div>
+      <div class="step"><div class="step-dot">4</div><div class="step-content">La sesión queda guardada automáticamente en el dispositivo.</div></div>
+    </div>
+
+    <img src="img/android_02_login.png" onerror="this.style.display='none'" style="width:200px;display:block;margin:12px auto;border-radius:20px;border:3px solid #d7c9f5;box-shadow:0 4px 20px rgba(74,20,140,.18);" />
+
+    <div class="callout tip">
+      <svg class="callout-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--p700)" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <p><strong>Credenciales de prueba:</strong> Email: <code>usuario@renaix.com</code> · Contraseña: <code>renaix123</code></p>
+    </div>
+
+    <div class="sub-title">Registrarse (nuevo usuario)</div>
+    <div class="steps">
+      <div class="step"><div class="step-dot">1</div><div class="step-content">Toca <strong>"¿No tienes cuenta? Regístrate"</strong> en la pantalla de Login.</div></div>
+      <div class="step"><div class="step-dot">2</div><div class="step-content">Rellena: <strong>Nombre completo</strong>*, <strong>Email</strong>* (único), <strong>Contraseña</strong>* (mín. 8 caract.), Teléfono (opcional).</div></div>
+      <div class="step"><div class="step-dot">3</div><div class="step-content">Toca <strong>"Crear cuenta"</strong>. Si el registro es exitoso, accedes directamente a la pantalla principal.</div></div>
+    </div>
+
+    <div class="card no-break">
+      <div class="card-title">Requisitos de contraseña</div>
+      <ul>
+        <li>Mínimo 8 caracteres</li>
+        <li>Al menos una letra mayúscula</li>
+        <li>Al menos un número</li>
+      </ul>
+    </div>
+
+    <div class="sub-title">Gestión de sesión</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div class="card">
+        <div class="card-title">Mantener sesión activa</div>
+        <p>Se mantiene automáticamente con tokens JWT durante <strong>7 días</strong>. No es necesario volver a hacer login.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Cerrar sesión</div>
+        <p>Ve a <strong>Perfil → Cerrar sesión</strong>. Confirma en el diálogo. Los datos locales se borran del dispositivo.</p>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span class="page-footer-left">Renaix · Manual App Android · v1.0.0</span>
+    <span class="page-footer-right">Pág. 4</span>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     S3 — NAVEGACIÓN
+══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="s3">
+<div class="content-page">
+  <div class="page-sidebar"></div>
+  <div class="page-header">
+    <span class="page-header-brand">Renaix Android</span>
+    <span class="page-header-section">Navegación Principal</span>
+  </div>
+  <div class="page-body">
+
+    <div class="section-header" data-num="3">
+      <div class="section-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+        </svg>
+      </div>
+      <div>
+        <div class="section-title">Pantalla Principal y Navegación</div>
+        <div class="section-desc">Estructura de la app y barra de navegación inferior</div>
+      </div>
+    </div>
+
+    <div class="sub-title">Barra de navegación inferior</div>
+
+    <div class="navbar-visual">
+      <div class="nav-item active">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7B1FA2" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <div class="nav-item-label">Inicio</div>
+      </div>
+      <div class="nav-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#79747E" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <div class="nav-item-label">Buscar</div>
+      </div>
+      <div class="nav-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#79747E" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+        <div class="nav-item-label">Mapa</div>
+      </div>
+      <div class="nav-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#79747E" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        <div class="nav-item-label">Chat</div>
+      </div>
+      <div class="nav-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#79747E" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <div class="nav-item-label">Perfil</div>
+      </div>
+    </div>
+
+    <table style="margin-top:14px;">
+      <thead><tr><th>Pestaña</th><th>Función principal</th></tr></thead>
+      <tbody>
+        <tr><td>Inicio</td><td>Listado principal de productos disponibles</td></tr>
+        <tr><td>Buscar</td><td>Búsqueda y filtros avanzados</td></tr>
+        <tr><td>Mapa</td><td>Ver productos cercanos en el mapa por ubicación</td></tr>
+        <tr><td>Chat</td><td>Conversaciones con otros usuarios</td></tr>
+        <tr><td>Perfil</td><td>Tu cuenta, ajustes y estadísticas</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sub-title">Pantalla de Inicio</div>
+    <div class="feature-grid">
+      <div class="feature-pill">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7B1FA2" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <div class="feature-pill-label">Búsqueda rápida</div>
+        <div class="feature-pill-desc">En la parte superior</div>
+      </div>
+      <div class="feature-pill">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7B1FA2" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        <div class="feature-pill-label">Grid de productos</div>
+        <div class="feature-pill-desc">Más recientes primero</div>
+      </div>
+      <div class="feature-pill">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7B1FA2" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        <div class="feature-pill-label">Paginación infinita</div>
+        <div class="feature-pill-desc">Desliza para cargar más</div>
+      </div>
+    </div>
+
+    <div class="callout info">
+      <svg class="callout-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1976D2" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p>Cada tarjeta de producto muestra: <strong>imagen principal, nombre, precio y ubicación</strong>. Toca cualquier tarjeta para ver el detalle completo.</p>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span class="page-footer-left">Renaix · Manual App Android · v1.0.0</span>
+    <span class="page-footer-right">Pág. 5</span>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     S4 — BÚSQUEDA DE PRODUCTOS
+══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="s4">
+<div class="content-page">
+  <div class="page-sidebar"></div>
+  <div class="page-header">
+    <span class="page-header-brand">Renaix Android</span>
+    <span class="page-header-section">Búsqueda de Productos</span>
+  </div>
+  <div class="page-body">
+
+    <div class="section-header" data-num="4">
+      <div class="section-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+        </svg>
+      </div>
+      <div>
+        <div class="section-title">Listado y Búsqueda de Productos</div>
+        <div class="section-desc">Explora, busca y filtra el catálogo completo</div>
+      </div>
+    </div>
+
+    <div class="sub-title">Explorar el catálogo</div>
+    <div class="steps">
+      <div class="step"><div class="step-dot">1</div><div class="step-content">Desde la pestaña <strong>Inicio</strong> o <strong>Buscar</strong>, verás el grid de productos disponibles.</div></div>
+      <div class="step"><div class="step-dot">2</div><div class="step-content">Desliza hacia abajo para cargar más productos (paginación automática).</div></div>
+      <div class="step"><div class="step-dot">3</div><div class="step-content">Toca cualquier tarjeta para ver el <strong>detalle completo</strong> del producto.</div></div>
+    </div>
+
+    <div class="sub-title">Búsqueda por texto</div>
+    <div class="steps">
+      <div class="step"><div class="step-dot">1</div><div class="step-content">Toca la <strong>barra de búsqueda</strong> en la parte superior de la pantalla.</div></div>
+      <div class="step"><div class="step-dot">2</div><div class="step-content">Escribe el término a buscar: nombre, marca, descripción…</div></div>
+      <div class="step"><div class="step-dot">3</div><div class="step-content">Los resultados se actualizan <strong>en tiempo real</strong> mientras escribes.</div></div>
+      <div class="step"><div class="step-dot">4</div><div class="step-content">Para limpiar la búsqueda, toca la <strong>X</strong> dentro del campo de texto.</div></div>
+    </div>
+
+    <div class="sub-title">Filtros avanzados</div>
+    <div class="card">
+      <div class="card-title">Pestaña Buscar</div>
+      <table>
+        <thead><tr><th>Filtro</th><th>Opciones</th></tr></thead>
+        <tbody>
+          <tr><td>Categoría</td><td>Electrónica, Ropa, Deporte, Hogar, etc.</td></tr>
+          <tr><td>Estado</td><td>Nuevo, Como Nuevo, Buen Estado, Aceptable, Para Reparar</td></tr>
+          <tr><td>Precio</td><td>Rango mínimo y/o máximo en euros</td></tr>
+          <tr><td>Etiquetas</td><td>Busca por hashtags: #gaming, #vintage, etc.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="steps" style="margin-top:12px;">
+      <div class="step"><div class="step-dot">1</div><div class="step-content">Ve a la pestaña <strong>Buscar</strong> y selecciona los filtros deseados.</div></div>
+      <div class="step"><div class="step-dot">2</div><div class="step-content">Toca <strong>"Aplicar filtros"</strong> para ver los resultados filtrados.</div></div>
+      <div class="step"><div class="step-dot">3</div><div class="step-content">Para eliminar los filtros activos, toca <strong>"Limpiar"</strong>.</div></div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span class="page-footer-left">Renaix · Manual App Android · v1.0.0</span>
+    <span class="page-footer-right">Pág. 6</span>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     S5 — DETALLE DE PRODUCTO
+══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="s5">
+<div class="content-page">
+  <div class="page-sidebar"></div>
+  <div class="page-header">
+    <span class="page-header-brand">Renaix Android</span>
+    <span class="page-header-section">Detalle de Producto</span>
+  </div>
+  <div class="page-body">
+
+    <div class="section-header" data-num="5">
+      <div class="section-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+        </svg>
+      </div>
+      <div>
+        <div class="section-title">Detalle de Producto</div>
+        <div class="section-desc">Toda la información de un producto y sus acciones</div>
+      </div>
+    </div>
+
+    <div class="sub-title">Información disponible</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
+      <div class="card">
+        <div class="card-title">Datos del producto</div>
+        <ul>
+          <li>Galería de imágenes (desliza)</li>
+          <li>Nombre y precio</li>
+          <li>Estado (condición física y venta)</li>
+          <li>Descripción completa</li>
+          <li>Ubicación del vendedor</li>
+          <li>Etiquetas asociadas</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Información del vendedor</div>
+        <ul>
+          <li>Nombre y foto</li>
+          <li>Valoración media</li>
+          <li>Número de ventas</li>
+          <li>Comentarios de usuarios</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub-title">Acciones disponibles</div>
+    <div class="feature-grid">
+      <div class="feature-pill">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7B1FA2" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        <div class="feature-pill-label">Favorito</div>
+        <div class="feature-pill-desc">Guarda para más tarde</div>
+      </div>
+      <div class="feature-pill">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7B1FA2" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        <div class="feature-pill-label">Chat vendedor</div>
+        <div class="feature-pill-desc">Contacto directo</div>
+      </div>
+      <div class="feature-pill">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7B1FA2" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+        <div class="feature-pill-label">Denunciar</div>
+        <div class="feature-pill-desc">Reportar contenido</div>
+      </div>
+    </div>
+
+    <img src="img/android_05_detalle.png" onerror="this.style.display='none'" style="width:200px;display:block;margin:12px auto;border-radius:20px;border:3px solid #d7c9f5;box-shadow:0 4px 20px rgba(74,20,140,.18);" />
+
+    <div class="sub-title">Comentar un producto</div>
+    <div class="steps">
+      <div class="step"><div class="step-dot">1</div><div class="step-content">En la pantalla de detalle, desplázate hasta la sección <strong>"Comentarios"</strong>.</div></div>
+      <div class="step"><div class="step-dot">2</div><div class="step-content">Toca el campo <strong>"Escribe un comentario..."</strong>.</div></div>
+      <div class="step"><div class="step-dot">3</div><div class="step-content">Escribe tu comentario y toca el botón de enviar.</div></div>
+      <div class="step"><div class="step-dot">4</div><div class="step-content">Tu comentario aparece en el listado con tu nombre y fecha.</div></div>
+    </div>
+
+    <div class="callout ok">
+      <svg class="callout-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      <p>Los favoritos se guardan en <strong>Perfil → Mis Favoritos</strong> y son accesibles en cualquier momento.</p>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span class="page-footer-left">Renaix · Manual App Android · v1.0.0</span>
+    <span class="page-footer-right">Pág. 7</span>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     S6 — ALTA DE PRODUCTO
+══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="s6">
+<div class="content-page">
+  <div class="page-sidebar"></div>
+  <div class="page-header">
+    <span class="page-header-brand">Renaix Android</span>
+    <span class="page-header-section">Alta de Producto</span>
+  </div>
+  <div class="page-body">
+
+    <div class="section-header" data-num="6">
+      <div class="section-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/>
+        </svg>
+      </div>
+      <div>
+        <div class="section-title">Alta de Producto (Crear)</div>
+        <div class="section-desc">Publica un nuevo artículo en el marketplace</div>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step"><div class="step-dot">1</div><div class="step-content">Ve a la pestaña <strong>Productos</strong> (icono de casa en la barra inferior).</div></div>
+      <div class="step"><div class="step-dot">2</div><div class="step-content">Toca el botón <strong>➕</strong> (FAB flotante) en la esquina inferior derecha de la pantalla.</div></div>
+      <div class="step"><div class="step-dot">3</div><div class="step-content">Se abre el formulario <strong>"Nuevo Producto"</strong>.</div></div>
+    </div>
+
+    <div class="sub-title">Formulario de nuevo producto</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div class="card">
+        <div class="card-title" style="color:#c62828;">Campos obligatorios *</div>
+        <ul>
+          <li><strong>Nombre del producto</strong>: título claro y descriptivo</li>
+          <li><strong>Precio</strong>: en euros (teclado numérico)</li>
+          <li><strong>Estado del producto</strong>: condición física</li>
+          <li><strong>Categoría</strong>: la más adecuada</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color:#2e7d32;">Campos opcionales</div>
+        <ul>
+          <li><strong>Descripción</strong>: características y defectos</li>
+          <li><strong>Antigüedad</strong>: tiempo en uso</li>
+          <li><strong>Ubicación</strong>: ciudad o código postal</li>
+          <li><strong>Etiquetas</strong>: hasta 5 hashtags</li>
+        </ul>
+      </div>
+    </div>
+
+    <img src="img/android_06_crear.png" onerror="this.style.display='none'" style="width:200px;display:block;margin:12px auto;border-radius:20px;border:3px solid #d7c9f5;box-shadow:0 4px 20px rgba(74,20,140,.18);" />
+
+    <div class="sub-title">Añadir imágenes</div>
+    <div class="steps">
+      <div class="step"><div class="step-dot">1</div><div class="step-content">Toca <strong>"Añadir foto"</strong> en el área de imágenes del formulario.</div></div>
+      <div class="step"><div class="step-dot">2</div><div class="step-content">Elige <strong>Cámara</strong> (foto en el momento) o <strong>Galería</strong> (desde tus fotos guardadas).</div></div>
+      <div class="step"><div class="step-dot">3</div><div class="step-content">Puedes añadir hasta <strong>10 imágenes</strong>. La primera será la imagen principal (portada).</div></div>
+      <div class="step"><div class="step-dot">4</div><div class="step-content">Para reordenar: <strong>mantén pulsada</strong> una imagen y arrástrala. Para eliminar: toca el icono de papelera.</div></div>
+    </div>
+
+    <div class="sub-title">Publicar o guardar borrador</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div class="callout ok" style="margin:0;">
+        <svg class="callout-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        <p><strong>Publicar:</strong> El producto queda visible en el marketplace con estado "Disponible".</p>
+      </div>
+      <div class="callout info" style="margin:0;">
+        <svg class="callout-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1976D2" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+        <p><strong>Guardar borrador:</strong> El producto se guarda pero no es visible para otros usuarios.</p>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span class="page-footer-left">Renaix · Manual App Android · v1.0.0</span>
+    <span class="page-footer-right">Pág. 8</span>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     S7 — EDICIÓN DE PRODUCTO
+══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="s7">
+<div class="content-page">
+  <div class="page-sidebar"></div>
+  <div class="page-header">
+    <span class="page-header-brand">Renaix Android</span>
+    <span class="page-header-section">Edición de Producto</span>
+  </div>
+  <div class="page-body">
+
+    <div class="section-header" data-num="7">
+      <div class="section-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+        </svg>
+      </div>
+      <div>
+        <div class="section-title">Edición de Producto</div>
+        <div class="section-desc">Modifica, cambia el estado o elimina tus productos</div>
+      </div>
+    </div>
+
+    <div class="sub-title">Acceder a Mis Productos</div>
+    <div class="steps">
+      <div class="step"><div class="step-dot">1</div><div class="step-content">Ve a la pestaña <strong>Perfil</strong> (icono de persona en la barra inferior).</div></div>
+      <div class="step"><div class="step-dot">2</div><div class="step-content">Toca <strong>"Mis productos"</strong>.</div></div>
+      <div class="step"><div class="step-dot">3</div><div class="step-content">Verás la lista de tus productos publicados y borradores.</div></div>
+    </div>
+
+    <div class="sub-title">Editar un producto</div>
+    <div class="steps">
+      <div class="step"><div class="step-dot">1</div><div class="step-content">En <strong>Mis productos</strong>, toca el producto que deseas editar.</div></div>
+      <div class="step"><div class="step-dot">2</div><div class="step-content">Toca el icono de lápiz ✏️ o el botón <strong>"Editar"</strong>.</div></div>
+      <div class="step"><div class="step-dot">3</div><div class="step-content">Modifica los campos necesarios: nombre, descripción, precio, imágenes, etiquetas…</div></div>
+      <div class="step"><div class="step-dot">4</div><div class="step-content">Toca <strong>"Guardar cambios"</strong> para confirmar las modificaciones.</div></div>
+    </div>
+
+    <div class="sub-title">Cambiar el estado del producto</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0;">
+      <div class="card" style="text-align:center;">
+        <span class="badge badge-green" style="margin-bottom:6px;display:inline-block;">Disponible</span>
+        <p style="font-size:11px;">Activo en el marketplace. Visible para todos.</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <span class="badge badge-yellow" style="margin-bottom:6px;display:inline-block;">Reservado</span>
+        <p style="font-size:11px;">Reservado para un comprador específico.</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <span class="badge badge-purple" style="margin-bottom:6px;display:inline-block;">Vendido</span>
+        <p style="font-size:11px;">Transacción completada.</p>
+      </div>
+    </div>
+
+    <div class="sub-title">Eliminar un producto</div>
+    <div class="steps">
+      <div class="step"><div class="step-dot">1</div><div class="step-content">Desde <strong>Mis productos</strong>, desliza la tarjeta del producto hacia la <strong>izquierda</strong>.</div></div>
+      <div class="step"><div class="step-dot">2</div><div class="step-content">Toca el botón <strong>"Eliminar"</strong> (rojo).</div></div>
+      <div class="step"><div class="step-dot">3</div><div class="step-content">Confirma en el diálogo emergente.</div></div>
+    </div>
+
+    <div class="callout warn">
+      <svg class="callout-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F57F17" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <p>El producto pasará a estado <strong>"Eliminado"</strong> y dejará de ser visible en el marketplace. Esta acción no se puede deshacer.</p>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span class="page-footer-left">Renaix · Manual App Android · v1.0.0</span>
+    <span class="page-footer-right">Pág. 9</span>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     S8 — DENUNCIAS
+══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="s8">
+<div class="content-page">
+  <div class="page-sidebar"></div>
+  <div class="page-header">
+    <span class="page-header-brand">Renaix Android</span>
+    <span class="page-header-section">Denuncias</span>
+  </div>
+  <div class="page-body">
+
+    <div class="section-header" data-num="8">
+      <div class="section-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/>
+        </svg>
+      </div>
+      <div>
+        <div class="section-title">Denuncias</div>
+        <div class="section-desc">Reporta contenido inapropiado a los moderadores</div>
+      </div>
+    </div>
+
+    <div class="sub-title">Denunciar un producto</div>
+    <p>La denuncia se realiza directamente desde la pantalla de detalle del producto, sin salir de ella. No existe una sección separada de denuncias.</p>
+    <div class="steps">
+      <div class="step"><div class="step-dot">1</div><div class="step-content">Abre el producto que deseas denunciar.</div></div>
+      <div class="step"><div class="step-dot">2</div><div class="step-content">Desplázate hacia abajo y toca el botón <strong>"Denunciar producto"</strong>.</div></div>
+      <div class="step"><div class="step-dot">3</div><div class="step-content">Se abre un diálogo. Selecciona la <strong>Categoría</strong> en el menú desplegable.</div></div>
+      <div class="step"><div class="step-dot">4</div><div class="step-content">Escribe el <strong>Motivo</strong> de la denuncia (al menos 1 carácter).</div></div>
+      <div class="step"><div class="step-dot">5</div><div class="step-content">Toca <strong>"Denunciar"</strong>. El botón solo se activa cuando el motivo no está vacío.</div></div>
+    </div>
+
+    <img src="img/android_08_denuncia.png" onerror="this.style.display='none'" style="width:200px;display:block;margin:12px auto;border-radius:20px;border:3px solid #d7c9f5;box-shadow:0 4px 20px rgba(74,20,140,.18);" />
+
+    <div class="sub-title">Categorías de denuncia</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:10px 0;">
+      <div class="card" style="text-align:center;padding:10px 6px;">
+        <span class="badge badge-yellow" style="display:inline-block;margin-bottom:6px;">Spam</span>
+      </div>
+      <div class="card" style="text-align:center;padding:10px 6px;">
+        <span class="badge badge-red" style="display:inline-block;margin-bottom:6px;">Fraude / Estafa</span>
+      </div>
+      <div class="card" style="text-align:center;padding:10px 6px;">
+        <span class="badge badge-red" style="display:inline-block;margin-bottom:6px;">Contenido inapropiado</span>
+      </div>
+      <div class="card" style="text-align:center;padding:10px 6px;">
+        <span class="badge badge-red" style="display:inline-block;margin-bottom:6px;">Violencia</span>
+      </div>
+      <div class="card" style="text-align:center;padding:10px 6px;">
+        <span class="badge badge-yellow" style="display:inline-block;margin-bottom:6px;">Información falsa</span>
+      </div>
+      <div class="card" style="text-align:center;padding:10px 6px;">
+        <span class="badge badge-blue" style="display:inline-block;margin-bottom:6px;">Otro</span>
+      </div>
+    </div>
+
+    <div class="callout info">
+      <svg class="callout-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1976D2" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p>Las denuncias son revisadas por los empleados desde el panel de administración de Odoo. Una vez enviada, la denuncia queda registrada para su moderación.</p>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span class="page-footer-left">Renaix · Manual App Android · v1.0.0</span>
+    <span class="page-footer-right">Pág. 10</span>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     S9 — PERFIL DE USUARIO
+══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="s9">
+<div class="content-page">
+  <div class="page-sidebar"></div>
+  <div class="page-header">
+    <span class="page-header-brand">Renaix Android</span>
+    <span class="page-header-section">Perfil de Usuario</span>
+  </div>
+  <div class="page-body">
+
+    <div class="section-header" data-num="9">
+      <div class="section-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
+        </svg>
+      </div>
+      <div>
+        <div class="section-title">Perfil de Usuario</div>
+        <div class="section-desc">Gestiona tu cuenta, estadísticas y preferencias</div>
+      </div>
+    </div>
+
+    <div class="sub-title">Tu perfil</div>
+    <p>En la pestaña <strong>Perfil</strong> (icono de persona) encontrarás: nombre, foto, email, teléfono, valoración promedio y estadísticas (productos publicados, vendidos y comprados).</p>
+
+    <div class="sub-title">Editar tu perfil</div>
+    <div class="steps">
+      <div class="step"><div class="step-dot">1</div><div class="step-content">Toca <strong>"Editar perfil"</strong> o el icono de lápiz en la pantalla de Perfil.</div></div>
+      <div class="step"><div class="step-dot">2</div><div class="step-content">Modifica <strong>Nombre</strong>, <strong>Teléfono</strong> y/o <strong>Foto de perfil</strong> (cámara o galería).</div></div>
+      <div class="step"><div class="step-dot">3</div><div class="step-content">Toca <strong>"Guardar cambios"</strong>.</div></div>
+    </div>
+
+    <div class="sub-title">Mis secciones</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div class="card">
+        <div class="card-title">Mis compras</div>
+        <p>Listado de productos que has comprado con el estado de cada transacción.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Mis ventas</div>
+        <p>Listado de productos vendidos con información del comprador.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Mis favoritos</div>
+        <p>Todos los productos que has marcado con corazón ❤️.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Mis productos</div>
+        <p>Listado de todos los productos que has publicado en la plataforma.</p>
+      </div>
+    </div>
+
+    <div class="sub-title">Ver perfil de otro usuario</div>
+    <div class="steps">
+      <div class="step"><div class="step-dot">1</div><div class="step-content">Desde el detalle de cualquier producto, toca el <strong>nombre o foto del vendedor</strong>.</div></div>
+      <div class="step"><div class="step-dot">2</div><div class="step-content">Se abre su perfil público: nombre, foto, valoración, número de ventas y productos activos.</div></div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span class="page-footer-left">Renaix · Manual App Android · v1.0.0</span>
+    <span class="page-footer-right">Pág. 11</span>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     S10 — CHAT / MENSAJERÍA
+══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="s10">
+<div class="content-page">
+  <div class="page-sidebar"></div>
+  <div class="page-header">
+    <span class="page-header-brand">Renaix Android</span>
+    <span class="page-header-section">Chat / Mensajería</span>
+  </div>
+  <div class="page-body">
+
+    <div class="section-header" data-num="10">
+      <div class="section-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+        </svg>
+      </div>
+      <div>
+        <div class="section-title">Chat / Mensajería</div>
+        <div class="section-desc">Comunícate con compradores y vendedores</div>
+      </div>
+    </div>
+
+    <div class="sub-title">Ver conversaciones</div>
+    <div class="steps">
+      <div class="step"><div class="step-dot">1</div><div class="step-content">Toca la pestaña <strong>Chats</strong> (icono de burbuja) en la barra inferior.</div></div>
+      <div class="step"><div class="step-dot">2</div><div class="step-content">Aparece la lista de conversaciones activas con foto, nombre, último mensaje y hora.</div></div>
+      <div class="step"><div class="step-dot">3</div><div class="step-content">Las conversaciones con mensajes <strong>no leídos</strong> aparecen resaltadas.</div></div>
+    </div>
+
+    <div class="sub-title">Enviar un mensaje</div>
+    <div class="steps">
+      <div class="step"><div class="step-dot">1</div><div class="step-content">Toca una conversación para abrirla.</div></div>
+      <div class="step"><div class="step-dot">2</div><div class="step-content">Escribe tu mensaje en el campo de texto inferior.</div></div>
+      <div class="step"><div class="step-dot">3</div><div class="step-content">Toca el icono de enviar ➤ o pulsa Enter.</div></div>
+    </div>
+
+    <div class="sub-title">Iniciar una nueva conversación</div>
+    <div class="steps">
+      <div class="step"><div class="step-dot">1</div><div class="step-content">Ve al detalle de un producto que te interese.</div></div>
+      <div class="step"><div class="step-dot">2</div><div class="step-content">Toca <strong>"Enviar mensaje al vendedor"</strong>.</div></div>
+      <div class="step"><div class="step-dot">3</div><div class="step-content">Se crea automáticamente una conversación nueva que aparecerá en la pestaña Chats.</div></div>
+    </div>
+
+    <div class="callout tip">
+      <svg class="callout-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--p700)" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <p>Las notificaciones de nuevos mensajes requieren el permiso de <strong>Notificaciones</strong> (Android 13+). Actívalas en Ajustes si no las has habilitado durante la instalación.</p>
+    </div>
+
+    <div class="sub-title">Pantalla de Chat</div>
+    <img src="img/android_10_chats.png" onerror="this.style.display='none'" style="width:200px;display:block;margin:12px auto;border-radius:20px;border:3px solid #d7c9f5;box-shadow:0 4px 20px rgba(74,20,140,.18);" />
+
+  </div>
+  <div class="page-footer">
+    <span class="page-footer-left">Renaix · Manual App Android · v1.0.0</span>
+    <span class="page-footer-right">Pág. 12</span>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     S11 — CASOS TÍPICOS
+══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="s11">
+<div class="content-page">
+  <div class="page-sidebar"></div>
+  <div class="page-header">
+    <span class="page-header-brand">Renaix Android</span>
+    <span class="page-header-section">Casos Típicos</span>
+  </div>
+  <div class="page-body">
+
+    <div class="section-header" data-num="11">
+      <div class="section-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+        </svg>
+      </div>
+      <div>
+        <div class="section-title">Casos Típicos Paso a Paso</div>
+        <div class="section-desc">Flujos habituales de uso de la app</div>
+      </div>
+    </div>
+
+    <div class="sub-title">Caso 1: Crear un producto con foto y etiquetas</div>
+    <div class="steps">
+      <div class="step"><div class="step-dot">1</div><div class="step-content">Ve a <strong>Productos</strong> y toca el botón <strong>➕</strong> (FAB) en la esquina inferior derecha.</div></div>
+      <div class="step"><div class="step-dot">2</div><div class="step-content">Escribe el <strong>nombre</strong>: "Bicicleta de montaña Trek".</div></div>
+      <div class="step"><div class="step-dot">3</div><div class="step-content">Introduce el <strong>precio</strong>: <code>150</code> euros.</div></div>
+      <div class="step"><div class="step-dot">4</div><div class="step-content">Escribe una descripción detallada del artículo.</div></div>
+      <div class="step"><div class="step-dot">5</div><div class="step-content">Selecciona <strong>Estado</strong>: <code>Buen Estado</code> y <strong>Categoría</strong>: <code>Deporte</code>.</div></div>
+      <div class="step"><div class="step-dot">6</div><div class="step-content">Toca <strong>"Añadir foto" → Galería</strong> → selecciona 3 fotos de la bicicleta.</div></div>
+      <div class="step"><div class="step-dot">7</div><div class="step-content">Añade etiquetas: <code>bicicleta</code>, <code>deporte</code>, <code>trek</code>.</div></div>
+      <div class="step"><div class="step-dot">8</div><div class="step-content">Toca <strong>"Publicar"</strong>. El producto aparece en el marketplace.</div></div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="sub-title">Caso 2: Editar etiquetas de un producto</div>
+    <div class="steps">
+      <div class="step"><div class="step-dot">1</div><div class="step-content">Ve a <strong>Perfil → Mis productos</strong>.</div></div>
+      <div class="step"><div class="step-dot">2</div><div class="step-content">Toca el producto y luego <strong>"Editar"</strong> (icono de lápiz).</div></div>
+      <div class="step"><div class="step-dot">3</div><div class="step-content">Elimina etiquetas tocando la <strong>X</strong> junto a cada una.</div></div>
+      <div class="step"><div class="step-dot">4</div><div class="step-content">Escribe nuevas etiquetas y selecciónalas de la lista.</div></div>
+      <div class="step"><div class="step-dot">5</div><div class="step-content">Toca <strong>"Guardar cambios"</strong>.</div></div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="sub-title">Caso 3: Denunciar y consultar el estado</div>
+    <div class="steps">
+      <div class="step"><div class="step-dot">1</div><div class="step-content">Abre el producto con contenido inapropiado y toca el icono de bandera 🚩.</div></div>
+      <div class="step"><div class="step-dot">2</div><div class="step-content">Selecciona categoría: <strong>Contenido Inapropiado</strong>.</div></div>
+      <div class="step"><div class="step-dot">3</div><div class="step-content">Escribe el motivo y toca <strong>"Enviar denuncia"</strong>.</div></div>
+      <div class="step"><div class="step-dot">4</div><div class="step-content">Ve a <strong>Perfil → Mis denuncias</strong>. Verás tu denuncia con estado <span class="badge badge-yellow">Pendiente</span>.</div></div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span class="page-footer-left">Renaix · Manual App Android · v1.0.0</span>
+    <span class="page-footer-right">Pág. 13</span>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     S12 — PROBLEMAS FRECUENTES
+══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="s12">
+<div class="content-page">
+  <div class="page-sidebar"></div>
+  <div class="page-header">
+    <span class="page-header-brand">Renaix Android</span>
+    <span class="page-header-section">Problemas Frecuentes</span>
+  </div>
+  <div class="page-body">
+
+    <div class="section-header" data-num="12">
+      <div class="section-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+      </div>
+      <div>
+        <div class="section-title">Problemas Frecuentes y Soluciones</div>
+        <div class="section-desc">Guía de resolución de incidencias comunes</div>
+      </div>
+    </div>
+
+    <div class="faq-card">
+      <div class="faq-q"><div class="faq-q-icon">!</div>Sin conexión / "No se puede conectar al servidor"</div>
+      <div class="faq-a">
+        <ol style="padding-left:16px;font-size:12.5px;color:var(--ink2);">
+          <li style="margin-bottom:3px;">Verifica conexión a Internet (Wi-Fi o datos).</li>
+          <li style="margin-bottom:3px;">Si el servidor es local, asegúrate de estar en la <strong>misma red Wi-Fi</strong>.</li>
+          <li style="margin-bottom:3px;">Cierra y vuelve a abrir la app.</li>
+          <li>Si persiste, espera unos minutos e intenta de nuevo.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="faq-card">
+      <div class="faq-q"><div class="faq-q-icon">!</div>Token caducado / "Sesión expirada"</div>
+      <div class="faq-a">
+        <ol style="padding-left:16px;font-size:12.5px;color:var(--ink2);">
+          <li style="margin-bottom:3px;">La sesión expira automáticamente tras <strong>7 días</strong> de inactividad.</li>
+          <li style="margin-bottom:3px;">La app te redirige automáticamente a la pantalla de Login.</li>
+          <li>Introduce tus credenciales. La nueva sesión se guarda automáticamente.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="faq-card">
+      <div class="faq-q"><div class="faq-q-icon">!</div>Error al subir imagen</div>
+      <div class="faq-a">
+        <ol style="padding-left:16px;font-size:12.5px;color:var(--ink2);">
+          <li style="margin-bottom:3px;">Verifica que la app tiene permiso de <strong>Almacenamiento</strong> (Ajustes → Apps → Renaix → Permisos).</li>
+          <li style="margin-bottom:3px;">Comprueba que el archivo es <strong>JPG o PNG</strong> y no supera <strong>5 MB</strong>.</li>
+          <li style="margin-bottom:3px;">Asegúrate de tener conexión estable.</li>
+          <li>Si el error persiste, reinicia la app e inténtalo de nuevo.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="faq-card">
+      <div class="faq-q"><div class="faq-q-icon">!</div>La app se cierra inesperadamente (crash)</div>
+      <div class="faq-a">
+        <ol style="padding-left:16px;font-size:12.5px;color:var(--ink2);">
+          <li style="margin-bottom:3px;">Cierra la app completamente (desde el selector de apps recientes).</li>
+          <li style="margin-bottom:3px;">Vuelve a abrirla.</li>
+          <li style="margin-bottom:3px;">Si es recurrente, desinstala y reinstala desde el APK.</li>
+          <li>Verifica que tu dispositivo tiene <strong>Android 8.0 o superior</strong>.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="faq-card">
+      <div class="faq-q"><div class="faq-q-icon">!</div>No aparecen mis productos</div>
+      <div class="faq-a">
+        <ol style="padding-left:16px;font-size:12.5px;color:var(--ink2);">
+          <li style="margin-bottom:3px;">Verifica que la sesión es correcta (Perfil → comprueba tu nombre de usuario).</li>
+          <li style="margin-bottom:3px;">Desliza hacia abajo para refrescar la lista.</li>
+          <li>Si creaste productos como borrador, verifica que el filtro no los oculte.</li>
+        </ol>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span class="page-footer-left">Renaix · Manual App Android · v1.0.0</span>
+    <span class="page-footer-right">Pág. 14</span>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     S13 — GLOSARIO
+══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="s13">
+<div class="content-page">
+  <div class="page-sidebar"></div>
+  <div class="page-header">
+    <span class="page-header-brand">Renaix Android</span>
+    <span class="page-header-section">Glosario</span>
+  </div>
+  <div class="page-body">
+
+    <div class="section-header" data-num="13">
+      <div class="section-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+        </svg>
+      </div>
+      <div>
+        <div class="section-title">Glosario</div>
+        <div class="section-desc">Términos y definiciones de la app Renaix</div>
+      </div>
+    </div>
+
+    <div class="gloss-item">
+      <div class="gloss-term">Producto</div>
+      <div class="gloss-def">Artículo de segunda mano publicado en la plataforma para su venta.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">Etiqueta</div>
+      <div class="gloss-def">Hashtag normalizado (ej: <code>#gaming</code>) que clasifica un producto. Máximo 5 por producto.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">Estado</div>
+      <div class="gloss-def">Condición física del artículo: Nuevo, Como Nuevo, Buen Estado, Estado Aceptable, Para Reparar.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">Estado de venta</div>
+      <div class="gloss-def">Fase del ciclo de vida: <span class="badge badge-green">Disponible</span>, <span class="badge badge-yellow">Reservado</span>, <span class="badge badge-purple">Vendido</span>.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">Favorito</div>
+      <div class="gloss-def">Producto marcado con corazón ❤️ para guardarlo en tu lista personal.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">Denuncia</div>
+      <div class="gloss-def">Reporte de contenido inapropiado enviado a los moderadores de la plataforma.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">Valoración</div>
+      <div class="gloss-def">Puntuación de 1 a 5 estrellas que un comprador otorga a un vendedor al finalizar la transacción.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">JWT</div>
+      <div class="gloss-def">JSON Web Token. Token de autenticación seguro guardado en el dispositivo para mantener la sesión activa durante 7 días.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">Splash</div>
+      <div class="gloss-def">Pantalla de inicio con el logo de Renaix que aparece al abrir la app durante 2-3 segundos.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">APK</div>
+      <div class="gloss-def">Android Package Kit. Formato de archivo de instalación de aplicaciones Android.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">Borrador</div>
+      <div class="gloss-def">Producto guardado pero no publicado. Invisible para otros usuarios hasta que se publique explícitamente.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">Paginación infinita</div>
+      <div class="gloss-def">Técnica de carga progresiva donde los productos se cargan automáticamente al desplazarse hacia abajo en el listado.</div>
+    </div>
+
+    <div style="margin-top:28px;padding:20px 24px;background:linear-gradient(135deg,var(--p50),var(--teal-light));border-radius:var(--r);border:1px solid #d7c9f5;">
+      <div style="font-family:var(--font-d);font-size:13px;font-weight:700;color:var(--p900);margin-bottom:6px;">Renaix · App Android</div>
+      <div style="font-size:12px;color:var(--ink3);line-height:1.6;">
+        Versión 1.0.0 · Marzo 2026<br>
+        Desarrollado por <strong>Javier Herraiz Calatayud</strong> y <strong>Alejandro Sánchez Serrano</strong><br>
+        Proyecto Intermodular DAM 2025–2026
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span class="page-footer-left">Renaix · Manual App Android · v1.0.0</span>
+    <span class="page-footer-right">Pág. 15</span>
+  </div>
+</div>
+</div>
+
+</body>
+</html>

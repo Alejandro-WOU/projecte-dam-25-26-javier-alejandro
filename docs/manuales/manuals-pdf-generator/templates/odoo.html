@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Manual Empleados — Renaix Odoo Web</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET ─────────────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+
+/* ─── TOKENS ─────────────────────────────────────────────────────── */
+:root{
+  --p950:#0d001a; --p900:#4A148C; --p800:#5e1aa3; --p700:#7B1FA2;
+  --p500:#9C27B0; --p300:#CE93D8; --p100:#F3E5F7; --p50:#FAF5FF;
+  --teal:#0d47a1; --teal2:#1976D2; --teal-light:#e3f2fd;
+  --ink:#1C1B1F; --ink2:#49454F; --ink3:#79747E; --surface:#fff;
+  --r:12px;
+  --font-d:'Poppins',sans-serif;
+  --font-b:'Inter',sans-serif;
+  --shadow-card:0 1px 2px rgba(74,20,140,.06),0 4px 16px rgba(74,20,140,.10),0 8px 32px rgba(74,20,140,.06);
+  --shadow-sm:0 1px 3px rgba(74,20,140,.08),0 2px 8px rgba(74,20,140,.08);
+}
+
+/* ─── PAGE ───────────────────────────────────────────────────────── */
+@page{size:A4;margin:0;}
+body{font-family:var(--font-b);background:#e8e8e8;}
+.page{
+  width:210mm; min-height:297mm;
+  margin:0 auto;
+  background:var(--surface);
+  position:relative; overflow:hidden;
+  page-break-after:always;
+}
+.page:last-child{page-break-after:avoid;}
+@media print{
+  body{background:#fff;}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
+  .page{page-break-after:always; margin:0;}
+  .page:last-child{page-break-after:avoid;}
+  .no-break{page-break-inside:avoid;}
+}
+
+/* ─── COVER ──────────────────────────────────────────────────────── */
+.cover{
+  min-height:297mm;
+  background:linear-gradient(145deg,#0d001a 0%,#1a0035 25%,#4A148C 58%,#0d47a1 100%);
+  display:flex; flex-direction:column;
+  position:relative; overflow:hidden; color:#fff;
+}
+.cover::before{
+  content:'';position:absolute;
+  top:-120px;right:-120px;
+  width:480px;height:480px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(25,118,210,.22) 0%,transparent 70%);
+}
+.cover::after{
+  content:'';position:absolute;
+  bottom:-80px;left:-80px;
+  width:320px;height:320px;
+  background:rgba(255,255,255,.04);
+  clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+}
+.cover-dots{
+  position:absolute;inset:0;
+  background-image:radial-gradient(rgba(255,255,255,.10) 1.5px,transparent 1.5px);
+  background-size:26px 26px;
+  pointer-events:none;
+}
+/* Browser deco shape */
+.cover-browser{
+  position:absolute;top:-30px;right:-40px;
+  width:200px;height:145px;
+  border:4px solid rgba(255,255,255,.08);
+  border-radius:14px;
+  background:rgba(255,255,255,.03);
+  transform:rotate(10deg);
+}
+.cover-browser-bar{
+  height:28px;background:rgba(255,255,255,.06);
+  border-radius:10px 10px 0 0;
+  display:flex;align-items:center;padding-left:10px;gap:6px;
+}
+.cover-browser-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.15);}
+.cover-stripe{
+  position:absolute;top:0;left:0;
+  width:5px;height:100%;
+  background:linear-gradient(180deg,#1976D2,#7B1FA2,#4A148C);
+}
+.cover-diag{
+  position:absolute;top:0;right:80px;
+  width:1px;height:100%;
+  background:linear-gradient(180deg,transparent,rgba(25,118,210,.25),transparent);
+  transform:rotate(8deg) translateX(60px);
+}
+.cover-top{
+  padding:40px 48px 0;
+  display:flex;justify-content:space-between;align-items:flex-start;
+  position:relative;z-index:2;
+}
+.cover-pill{
+  background:rgba(255,255,255,.12);backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.18);border-radius:99px;
+  padding:6px 16px;font-family:var(--font-d);
+  font-size:11px;font-weight:600;letter-spacing:.6px;
+  color:rgba(255,255,255,.90);text-transform:uppercase;
+}
+.cover-badge-odoo{
+  background:linear-gradient(135deg,#0d47a1,#1976D2);border-radius:99px;
+  padding:6px 16px;font-family:var(--font-d);
+  font-size:10px;font-weight:700;letter-spacing:.5px;color:#fff;
+  display:flex;align-items:center;gap:6px;
+}
+.cover-body{
+  flex:1;padding:50px 48px 0;position:relative;z-index:2;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.cover-label{
+  font-family:var(--font-d);font-size:11px;font-weight:600;letter-spacing:2px;
+  color:rgba(206,147,216,.85);text-transform:uppercase;margin-bottom:16px;
+}
+.cover-title{
+  font-family:var(--font-d);font-size:48px;line-height:1.05;font-weight:800;
+  color:#fff;margin-bottom:12px;
+}
+.cover-title span{
+  background:linear-gradient(90deg,#1976D2,#CE93D8);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.cover-subtitle{
+  font-family:var(--font-d);font-size:22px;font-weight:500;
+  color:rgba(255,255,255,.72);margin-bottom:40px;line-height:1.3;
+}
+.cover-divider{
+  width:64px;height:4px;
+  background:linear-gradient(90deg,#1976D2,#CE93D8);
+  border-radius:2px;margin-bottom:40px;
+}
+.cover-meta{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:12px;
+  max-width:420px;margin-bottom:56px;
+}
+.meta-card{
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  border-radius:10px;padding:14px 18px;
+}
+.meta-label{
+  font-size:9px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;
+  color:rgba(206,147,216,.7);margin-bottom:4px;
+}
+.meta-value{font-family:var(--font-d);font-size:13px;font-weight:600;color:#fff;}
+.cover-nav-preview{display:flex;gap:8px;margin-bottom:32px;}
+.nav-tab{
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);
+  border-radius:8px;padding:8px 14px;
+  font-family:var(--font-d);font-size:10px;font-weight:600;
+  color:rgba(255,255,255,.70);display:flex;align-items:center;gap:5px;
+}
+.nav-tab.active{
+  background:rgba(13,71,161,.28);border-color:rgba(25,118,210,.55);color:#42A5F5;
+}
+.cover-footer{
+  padding:0 48px 36px;position:relative;z-index:2;
+  display:flex;align-items:center;gap:20px;
+}
+.cover-logo{
+  font-family:var(--font-d);font-size:26px;font-weight:800;
+  background:linear-gradient(90deg,#CE93D8,#1976D2);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.cover-logo-sub{font-size:10px;color:rgba(255,255,255,.45);letter-spacing:.5px;}
+
+/* ─── CONTENT PAGES ──────────────────────────────────────────────── */
+.content-page{min-height:297mm;display:flex;flex-direction:column;position:relative;}
+.page-sidebar{
+  position:absolute;top:0;left:0;width:6px;height:100%;
+  background:linear-gradient(180deg,var(--teal),var(--p700));
+}
+.page-header{
+  padding:28px 40px 20px 52px;
+  display:flex;justify-content:space-between;align-items:center;
+  border-bottom:1px solid #f0e8f8;
+}
+.page-header-brand{
+  font-family:var(--font-d);font-size:16px;font-weight:800;
+  background:linear-gradient(90deg,var(--p900),var(--teal));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.page-header-section{
+  font-size:11px;font-weight:500;color:var(--ink3);
+  letter-spacing:.5px;text-transform:uppercase;
+}
+.page-body{padding:24px 40px 32px 52px;flex:1;}
+.page-footer{
+  padding:14px 40px 14px 52px;border-top:1px solid #f0e8f8;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.page-footer-left{font-size:10px;color:var(--ink3);}
+.page-footer-right{
+  font-size:10px;font-weight:600;color:var(--p700);
+  background:var(--p100);padding:3px 10px;border-radius:99px;
+}
+
+/* ─── SECTION HEADER ─────────────────────────────────────────────── */
+.section-header{
+  background:linear-gradient(135deg,var(--p900) 0%,var(--p700) 100%);
+  border-radius:var(--r);padding:22px 28px;margin-bottom:24px;
+  display:flex;align-items:center;gap:16px;
+  position:relative;overflow:hidden;
+}
+.section-header::before{
+  content:attr(data-num);
+  position:absolute;right:16px;top:50%;transform:translateY(-50%);
+  font-family:var(--font-d);font-size:72px;font-weight:900;
+  color:rgba(255,255,255,.08);line-height:1;pointer-events:none;
+}
+.section-icon{
+  width:44px;height:44px;border-radius:12px;
+  background:rgba(255,255,255,.15);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.section-icon svg{stroke:#fff;fill:none;}
+.section-title{font-family:var(--font-d);font-size:20px;font-weight:700;color:#fff;line-height:1.2;}
+.section-desc{font-size:12px;color:rgba(255,255,255,.70);margin-top:2px;font-weight:400;}
+
+/* ─── SUBSECTION ─────────────────────────────────────────────────── */
+.sub-title{
+  font-family:var(--font-d);font-size:14px;font-weight:700;
+  color:var(--p900);margin:20px 0 8px;
+  display:flex;align-items:center;gap:8px;
+}
+.sub-title::before{
+  content:'';width:3px;height:16px;border-radius:2px;
+  background:linear-gradient(180deg,var(--teal),var(--p700));flex-shrink:0;
+}
+
+/* ─── STEPS ──────────────────────────────────────────────────────── */
+.steps{display:flex;flex-direction:column;gap:0;position:relative;padding-left:28px;}
+.steps::before{
+  content:'';position:absolute;left:11px;top:12px;
+  width:2px;bottom:12px;
+  background:linear-gradient(180deg,var(--teal),var(--p300));border-radius:1px;
+}
+.step{display:flex;gap:16px;align-items:flex-start;padding:6px 0;}
+.step-dot{
+  width:24px;height:24px;border-radius:50%;
+  background:linear-gradient(135deg,var(--teal),var(--p700));
+  color:#fff;font-family:var(--font-d);font-size:11px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;margin-left:-28px;
+  box-shadow:0 2px 8px rgba(74,20,140,.30);position:relative;z-index:1;
+}
+.step-content{padding-top:3px;font-size:13px;color:var(--ink2);line-height:1.55;}
+.step-content strong{color:var(--ink);font-weight:600;}
+
+/* ─── CARDS ──────────────────────────────────────────────────────── */
+.card{
+  background:var(--surface);border:1px solid #ede7f6;border-radius:var(--r);
+  padding:18px 20px;margin-bottom:12px;box-shadow:var(--shadow-card);
+}
+.card-title{font-family:var(--font-d);font-size:13px;font-weight:700;color:var(--p900);margin-bottom:6px;}
+.card p{font-size:12.5px;color:var(--ink2);line-height:1.55;}
+.card ul{padding-left:18px;font-size:12.5px;color:var(--ink2);line-height:1.7;}
+
+/* ─── CALLOUTS ───────────────────────────────────────────────────── */
+.callout{
+  border-radius:10px;padding:14px 18px;margin:14px 0;
+  display:flex;align-items:flex-start;gap:12px;
+  font-size:12.5px;line-height:1.55;
+}
+.callout-icon{width:20px;height:20px;flex-shrink:0;margin-top:1px;}
+.callout.info{background:#e8f4fd;border-left:4px solid #1976D2;}
+.callout.info .callout-icon{color:#1976D2;}
+.callout.warn{background:#fff8e1;border-left:4px solid #F57F17;}
+.callout.warn .callout-icon{color:#F57F17;}
+.callout.ok{background:#e8f5e9;border-left:4px solid #2e7d32;}
+.callout.ok .callout-icon{color:#2e7d32;}
+.callout.tip{background:var(--p100);border-left:4px solid var(--p700);}
+.callout.tip .callout-icon{color:var(--p700);}
+.callout p strong{font-weight:700;color:var(--ink);}
+.callout p{color:var(--ink2);}
+
+/* ─── TABLES ─────────────────────────────────────────────────────── */
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:12.5px;}
+thead tr{background:linear-gradient(135deg,var(--p900),var(--p700));}
+thead th{color:#fff;padding:10px 14px;text-align:left;
+  font-family:var(--font-d);font-size:11px;font-weight:600;letter-spacing:.4px;}
+tbody tr:nth-child(odd){background:var(--p50);}
+tbody tr:nth-child(even){background:#fafafa;}
+tbody td{padding:9px 14px;color:var(--ink2);border-bottom:1px solid #f0e8f8;}
+tbody td:first-child{font-weight:600;color:var(--ink);}
+
+/* ─── TOC ────────────────────────────────────────────────────────── */
+.toc-page{
+  min-height:297mm;
+  background:linear-gradient(160deg,var(--p50) 0%,#dceefb 100%);
+  padding:0;display:flex;flex-direction:column;
+}
+.toc-header{
+  background:linear-gradient(135deg,var(--p900),var(--teal));
+  padding:40px 48px 32px 52px;position:relative;overflow:hidden;
+}
+.toc-header::after{
+  content:'';position:absolute;bottom:-24px;right:-24px;
+  width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.06);
+}
+.toc-header-label{
+  font-size:10px;font-weight:700;letter-spacing:2px;
+  color:rgba(206,147,216,.80);text-transform:uppercase;margin-bottom:8px;
+}
+.toc-header-title{font-family:var(--font-d);font-size:32px;font-weight:800;color:#fff;}
+.toc-header-sub{font-size:13px;color:rgba(255,255,255,.65);margin-top:4px;}
+.toc-body{padding:32px 48px 32px 52px;flex:1;}
+.toc-item{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 16px;border-radius:10px;margin-bottom:6px;
+  background:#fff;border:1px solid #ede7f6;box-shadow:var(--shadow-sm);
+  text-decoration:none;color:inherit;
+}
+.toc-num{
+  width:28px;height:28px;border-radius:8px;
+  background:linear-gradient(135deg,var(--teal),var(--p700));
+  color:#fff;font-family:var(--font-d);font-size:12px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.toc-text{font-family:var(--font-d);font-size:13px;font-weight:600;color:var(--ink);flex:1;}
+.toc-dots{flex:1;border-bottom:2px dotted #d7c9f5;margin:0 8px;}
+.toc-page-num{
+  font-family:var(--font-d);font-size:11px;font-weight:700;
+  color:var(--p700);background:var(--p100);padding:2px 8px;border-radius:99px;
+}
+
+/* ─── BADGES + FLOW ──────────────────────────────────────────────── */
+.badge{
+  display:inline-block;padding:2px 10px;border-radius:99px;
+  font-size:10.5px;font-weight:700;font-family:var(--font-d);letter-spacing:.3px;
+}
+.b-draft   {background:#eff6ff;color:#1d4ed8;}
+.b-active  {background:#e8f5e9;color:#2e7d32;}
+.b-reserved{background:#fff8e1;color:#f57f17;}
+.b-sold    {background:#fce4ec;color:#c62828;}
+.b-pending {background:#fff8e1;color:#f57f17;}
+.b-review  {background:#e3f2fd;color:#1565c0;}
+.b-resolved{background:#e8f5e9;color:#2e7d32;}
+.b-rejected{background:#fce4ec;color:#c62828;}
+.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:12px 0;}
+.flow-arrow{color:var(--p500);font-weight:700;font-size:14px;}
+
+/* ─── MENU TREE ──────────────────────────────────────────────────── */
+.tree{
+  background:linear-gradient(135deg,#0d001a,#1e0042);
+  border-radius:var(--r);padding:16px 20px;
+  font-family:'Courier New',monospace;font-size:11.5px;line-height:2;color:#E9D5FF;
+}
+.tree .root{color:#CE93D8;font-weight:700;}
+.tree .leaf{color:#fff;}
+
+/* ─── FAQ ────────────────────────────────────────────────────────── */
+.faq-card{
+  background:#fff;border:1px solid #ede7f6;border-radius:var(--r);
+  padding:16px 20px;margin-bottom:10px;box-shadow:var(--shadow-sm);
+}
+.faq-q{
+  font-family:var(--font-d);font-size:13px;font-weight:700;
+  color:var(--p900);margin-bottom:8px;
+  display:flex;align-items:flex-start;gap:8px;
+}
+.faq-q-icon{
+  width:20px;height:20px;border-radius:50%;
+  background:linear-gradient(135deg,var(--teal),var(--p700));
+  color:#fff;font-family:var(--font-d);font-size:10px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;
+}
+.faq-a{font-size:12.5px;color:var(--ink2);line-height:1.55;padding-left:28px;}
+
+/* ─── GLOSSARY ───────────────────────────────────────────────────── */
+.gloss-item{display:flex;gap:14px;padding:10px 0;border-bottom:1px solid #f0e8f8;}
+.gloss-term{font-family:var(--font-d);font-size:12.5px;font-weight:700;color:var(--p900);min-width:130px;flex-shrink:0;}
+.gloss-def{font-size:12.5px;color:var(--ink2);line-height:1.55;}
+
+/* ─── GRID + INLINE CODE + TEXT ─────────────────────────────────── */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0;}
+code{background:var(--p100);color:var(--p900);border-radius:4px;padding:1px 6px;font-size:11.5px;font-family:'Courier New',monospace;font-weight:600;}
+p{font-size:13px;color:var(--ink2);line-height:1.6;margin-bottom:8px;}
+ul,ol{padding-left:20px;margin:6px 0;}
+li{font-size:13px;color:var(--ink2);line-height:1.6;margin-bottom:3px;}
+li strong{color:var(--ink);}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     PORTADA
+══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="cover">
+<div class="cover">
+  <div class="cover-dots"></div>
+  <div class="cover-stripe"></div>
+  <div class="cover-diag"></div>
+  <div class="cover-browser">
+    <div class="cover-browser-bar">
+      <div class="cover-browser-dot"></div>
+      <div class="cover-browser-dot"></div>
+      <div class="cover-browser-dot"></div>
+    </div>
+  </div>
+
+  <div class="cover-top">
+    <span class="cover-pill">Renaix · v1.0.0</span>
+    <span class="cover-badge-odoo">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg>
+      Odoo 16 · Docker
+    </span>
+  </div>
+
+  <div class="cover-body">
+    <div class="cover-label">Manual de Usuario</div>
+    <div class="cover-title">Odoo <span>Web</span><br>Empleados</div>
+    <div class="cover-subtitle">Gestión del Marketplace Renaix</div>
+    <div class="cover-divider"></div>
+
+    <div class="cover-nav-preview">
+      <div class="nav-tab active">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+        Productos
+      </div>
+      <div class="nav-tab">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+        Denuncias
+      </div>
+      <div class="nav-tab">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Estadísticas
+      </div>
+      <div class="nav-tab">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        Usuarios
+      </div>
+      <div class="nav-tab">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93A10 10 0 104.93 19.07 10 10 0 0019.07 4.93z"/></svg>
+        Config.
+      </div>
+    </div>
+
+    <div class="cover-meta">
+      <div class="meta-card"><div class="meta-label">Proyecto</div><div class="meta-value">Renaix</div></div>
+      <div class="meta-card"><div class="meta-label">Versión</div><div class="meta-value">1.0.0</div></div>
+      <div class="meta-card"><div class="meta-label">Fecha</div><div class="meta-value">Marzo 2026</div></div>
+      <div class="meta-card"><div class="meta-label">Autores</div><div class="meta-value">J. Herraiz · A. Sánchez</div></div>
+    </div>
+  </div>
+
+  <div class="cover-footer">
+    <img src="img/logo_renaix.png" style="width:48px;height:48px;object-fit:contain;border-radius:10px;margin-right:4px;" alt="Logo Renaix" />
+    <div>
+      <div class="cover-logo">Renaix</div>
+      <div class="cover-logo-sub">Proyecto Intermodular DAM 2025–2026</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     ÍNDICE
+══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="toc">
+<div class="toc-page">
+  <div class="toc-header">
+    <div class="toc-header-label">Manual Empleados Odoo Web</div>
+    <div class="toc-header-title">Índice de Contenidos</div>
+    <div class="toc-header-sub">Guía completa para empleados y moderadores del marketplace</div>
+  </div>
+  <div class="toc-body">
+    <a class="toc-item" href="#s1"><div class="toc-num">1</div><div class="toc-text">Requisitos del sistema</div><div class="toc-dots"></div><div class="toc-page-num">3</div></a>
+    <a class="toc-item" href="#s2"><div class="toc-num">2</div><div class="toc-text">Acceso a la aplicación</div><div class="toc-dots"></div><div class="toc-page-num">4</div></a>
+    <a class="toc-item" href="#s3"><div class="toc-num">3</div><div class="toc-text">Navegación principal</div><div class="toc-dots"></div><div class="toc-page-num">5</div></a>
+    <a class="toc-item" href="#s4"><div class="toc-num">4</div><div class="toc-text">Gestión de productos</div><div class="toc-dots"></div><div class="toc-page-num">6</div></a>
+    <a class="toc-item" href="#s5"><div class="toc-num">5</div><div class="toc-text">Subida y gestión de imágenes</div><div class="toc-dots"></div><div class="toc-page-num">7</div></a>
+    <a class="toc-item" href="#s6"><div class="toc-num">6</div><div class="toc-text">Gestión de etiquetas</div><div class="toc-dots"></div><div class="toc-page-num">8</div></a>
+    <a class="toc-item" href="#s7"><div class="toc-num">7</div><div class="toc-text">Denuncias e incidencias</div><div class="toc-dots"></div><div class="toc-page-num">9</div></a>
+    <a class="toc-item" href="#s8"><div class="toc-num">8</div><div class="toc-text">Estadísticas (gráficos y listados)</div><div class="toc-dots"></div><div class="toc-page-num">10</div></a>
+    <a class="toc-item" href="#s9"><div class="toc-num">9</div><div class="toc-text">Gestión de usuarios</div><div class="toc-dots"></div><div class="toc-page-num">11</div></a>
+    <a class="toc-item" href="#s10"><div class="toc-num">10</div><div class="toc-text">Errores habituales y soluciones</div><div class="toc-dots"></div><div class="toc-page-num">12</div></a>
+    <a class="toc-item" href="#s11"><div class="toc-num">11</div><div class="toc-text">Glosario</div><div class="toc-dots"></div><div class="toc-page-num">13</div></a>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     S1 — REQUISITOS DEL SISTEMA
+══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="s1">
+<div class="content-page">
+  <div class="page-sidebar"></div>
+  <div class="page-header">
+    <span class="page-header-brand">Renaix Odoo Web</span>
+    <span class="page-header-section">Requisitos del sistema</span>
+  </div>
+  <div class="page-body">
+
+    <div class="section-header" data-num="1">
+      <div class="section-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/>
+        </svg>
+      </div>
+      <div>
+        <div class="section-title">Requisitos del sistema</div>
+        <div class="section-desc">Configuración necesaria para acceder a Odoo Web</div>
+      </div>
+    </div>
+
+    <div class="sub-title">Requisitos técnicos</div>
+    <table>
+      <thead><tr><th>Requisito</th><th>Detalle</th></tr></thead>
+      <tbody>
+        <tr><td>Navegador</td><td>Google Chrome 110+, Firefox 110+, Edge 110+</td></tr>
+        <tr><td>Conexión</td><td>Red local o acceso al servidor Docker</td></tr>
+        <tr><td>Resolución</td><td>Mínimo 1280 × 768 px</td></tr>
+        <tr><td>URL</td><td><code>http://localhost:8069</code></td></tr>
+      </tbody>
+    </table>
+
+    <div class="sub-title">Credenciales de acceso</div>
+    <table>
+      <thead><tr><th>Rol</th><th>Usuario</th><th>Contraseña</th></tr></thead>
+      <tbody>
+        <tr><td>Administrador</td><td><code>admin</code></td><td><code>admin</code></td></tr>
+        <tr><td>Moderador</td><td><code>moderador@renaix.com</code></td><td><code>renaix2026</code></td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout warn">
+      <svg class="callout-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F57F17" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <p>Credenciales <strong>solo válidas en el entorno de demostración</strong>. No utilizar en producción.</p>
+    </div>
+
+    <div class="callout info">
+      <svg class="callout-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1976D2" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p>Para iniciar el servidor: ejecuta <code>docker-compose up -d</code> dentro de la carpeta <code>erp/docker/</code> y espera 30–60 segundos antes de acceder.</p>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span class="page-footer-left">Renaix · Manual Empleados Odoo · v1.0.0</span>
+    <span class="page-footer-right">Pág. 3</span>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     S2 — ACCESO A LA APLICACIÓN
+══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="s2">
+<div class="content-page">
+  <div class="page-sidebar"></div>
+  <div class="page-header">
+    <span class="page-header-brand">Renaix Odoo Web</span>
+    <span class="page-header-section">Acceso a la aplicación</span>
+  </div>
+  <div class="page-body">
+
+    <div class="section-header" data-num="2">
+      <div class="section-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
+        </svg>
+      </div>
+      <div>
+        <div class="section-title">Acceso a la aplicación</div>
+        <div class="section-desc">Inicio de sesión y acceso al menú principal</div>
+      </div>
+    </div>
+
+    <img src="img/odoo_01_login.png" onerror="this.style.display='none'" style="width:100%;max-height:160px;object-fit:cover;object-position:top;border-radius:12px;margin-bottom:20px;border:1px solid #EDE9FE;" />
+
+    <div class="sub-title">Pasos para iniciar sesión</div>
+    <div class="steps">
+      <div class="step"><div class="step-dot">1</div><div class="step-content">Abre el navegador y navega a <code>http://localhost:8069</code></div></div>
+      <div class="step"><div class="step-dot">2</div><div class="step-content">Introduce el <strong>usuario</strong> (email o <code>admin</code>) y la <strong>contraseña</strong></div></div>
+      <div class="step"><div class="step-dot">3</div><div class="step-content">Haz clic en <strong>"Iniciar sesión"</strong></div></div>
+      <div class="step"><div class="step-dot">4</div><div class="step-content">En el menú de aplicaciones, selecciona <strong>"Renaix"</strong> para acceder al módulo</div></div>
+    </div>
+
+    <div class="callout info">
+      <svg class="callout-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1976D2" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p>Si aparece selector de base de datos, elige <code>renaix_db</code>. Para cerrar sesión: clic en tu nombre (esquina superior derecha) → <strong>"Cerrar sesión"</strong>.</p>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span class="page-footer-left">Renaix · Manual Empleados Odoo · v1.0.0</span>
+    <span class="page-footer-right">Pág. 4</span>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     S3 — NAVEGACIÓN PRINCIPAL
+══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="s3">
+<div class="content-page">
+  <div class="page-sidebar"></div>
+  <div class="page-header">
+    <span class="page-header-brand">Renaix Odoo Web</span>
+    <span class="page-header-section">Navegación principal</span>
+  </div>
+  <div class="page-body">
+
+    <div class="section-header" data-num="3">
+      <div class="section-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </div>
+      <div>
+        <div class="section-title">Navegación principal</div>
+        <div class="section-desc">Estructura del menú y acceso a cada módulo</div>
+      </div>
+    </div>
+
+    <img src="img/odoo_02_menu.png" onerror="this.style.display='none'" style="width:100%;max-height:120px;object-fit:cover;object-position:top;border-radius:12px;margin-bottom:20px;border:1px solid #EDE9FE;" />
+
+    <div class="sub-title">Estructura del menú Renaix</div>
+    <div class="tree">
+      <span class="root">Renaix</span><br>
+      ├── <span class="leaf">Usuarios App</span><br>
+      ├── <span class="leaf">Productos</span><br>
+      ├── <span class="leaf">Compras</span><br>
+      ├── <span class="leaf">Valoraciones</span><br>
+      ├── <span class="leaf">Comentarios</span><br>
+      ├── <span class="leaf">Mensajes</span><br>
+      ├── <span class="leaf">Denuncias</span><br>
+      ├── Estadísticas &nbsp;→&nbsp; <span class="leaf">Gráficos · Listados</span><br>
+      └── Configuración &nbsp;→&nbsp; <span class="leaf">Categorías · Etiquetas</span>
+    </div>
+
+    <div class="callout tip">
+      <svg class="callout-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7B1FA2" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p>El menú es <strong>plano y directo</strong>: todos los elementos son accesibles en un solo clic desde la barra superior de navegación. Solo <strong>Estadísticas</strong> y <strong>Configuración</strong> tienen submenús desplegables.</p>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span class="page-footer-left">Renaix · Manual Empleados Odoo · v1.0.0</span>
+    <span class="page-footer-right">Pág. 5</span>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     S4 — GESTIÓN DE PRODUCTOS
+══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="s4">
+<div class="content-page">
+  <div class="page-sidebar"></div>
+  <div class="page-header">
+    <span class="page-header-brand">Renaix Odoo Web</span>
+    <span class="page-header-section">Gestión de productos</span>
+  </div>
+  <div class="page-body">
+
+    <div class="section-header" data-num="4">
+      <div class="section-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+        </svg>
+      </div>
+      <div>
+        <div class="section-title">Gestión de productos</div>
+        <div class="section-desc">Crear, editar y gestionar el ciclo de vida de productos</div>
+      </div>
+    </div>
+
+    <img src="img/odoo_03_productos.png" onerror="this.style.display='none'" style="width:100%;max-height:130px;object-fit:cover;object-position:top;border-radius:12px;margin-bottom:16px;border:1px solid #EDE9FE;" />
+
+    <div class="sub-title">Ciclo de vida del producto</div>
+    <div class="flow">
+      <span class="badge b-draft">Borrador</span><span class="flow-arrow">→</span>
+      <span class="badge b-active">Disponible</span><span class="flow-arrow">→</span>
+      <span class="badge b-reserved">Reservado</span><span class="flow-arrow">→</span>
+      <span class="badge b-sold">Vendido</span>
+    </div>
+
+    <div class="sub-title">Crear nuevo producto</div>
+    <div class="steps">
+      <div class="step"><div class="step-dot">1</div><div class="step-content">Ve a <strong>Productos</strong> y haz clic en el botón <strong>"Nuevo"</strong></div></div>
+      <div class="step"><div class="step-dot">2</div><div class="step-content">Rellena los campos obligatorios: <strong>Nombre</strong>, <strong>Precio</strong>, <strong>Estado del Producto</strong>, <strong>Propietario</strong></div></div>
+      <div class="step"><div class="step-dot">3</div><div class="step-content">Opcionalmente: Descripción, Antigüedad, Ubicación, Categoría, Etiquetas</div></div>
+      <div class="step"><div class="step-dot">4</div><div class="step-content">Haz clic en <strong>"Guardar"</strong> (icono nube) o pulsa <code>Ctrl+S</code></div></div>
+    </div>
+
+    <div class="callout warn">
+      <svg class="callout-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F57F17" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <p>Solo los <strong>administradores</strong> pueden eliminar permanentemente. Como alternativa, cambia el estado a <span class="badge b-rejected">Eliminado</span> para ocultarlo sin borrarlo.</p>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span class="page-footer-left">Renaix · Manual Empleados Odoo · v1.0.0</span>
+    <span class="page-footer-right">Pág. 6</span>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     S5 — SUBIDA Y GESTIÓN DE IMÁGENES
+══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="s5">
+<div class="content-page">
+  <div class="page-sidebar"></div>
+  <div class="page-header">
+    <span class="page-header-brand">Renaix Odoo Web</span>
+    <span class="page-header-section">Subida y gestión de imágenes</span>
+  </div>
+  <div class="page-body">
+
+    <div class="section-header" data-num="5">
+      <div class="section-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+        </svg>
+      </div>
+      <div>
+        <div class="section-title">Subida y gestión de imágenes</div>
+        <div class="section-desc">Asociar y gestionar imágenes de los productos</div>
+      </div>
+    </div>
+
+    <img src="img/odoo_04_imagenes.png" onerror="this.style.display='none'" style="width:100%;max-height:150px;object-fit:cover;object-position:top;border-radius:12px;margin-bottom:20px;border:1px solid #EDE9FE;" />
+
+    <div class="sub-title">Añadir imágenes a un producto</div>
+    <div class="steps">
+      <div class="step"><div class="step-dot">1</div><div class="step-content">Abre el producto y localiza la pestaña o sección <strong>"Imágenes"</strong></div></div>
+      <div class="step"><div class="step-dot">2</div><div class="step-content">Haz clic en <strong>"Agregar una línea"</strong> o en el icono de cámara</div></div>
+      <div class="step"><div class="step-dot">3</div><div class="step-content">Selecciona un archivo desde tu equipo (<strong>JPG / PNG</strong>, máximo <strong>5 MB</strong>)</div></div>
+      <div class="step"><div class="step-dot">4</div><div class="step-content">Activa <strong>"Es Principal"</strong> en la imagen que quieres como portada del producto</div></div>
+      <div class="step"><div class="step-dot">5</div><div class="step-content">Haz clic en <strong>"Guardar"</strong> para confirmar los cambios</div></div>
+    </div>
+
+    <div class="callout ok">
+      <svg class="callout-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2e7d32" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <p>Para gestionar <strong>todas las imágenes del sistema</strong> en un solo lugar, ve a <strong>Productos → Imágenes de Productos</strong>. Desde ahí puedes filtrar por producto y eliminar imágenes obsoletas.</p>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span class="page-footer-left">Renaix · Manual Empleados Odoo · v1.0.0</span>
+    <span class="page-footer-right">Pág. 7</span>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     S6 — GESTIÓN DE ETIQUETAS
+══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="s6">
+<div class="content-page">
+  <div class="page-sidebar"></div>
+  <div class="page-header">
+    <span class="page-header-brand">Renaix Odoo Web</span>
+    <span class="page-header-section">Gestión de etiquetas</span>
+  </div>
+  <div class="page-body">
+
+    <div class="section-header" data-num="6">
+      <div class="section-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/>
+        </svg>
+      </div>
+      <div>
+        <div class="section-title">Gestión de etiquetas</div>
+        <div class="section-desc">Crear y asignar etiquetas para clasificar productos</div>
+      </div>
+    </div>
+
+    <img src="img/odoo_05_etiquetas.png" onerror="this.style.display='none'" style="width:100%;max-height:150px;object-fit:cover;object-position:top;border-radius:12px;margin-bottom:20px;border:1px solid #EDE9FE;" />
+
+    <div class="sub-title">Crear una nueva etiqueta</div>
+    <div class="steps">
+      <div class="step"><div class="step-dot">1</div><div class="step-content">Ve a <strong>Configuración → Etiquetas</strong> y haz clic en <strong>"Nuevo"</strong></div></div>
+      <div class="step"><div class="step-dot">2</div><div class="step-content">Introduce el <strong>Nombre</strong> — se normaliza automáticamente a minúsculas sin espacios</div></div>
+      <div class="step"><div class="step-dot">3</div><div class="step-content">Selecciona un <strong>Color</strong> identificativo (opcional) y haz clic en <strong>"Guardar"</strong></div></div>
+    </div>
+
+    <div class="sub-title">Asignar etiquetas a un producto</div>
+    <div class="steps">
+      <div class="step"><div class="step-dot">1</div><div class="step-content">Abre el producto desde <strong>Productos</strong></div></div>
+      <div class="step"><div class="step-dot">2</div><div class="step-content">En el campo <strong>"Etiquetas"</strong>, escribe o selecciona las etiquetas del desplegable</div></div>
+      <div class="step"><div class="step-dot">3</div><div class="step-content">Guarda el producto (<code>Ctrl+S</code>)</div></div>
+    </div>
+
+    <div class="callout info">
+      <svg class="callout-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1976D2" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p>Reglas de las etiquetas: mínimo <strong>2 caracteres</strong> · máximo <strong>30</strong> · sin duplicados (insensible a mayúsculas) · máximo <strong>5 etiquetas por producto</strong>.</p>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span class="page-footer-left">Renaix · Manual Empleados Odoo · v1.0.0</span>
+    <span class="page-footer-right">Pág. 8</span>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     S7 — DENUNCIAS E INCIDENCIAS
+══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="s7">
+<div class="content-page">
+  <div class="page-sidebar"></div>
+  <div class="page-header">
+    <span class="page-header-brand">Renaix Odoo Web</span>
+    <span class="page-header-section">Denuncias e incidencias</span>
+  </div>
+  <div class="page-body">
+
+    <div class="section-header" data-num="7">
+      <div class="section-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/>
+        </svg>
+      </div>
+      <div>
+        <div class="section-title">Denuncias e incidencias</div>
+        <div class="section-desc">Revisar y gestionar las denuncias enviadas desde la app</div>
+      </div>
+    </div>
+
+    <img src="img/odoo_06_denuncias.png" onerror="this.style.display='none'" style="width:100%;max-height:120px;object-fit:cover;object-position:top;border-radius:12px;margin-bottom:14px;border:1px solid #EDE9FE;" />
+
+    <div class="sub-title">Estados de una denuncia</div>
+    <div class="flow">
+      <span class="badge b-pending">Pendiente</span><span class="flow-arrow">→</span>
+      <span class="badge b-review">En Revisión</span><span class="flow-arrow">→</span>
+      <span class="badge b-resolved">Resuelta</span>
+      <span class="flow-arrow">/</span>
+      <span class="badge b-rejected">Rechazada</span>
+    </div>
+
+    <img src="img/odoo_07_denuncia_detalle.png" onerror="this.style.display='none'" style="width:100%;max-height:110px;object-fit:cover;object-position:top;border-radius:12px;margin-bottom:14px;border:1px solid #EDE9FE;" />
+
+    <div class="sub-title">Gestionar una denuncia</div>
+    <div class="steps">
+      <div class="step"><div class="step-dot">1</div><div class="step-content">Accede a <strong>Denuncias</strong> y abre la denuncia pendiente</div></div>
+      <div class="step"><div class="step-dot">2</div><div class="step-content">Haz clic en <strong>"Asignar a mí"</strong> — el estado cambia a <span class="badge b-review">En Revisión</span></div></div>
+      <div class="step"><div class="step-dot">3</div><div class="step-content">Revisa el elemento denunciado desde el enlace en el formulario y rellena el campo <strong>"Resolución"</strong></div></div>
+      <div class="step"><div class="step-dot">4</div><div class="step-content">Haz clic en <strong>"Resolver"</strong> o <strong>"Rechazar"</strong> según proceda</div></div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span class="page-footer-left">Renaix · Manual Empleados Odoo · v1.0.0</span>
+    <span class="page-footer-right">Pág. 9</span>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     S8 — ESTADÍSTICAS
+══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="s8">
+<div class="content-page">
+  <div class="page-sidebar"></div>
+  <div class="page-header">
+    <span class="page-header-brand">Renaix Odoo Web</span>
+    <span class="page-header-section">Estadísticas</span>
+  </div>
+  <div class="page-body">
+
+    <div class="section-header" data-num="8">
+      <div class="section-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+        </svg>
+      </div>
+      <div>
+        <div class="section-title">Estadísticas</div>
+        <div class="section-desc">Gráficos y listados del estado del marketplace</div>
+      </div>
+    </div>
+
+    <img src="img/odoo_08_estadisticas.png" onerror="this.style.display='none'" style="width:100%;max-height:120px;object-fit:cover;object-position:top;border-radius:12px;margin-bottom:16px;border:1px solid #EDE9FE;" />
+
+    <div class="sub-title">Estadísticas → Gráficos</div>
+    <div class="grid2">
+      <div class="card"><div class="card-title">Productos por Categoría</div><p>Gráfico de barras agrupado por categoría. Muestra qué categorías concentran más productos activos.</p></div>
+      <div class="card"><div class="card-title">Denuncias por Tipo</div><p>Gráfico de sectores con la distribución por tipo: spam, fraude/estafa, violencia, contenido inapropiado, etc.</p></div>
+      <div class="card"><div class="card-title">Denuncias por Estado</div><p>Gráfico de barras con los estados actuales: Pendiente, En Revisión, Resuelta, Rechazada.</p></div>
+      <div class="card"><div class="card-title">Valoraciones por Usuario</div><p>Gráfico de barras con la puntuación promedio recibida por cada usuario del marketplace.</p></div>
+    </div>
+
+    <div class="sub-title">Estadísticas → Listados</div>
+    <div class="grid2">
+      <div class="card"><div class="card-title">Usuarios Más Activos</div><p>Lista ordenada por productos en venta, vendidos y comentarios. Incluye valoración, fecha de registro y estado de cuenta.</p></div>
+      <div class="card"><div class="card-title">Productos Más Comentados</div><p>Lista ordenada por comentarios y denuncias. Resaltado en rojo si supera 3 denuncias, en naranja si tiene alguna.</p></div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span class="page-footer-left">Renaix · Manual Empleados Odoo · v1.0.0</span>
+    <span class="page-footer-right">Pág. 10</span>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     S9 — GESTIÓN DE USUARIOS
+══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="s9">
+<div class="content-page">
+  <div class="page-sidebar"></div>
+  <div class="page-header">
+    <span class="page-header-brand">Renaix Odoo Web</span>
+    <span class="page-header-section">Gestión de usuarios</span>
+  </div>
+  <div class="page-body">
+
+    <div class="section-header" data-num="9">
+      <div class="section-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+        </svg>
+      </div>
+      <div>
+        <div class="section-title">Gestión de usuarios</div>
+        <div class="section-desc">Consultar y administrar los usuarios registrados en la app</div>
+      </div>
+    </div>
+
+    <div class="sub-title">Acceder y gestionar usuarios</div>
+    <div class="steps">
+      <div class="step"><div class="step-dot">1</div><div class="step-content">Ve a <strong>Usuarios App</strong> para ver la lista de todos los usuarios registrados</div></div>
+      <div class="step"><div class="step-dot">2</div><div class="step-content">Haz clic en un usuario para ver su perfil completo, estadísticas y productos asociados</div></div>
+      <div class="step"><div class="step-dot">3</div><div class="step-content">Para <strong>suspender una cuenta</strong>: desmarca el campo <strong>"Cuenta Activa"</strong> y guarda</div></div>
+    </div>
+
+    <div class="sub-title">Información disponible por usuario</div>
+    <table>
+      <thead><tr><th>Campo</th><th>Descripción</th></tr></thead>
+      <tbody>
+        <tr><td>Nombre / Email / Teléfono</td><td>Datos de registro del usuario desde la app</td></tr>
+        <tr><td>Valoración promedio</td><td>Media de puntuaciones recibidas como vendedor</td></tr>
+        <tr><td>Productos en venta / vendidos / comprados</td><td>Contadores de actividad en el marketplace</td></tr>
+        <tr><td>Total comentarios</td><td>Número de comentarios realizados</td></tr>
+        <tr><td>Fecha de registro</td><td>Fecha en que se creó la cuenta en la app</td></tr>
+        <tr><td>Cuenta activa</td><td>Estado de la cuenta (activa / suspendida)</td></tr>
+      </tbody>
+    </table>
+
+  </div>
+  <div class="page-footer">
+    <span class="page-footer-left">Renaix · Manual Empleados Odoo · v1.0.0</span>
+    <span class="page-footer-right">Pág. 11</span>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     S10 — ERRORES HABITUALES Y SOLUCIONES
+══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="s10">
+<div class="content-page">
+  <div class="page-sidebar"></div>
+  <div class="page-header">
+    <span class="page-header-brand">Renaix Odoo Web</span>
+    <span class="page-header-section">Errores habituales</span>
+  </div>
+  <div class="page-body">
+
+    <div class="section-header" data-num="10">
+      <div class="section-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+      </div>
+      <div>
+        <div class="section-title">Errores habituales y soluciones</div>
+        <div class="section-desc">Resolución de los problemas más frecuentes</div>
+      </div>
+    </div>
+
+    <div class="faq-card">
+      <div class="faq-q"><div class="faq-q-icon">?</div>La página no carga / Error de conexión</div>
+      <div class="faq-a">
+        <div class="steps" style="margin-top:4px;">
+          <div class="step"><div class="step-dot">1</div><div class="step-content">Ejecuta <code>docker ps</code> y verifica que el contenedor <code>odoo</code> aparece como <code>Up</code></div></div>
+          <div class="step"><div class="step-dot">2</div><div class="step-content">Si no está activo: <code>docker-compose up -d</code> en la carpeta <code>erp/docker/</code></div></div>
+          <div class="step"><div class="step-dot">3</div><div class="step-content">Espera 30–60 segundos y recarga la página</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-card">
+      <div class="faq-q"><div class="faq-q-icon">?</div>"Acceso denegado" al abrir un menú</div>
+      <div class="faq-a">
+        Tu usuario no tiene el rol adecuado. Roles disponibles:
+        <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;">
+          <span class="badge b-draft">Usuario — solo lectura</span>
+          <span class="badge b-review">Moderador — gestión de denuncias</span>
+          <span class="badge b-active">Administrador — acceso total</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-card">
+      <div class="faq-q"><div class="faq-q-icon">?</div>La imagen no se sube correctamente</div>
+      <div class="faq-a">Verifica que el archivo es <strong>JPG o PNG</strong> y no supera <strong>5 MB</strong>. Recarga la página e inténtalo de nuevo. Si persiste, comprueba que el servidor Odoo tiene espacio en disco.</div>
+    </div>
+
+    <div class="faq-card">
+      <div class="faq-q"><div class="faq-q-icon">?</div>El formulario no guarda / Error de validación</div>
+      <div class="faq-a">Lee el mensaje de error en rojo. Casos comunes: <em>"Ya existe una etiqueta con este nombre"</em> · <em>"El motivo debe tener al menos 10 caracteres"</em> · campos obligatorios vacíos.</div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span class="page-footer-left">Renaix · Manual Empleados Odoo · v1.0.0</span>
+    <span class="page-footer-right">Pág. 12</span>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     S11 — GLOSARIO
+══════════════════════════════════════════════════════════════════ -->
+<div class="page" id="s11">
+<div class="content-page">
+  <div class="page-sidebar"></div>
+  <div class="page-header">
+    <span class="page-header-brand">Renaix Odoo Web</span>
+    <span class="page-header-section">Glosario</span>
+  </div>
+  <div class="page-body">
+
+    <div class="section-header" data-num="11">
+      <div class="section-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+        </svg>
+      </div>
+      <div>
+        <div class="section-title">Glosario</div>
+        <div class="section-desc">Términos y conceptos clave del sistema</div>
+      </div>
+    </div>
+
+    <div class="gloss-item"><div class="gloss-term">Producto</div><div class="gloss-def">Artículo de segunda mano publicado por un usuario en Renaix para su venta.</div></div>
+    <div class="gloss-item"><div class="gloss-term">Etiqueta</div><div class="gloss-def">Palabra clave normalizada (#gaming, #vintage) que clasifica un producto. Máximo 5 por producto.</div></div>
+    <div class="gloss-item"><div class="gloss-term">Estado del producto</div><div class="gloss-def">Condición física: Nuevo, Como Nuevo, Buen Estado, Estado Aceptable, Para Reparar.</div></div>
+    <div class="gloss-item"><div class="gloss-term">Estado de venta</div><div class="gloss-def">Ciclo de vida: Borrador, Disponible, Reservado, Vendido, Eliminado.</div></div>
+    <div class="gloss-item"><div class="gloss-term">Denuncia</div><div class="gloss-def">Reporte de un usuario sobre producto, comentario u otro usuario que infringe las normas.</div></div>
+    <div class="gloss-item"><div class="gloss-term">Moderador</div><div class="gloss-def">Empleado con acceso para gestionar denuncias, editar productos y revisar comentarios.</div></div>
+    <div class="gloss-item"><div class="gloss-term">Administrador</div><div class="gloss-def">Empleado con acceso completo a todos los módulos y configuraciones del sistema.</div></div>
+    <div class="gloss-item"><div class="gloss-term">Chatter</div><div class="gloss-def">Panel de historial de cambios y mensajes internos en la parte inferior de cada formulario Odoo.</div></div>
+    <div class="gloss-item"><div class="gloss-term">Valoración</div><div class="gloss-def">Puntuación 1–5 estrellas que un comprador otorga a un vendedor tras una transacción.</div></div>
+    <div class="gloss-item"><div class="gloss-term">Categoría</div><div class="gloss-def">Clasificación principal del producto (Electrónica, Ropa, Deporte…). Gestionada desde Configuración.</div></div>
+    <div class="gloss-item"><div class="gloss-term">JWT</div><div class="gloss-def">JSON Web Token. Sistema de autenticación segura usado por la API REST de la app móvil.</div></div>
+
+    <div style="margin-top:auto;padding-top:20px;border-top:2px solid var(--p300);display:flex;justify-content:space-between;align-items:center;">
+      <div>
+        <div style="font-family:var(--font-d);font-weight:700;font-size:12px;color:var(--p900);">Renaix — Marketplace de Segunda Mano</div>
+        <div style="font-size:9px;color:var(--ink3);margin-top:2px;">Manual de empleados · Odoo Web · v1.0.0</div>
+      </div>
+      <div style="text-align:right;font-size:9px;color:var(--ink3);">
+        Proyecto Intermodular 2025–2026<br>IES Eduardo Primo Marqués · 2º DAM
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span class="page-footer-left">Renaix · Manual Empleados Odoo · v1.0.0</span>
+    <span class="page-footer-right">Pág. 13</span>
+  </div>
+</div>
+</div>
+
+</body>
+</html>
