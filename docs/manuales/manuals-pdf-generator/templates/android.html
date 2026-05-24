@@ -42,14 +42,14 @@ body{font-family:var(--font-b);background:#e8e8e8;}
   .page{page-break-after:always; margin:0;}
   .page:last-child{page-break-after:avoid;}
   .no-break{page-break-inside:avoid;}
+  .cover{height:297mm; min-height:unset;}
 }
 
 /* ─── COVER ──────────────────────────────────────────────────────── */
 .cover{
-  min-height:297mm;
+  height:297mm;
   background:linear-gradient(145deg,#0d001a 0%,#1a0035 25%,#4A148C 55%,#1b5e20 85%,#2e7d32 100%);
-  display:flex; flex-direction:column;
-  position:relative; overflow:hidden; color:#fff;
+  position:relative; color:#fff;
 }
 
 .cover::before{
@@ -107,9 +107,10 @@ body{font-family:var(--font-b);background:#e8e8e8;}
 }
 
 .cover-top{
+  position:absolute;top:0;left:0;right:0;
   padding:40px 48px 0;
   display:flex;justify-content:space-between;align-items:flex-start;
-  position:relative;z-index:2;
+  z-index:2;
 }
 
 .cover-pill{
@@ -135,10 +136,12 @@ body{font-family:var(--font-b);background:#e8e8e8;}
 }
 
 .cover-body{
-  flex:1;
-  padding:50px 48px 0;
-  position:relative;z-index:2;
-  display:flex;flex-direction:column;justify-content:center;
+  position:absolute;
+  top:110px;bottom:80px;left:0;right:0;
+  padding:0 48px;
+  z-index:2;
+  display:flex;flex-direction:column;
+  justify-content:center;
 }
 
 .cover-label{
@@ -213,8 +216,9 @@ body{font-family:var(--font-b);background:#e8e8e8;}
 }
 
 .cover-footer{
+  position:absolute;bottom:0;left:0;right:0;
   padding:0 48px 36px;
-  position:relative;z-index:2;
+  z-index:2;
   display:flex;align-items:center;gap:20px;
 }
 .cover-logo{
@@ -895,7 +899,7 @@ li strong{color:var(--ink);}
       <div class="step"><div class="step-dot">4</div><div class="step-content">La sesión queda guardada automáticamente en el dispositivo.</div></div>
     </div>
 
-    <img src="img/android_02_login.png" onerror="this.style.display='none'" style="width:200px;display:block;margin:12px auto;border-radius:20px;border:3px solid #d7c9f5;box-shadow:0 4px 20px rgba(74,20,140,.18);" />
+    <img src="img/android_02_login.png" onerror="this.style.display='none'" style="width:200px;height:auto;display:block;margin:12px auto;border-radius:20px;border:3px solid #d7c9f5;box-shadow:0 4px 20px rgba(74,20,140,.18);max-height:380px;" />
 
     <div class="callout tip">
       <svg class="callout-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--p700)" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -1164,7 +1168,7 @@ li strong{color:var(--ink);}
       </div>
     </div>
 
-    <img src="img/android_05_detalle.png" onerror="this.style.display='none'" style="width:200px;display:block;margin:12px auto;border-radius:20px;border:3px solid #d7c9f5;box-shadow:0 4px 20px rgba(74,20,140,.18);" />
+    <img src="img/android_05_detalle.png" onerror="this.style.display='none'" style="width:200px;height:auto;display:block;margin:12px auto;border-radius:20px;border:3px solid #d7c9f5;box-shadow:0 4px 20px rgba(74,20,140,.18);max-height:380px;" />
 
     <div class="sub-title">Comentar un producto</div>
     <div class="steps">
@@ -1239,7 +1243,7 @@ li strong{color:var(--ink);}
       </div>
     </div>
 
-    <img src="img/android_06_crear.png" onerror="this.style.display='none'" style="width:200px;display:block;margin:12px auto;border-radius:20px;border:3px solid #d7c9f5;box-shadow:0 4px 20px rgba(74,20,140,.18);" />
+    <img src="img/android_06_crear.png" onerror="this.style.display='none'" style="width:200px;height:auto;display:block;margin:12px auto;border-radius:20px;border:3px solid #d7c9f5;box-shadow:0 4px 20px rgba(74,20,140,.18);max-height:380px;" />
 
     <div class="sub-title">Añadir imágenes</div>
     <div class="steps">
@@ -1378,7 +1382,7 @@ li strong{color:var(--ink);}
       <div class="step"><div class="step-dot">5</div><div class="step-content">Toca <strong>"Denunciar"</strong>. El botón solo se activa cuando el motivo no está vacío.</div></div>
     </div>
 
-    <img src="img/android_08_denuncia.png" onerror="this.style.display='none'" style="width:200px;display:block;margin:12px auto;border-radius:20px;border:3px solid #d7c9f5;box-shadow:0 4px 20px rgba(74,20,140,.18);" />
+    <img src="img/android_08_denuncia.png" onerror="this.style.display='none'" style="width:200px;height:auto;display:block;margin:12px auto;border-radius:20px;border:3px solid #d7c9f5;box-shadow:0 4px 20px rgba(74,20,140,.18);max-height:380px;" />
 
     <div class="sub-title">Categorías de denuncia</div>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:10px 0;">
@@ -1534,7 +1538,7 @@ li strong{color:var(--ink);}
     </div>
 
     <div class="sub-title">Pantalla de Chat</div>
-    <img src="img/android_10_chats.png" onerror="this.style.display='none'" style="width:200px;display:block;margin:12px auto;border-radius:20px;border:3px solid #d7c9f5;box-shadow:0 4px 20px rgba(74,20,140,.18);" />
+    <img src="img/android_10_chats.png" onerror="this.style.display='none'" style="width:200px;height:auto;display:block;margin:12px auto;border-radius:20px;border:3px solid #d7c9f5;box-shadow:0 4px 20px rgba(74,20,140,.18);max-height:380px;" />
 
   </div>
   <div class="page-footer">

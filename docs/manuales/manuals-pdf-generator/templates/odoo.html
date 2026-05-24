@@ -40,14 +40,14 @@ body{font-family:var(--font-b);background:#e8e8e8;}
   .page{page-break-after:always; margin:0;}
   .page:last-child{page-break-after:avoid;}
   .no-break{page-break-inside:avoid;}
+  .cover{height:297mm; min-height:unset;}
 }
 
 /* ─── COVER ──────────────────────────────────────────────────────── */
 .cover{
-  min-height:297mm;
+  height:297mm;
   background:linear-gradient(145deg,#0d001a 0%,#1a0035 25%,#4A148C 58%,#0d47a1 100%);
-  display:flex; flex-direction:column;
-  position:relative; overflow:hidden; color:#fff;
+  position:relative; color:#fff;
 }
 .cover::before{
   content:'';position:absolute;
@@ -96,9 +96,10 @@ body{font-family:var(--font-b);background:#e8e8e8;}
   transform:rotate(8deg) translateX(60px);
 }
 .cover-top{
+  position:absolute;top:0;left:0;right:0;
   padding:40px 48px 0;
   display:flex;justify-content:space-between;align-items:flex-start;
-  position:relative;z-index:2;
+  z-index:2;
 }
 .cover-pill{
   background:rgba(255,255,255,.12);backdrop-filter:blur(8px);
@@ -114,8 +115,12 @@ body{font-family:var(--font-b);background:#e8e8e8;}
   display:flex;align-items:center;gap:6px;
 }
 .cover-body{
-  flex:1;padding:50px 48px 0;position:relative;z-index:2;
-  display:flex;flex-direction:column;justify-content:center;
+  position:absolute;
+  top:110px;bottom:80px;left:0;right:0;
+  padding:0 48px;
+  z-index:2;
+  display:flex;flex-direction:column;
+  justify-content:center;
 }
 .cover-label{
   font-family:var(--font-d);font-size:11px;font-weight:600;letter-spacing:2px;
@@ -162,7 +167,9 @@ body{font-family:var(--font-b);background:#e8e8e8;}
   background:rgba(13,71,161,.28);border-color:rgba(25,118,210,.55);color:#42A5F5;
 }
 .cover-footer{
-  padding:0 48px 36px;position:relative;z-index:2;
+  position:absolute;bottom:0;left:0;right:0;
+  padding:0 48px 36px;
+  z-index:2;
   display:flex;align-items:center;gap:20px;
 }
 .cover-logo{
@@ -574,7 +581,9 @@ li strong{color:var(--ink);}
       </div>
     </div>
 
-    <img src="img/odoo_01_login.png" onerror="this.style.display='none'" style="width:100%;max-height:160px;object-fit:cover;object-position:top;border-radius:12px;margin-bottom:20px;border:1px solid #EDE9FE;" />
+    <div style="text-align:center;margin-bottom:20px;">
+      <img src="img/odoo_01_login.png" onerror="this.style.display='none'" style="width:340px;height:auto;display:inline-block;border-radius:12px;border:1px solid #EDE9FE;box-shadow:0 2px 12px rgba(74,20,140,.10);" />
+    </div>
 
     <div class="sub-title">Pasos para iniciar sesión</div>
     <div class="steps">
@@ -621,7 +630,9 @@ li strong{color:var(--ink);}
       </div>
     </div>
 
-    <img src="img/odoo_02_menu.png" onerror="this.style.display='none'" style="width:100%;max-height:120px;object-fit:cover;object-position:top;border-radius:12px;margin-bottom:20px;border:1px solid #EDE9FE;" />
+    <div style="width:100%;height:120px;overflow:hidden;border-radius:12px;margin-bottom:20px;border:1px solid #EDE9FE;">
+      <img src="img/odoo_02_menu.png" onerror="this.parentElement.style.display='none'" style="width:100%;height:auto;display:block;" />
+    </div>
 
     <div class="sub-title">Estructura del menú Renaix</div>
     <div class="tree">
@@ -674,7 +685,9 @@ li strong{color:var(--ink);}
       </div>
     </div>
 
-    <img src="img/odoo_03_productos.png" onerror="this.style.display='none'" style="width:100%;max-height:130px;object-fit:cover;object-position:top;border-radius:12px;margin-bottom:16px;border:1px solid #EDE9FE;" />
+    <div style="width:100%;height:130px;overflow:hidden;border-radius:12px;margin-bottom:16px;border:1px solid #EDE9FE;">
+      <img src="img/odoo_03_productos.png" onerror="this.parentElement.style.display='none'" style="width:100%;height:auto;display:block;" />
+    </div>
 
     <div class="sub-title">Ciclo de vida del producto</div>
     <div class="flow">
@@ -729,7 +742,9 @@ li strong{color:var(--ink);}
       </div>
     </div>
 
-    <img src="img/odoo_04_imagenes.png" onerror="this.style.display='none'" style="width:100%;max-height:150px;object-fit:cover;object-position:top;border-radius:12px;margin-bottom:20px;border:1px solid #EDE9FE;" />
+    <div style="width:100%;height:130px;overflow:hidden;border-radius:12px;margin-bottom:20px;border:1px solid #EDE9FE;">
+      <img src="img/odoo_04_imagenes.png" onerror="this.parentElement.style.display='none'" style="width:100%;height:auto;display:block;margin-top:-10px;" />
+    </div>
 
     <div class="sub-title">Añadir imágenes a un producto</div>
     <div class="steps">
@@ -777,7 +792,9 @@ li strong{color:var(--ink);}
       </div>
     </div>
 
-    <img src="img/odoo_05_etiquetas.png" onerror="this.style.display='none'" style="width:100%;max-height:150px;object-fit:cover;object-position:top;border-radius:12px;margin-bottom:20px;border:1px solid #EDE9FE;" />
+    <div style="width:100%;height:150px;overflow:hidden;border-radius:12px;margin-bottom:20px;border:1px solid #EDE9FE;">
+      <img src="img/odoo_05_etiquetas.png" onerror="this.parentElement.style.display='none'" style="width:100%;height:auto;display:block;" />
+    </div>
 
     <div class="sub-title">Crear una nueva etiqueta</div>
     <div class="steps">
@@ -830,7 +847,9 @@ li strong{color:var(--ink);}
       </div>
     </div>
 
-    <img src="img/odoo_06_denuncias.png" onerror="this.style.display='none'" style="width:100%;max-height:120px;object-fit:cover;object-position:top;border-radius:12px;margin-bottom:14px;border:1px solid #EDE9FE;" />
+    <div style="width:100%;height:120px;overflow:hidden;border-radius:12px;margin-bottom:14px;border:1px solid #EDE9FE;">
+      <img src="img/odoo_06_denuncias.png" onerror="this.parentElement.style.display='none'" style="width:100%;height:auto;display:block;" />
+    </div>
 
     <div class="sub-title">Estados de una denuncia</div>
     <div class="flow">
@@ -841,7 +860,9 @@ li strong{color:var(--ink);}
       <span class="badge b-rejected">Rechazada</span>
     </div>
 
-    <img src="img/odoo_07_denuncia_detalle.png" onerror="this.style.display='none'" style="width:100%;max-height:110px;object-fit:cover;object-position:top;border-radius:12px;margin-bottom:14px;border:1px solid #EDE9FE;" />
+    <div style="width:100%;height:110px;overflow:hidden;border-radius:12px;margin-bottom:14px;border:1px solid #EDE9FE;">
+      <img src="img/odoo_07_denuncia_detalle.png" onerror="this.parentElement.style.display='none'" style="width:100%;height:auto;display:block;" />
+    </div>
 
     <div class="sub-title">Gestionar una denuncia</div>
     <div class="steps">
@@ -883,7 +904,9 @@ li strong{color:var(--ink);}
       </div>
     </div>
 
-    <img src="img/odoo_08_estadisticas.png" onerror="this.style.display='none'" style="width:100%;max-height:120px;object-fit:cover;object-position:top;border-radius:12px;margin-bottom:16px;border:1px solid #EDE9FE;" />
+    <div style="width:100%;height:90px;overflow:hidden;border-radius:12px;margin-bottom:16px;border:1px solid #EDE9FE;">
+      <img src="img/odoo_08_estadisticas.png" onerror="this.parentElement.style.display='none'" style="width:100%;height:auto;display:block;margin-top:-30px;" />
+    </div>
 
     <div class="sub-title">Estadísticas → Gráficos</div>
     <div class="grid2">
