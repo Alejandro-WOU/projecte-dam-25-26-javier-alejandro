@@ -20,7 +20,12 @@
       "Bash(docker-compose up *)",
       "Bash(powershell -Command \"Start-Process 'C:\\\\Program Files\\\\Docker\\\\Docker\\\\Docker Desktop.exe'\")",
       "Bash(docker info *)",
-      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8069/web/login)"
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8069/web/login)",
+      "Bash(docker exec *)",
+      "Bash(docker restart *)",
+      "Bash(node -e ' *)",
+      "Bash(python -c ' *)",
+      "Bash(del debug_*.png tmp_*.png)"
     ]
   }
 }
